@@ -19,7 +19,7 @@ export default function Home() {
           Hello world!
 
         </h1>
-        <Footer />
+        <Footer />  
       </main>
     </>
   )
