@@ -133,7 +133,7 @@ const SuperDeal = () => {
           </h2>
           <Link href="/">View All</Link>
         </div>
-        <div className="flex gap-4">
+        <div className="flex">
           {products?.map((p, index) => (
             <SwiperSlide className="w-[270px]" key={index}>
               <Link
