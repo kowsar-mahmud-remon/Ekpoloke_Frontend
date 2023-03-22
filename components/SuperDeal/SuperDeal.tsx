@@ -51,82 +51,8 @@ const SuperDeal = () => {
     return "#026C51";
   };
   return (
-    // <div>
-    //   <h1>Super Deals</h1>
-    //   <div className="grid grid-cols-1 gap-4 my-16 lg:grid-cols-5 md:grid-cols-3">
-    //     {products &&
-    //       products.map((product) => {
-    //         const { id, title, rating, regularPrice, discount, img } = product;
-    //         return (
-    //           <>
-    //             <div className="transition-all bg-white rounded-md coursor-pointer ">
-    //               <div className=" hover:border">
-    //                 <div className="flex justify-center">
-    //                   {" "}
-    //                   <Image
-    //                     className="object-contain"
-    //                     src={img}
-    //                     alt=""
-    //                     width={150}
-    //                     height={80}
-    //                   ></Image>{" "}
-    //                 </div>
-    //                 <div className="py-3">
-    //                   <p>{title}</p>
-    //                   <div>
-    //                     <div className="flex items-center">
-    //                       <div
-    //                         style={{
-    //                           backgroundColor: ratingColor(rating),
-    //                         }}
-    //                         className="rounded-[2px] px-[2] w-[35px] h-[16px] flex items-center justify-between mr-2"
-    //                       >
-    //                         <p className="text-xs text-white">{rating}</p>
-    //                         <div className="">
-    //                           <Image
-    //                             className=""
-    //                             src={star}
-    //                             alt=""
-    //                             width={12}
-    //                           ></Image>
-    //                         </div>
-    //                       </div>
-    //                       <p className="text-[14px] text-[#686868]">
-    //                         24 Ratings & 5 Reviews
-    //                       </p>
-    //                     </div>
-    //                   </div>
-    //                 </div>
-    //                 <div className="flex items-center gap-2">
-    //                   <span className="text-[#FB641B] font-bold text-[20px]">
-    //                     Tk{" "}
-    //                     {discount
-    //                       ? (
-    //                           regularPrice -
-    //                           (regularPrice * discount) / 100
-    //                         ).toFixed(0)
-    //                       : regularPrice}
-    //                   </span>
-    //                   {discount && (
-    //                     <>
-    //                       <span className="text-[#707070] text-[12px] line-through font-[500]">
-    //                         TK {regularPrice}
-    //                       </span>
-    //                       <span className="text-[#707070] text-[12px] ">
-    //                         ({discount}% off)
-    //                       </span>
-    //                     </>
-    //                   )}
-    //                 </div>
-    //               </div>
-    //             </div>
-    //           </>
-    //         );
-    //       })}
-    //   </div>
-    // </div>
-    <div className="">
-      <div className={` py-10 bg-white shadow`}>
+    <div className="mb-5 bg-white">
+      <div className={`  shadow`}>
         <div className="flex items-center justify-between p-5 md:gap-x-3 gap-x-1">
           <h2 className="pr-1 text-lg lg:text-3xl md:text-xl whitespace-nowrap md:pr-3">
             {"Super Deals" || "Products"}
@@ -135,7 +61,7 @@ const SuperDeal = () => {
         </div>
         <div className="flex">
           {products?.map((p, index) => (
-            <SwiperSlide className="w-[270px]" key={index}>
+            <SwiperSlide className="w-[270px] mb-5" key={index}>
               <Link
                 href=""
                 className="px-2 py-3 md:p-3 border-[0.5px] border-white hover:border-gray-300 hover:shadow-md block rounded-md"
