@@ -60,7 +60,7 @@ const TrendingProduct = () => {
             <h2 className="pr-1 text-lg lg:text-3xl md:text-xl whitespace-nowrap md:pr-3">
               {"Trending Product" || "Products"}
             </h2>
-            <Link href="/">View All</Link>
+            <Link className="text-lg font-medium text-[#fd9319] hover:underline" href="/">View All</Link>
           </div>
           <div className="flex">
             {products?.map((p, index) => (
