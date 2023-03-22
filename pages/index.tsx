@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
 import Footer from '@/components/Footer/Footer'
+import SuperDeal from '@/components/SuperDeal/SuperDeal'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -15,10 +16,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1 className="text-3xl font-bold underline">
-          Hello world!
-
-        </h1>
+        <SuperDeal></SuperDeal>
         <Footer />  
       </main>
     </>
