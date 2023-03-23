@@ -109,6 +109,9 @@
 .headerDropdownContainer:hover .dropdown {
   display: block;
 }
+.dropdown {
+  display: block;
+}
 .upArrow {
   width: 0;
   height: 0;

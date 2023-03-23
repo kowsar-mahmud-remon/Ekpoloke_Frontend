@@ -1,22 +1,17 @@
-import Footer from "@/components/Footer/Footer";
-// import Header from "@/components/Header/Header";
-// import Header from "../components/Header/Header";
+import { store } from "@/store";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
+import { Provider } from "react-redux";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Header from "@/components/Header/Header";
-
+import Footer from "@/components/Footer/Footer";
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className="">
-      <div className="">
-        <Header></Header>
-      </div>
-      <div className="">
-        <Component {...pageProps} />
-      </div>
-      <div className="">
-        <Footer></Footer>
-      </div>
-    </div>
+    <Provider store={store}>
+      <Header></Header>
+      <Component {...pageProps} />
+      <Footer></Footer>
+    </Provider>
   );
 }
