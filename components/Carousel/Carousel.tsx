@@ -15,7 +15,7 @@ interface ComponentBProps {
     
   }
 
-  
+
 const Carousel= ({}) => {
   const [slides, setSlides] = useState<string[]>([])
   // const caro = useSelector((state) => state)
@@ -67,5 +67,6 @@ const Carousel= ({}) => {
     </Slider>
     );
 };
+
 
 export default Carousel;
