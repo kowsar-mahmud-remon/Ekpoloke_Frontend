@@ -2,6 +2,10 @@ import Head from 'next/head'
 import { Inter } from '@next/font/google'
 import Footer from '@/components/Footer/Footer'
 import Carousel from '@/components/Carousel/Carousel'
+import SuperDeal from '@/components/SuperDeal/SuperDeal'
+import TrendingProduct from '@/components/TrendingProduct/TrendingProduct'
+import RecentlyView from '@/components/RecentlyView/RecentlyView'
+
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -18,6 +22,12 @@ export default function Home() {
       <main>
        <Carousel/>
         <Footer />
+      <main className='bg-[#F2F2F2]'>
+        <SuperDeal></SuperDeal>
+        <TrendingProduct></TrendingProduct>
+        <RecentlyView></RecentlyView>
+        <Footer />  
+
       </main>
     </>
   )
