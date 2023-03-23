@@ -1,0 +1,39 @@
+/*  .custom_prev_btn, */
+ .custom_prev_btn,
+ .custom_next_btn {
+  background: white !important;
+  width: 35px !important;
+  height: 80px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 40;
+}
+ .custom_prev_btn {
+  left: 0px !important;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+ .slick-arrow {
+  color: #000 !important;
+  cursor: default !important;
+}
+ .custom_next_btn {
+  right: 0px !important;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+ .slick-prev:hover:before,
+ .slick-prev:focus:before,
+ .slick-next:hover:before,
+ .slick-next:focus:before,
+ .slick-prev:before,
+ .slick-next:before {
+  display: none !important;
+}
+@media only screen and (max-width: 640px) {
+   .custom_prev_btn,
+   .custom_next_btn {
+    display: none !important;
+  }
+}

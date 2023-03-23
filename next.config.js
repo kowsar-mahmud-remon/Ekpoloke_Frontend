@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  images: {
-    domains: [
-      "rukminim1.flixcart.com"
-    ],
-  },
+
+  reactStrictMode: true,images:{
+    domains:['rukminim1.flixcart.com']
+  }
+
+
 }
 
 
