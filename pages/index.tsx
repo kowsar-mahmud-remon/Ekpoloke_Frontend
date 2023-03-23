@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
-import Footer from "@/components/Footer/Footer";
 import Carousel from "@/components/Carousel/Carousel";
 import SuperDeal from "@/components/SuperDeal/SuperDeal";
 import TrendingProduct from "@/components/TrendingProduct/TrendingProduct";
@@ -22,7 +21,6 @@ export default function Home() {
         <SuperDeal></SuperDeal>
         <TrendingProduct></TrendingProduct>
         <RecentlyView></RecentlyView>
-        <Footer />
       </main>
     </>
   );
