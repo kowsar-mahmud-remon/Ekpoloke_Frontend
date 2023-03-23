@@ -5,7 +5,7 @@ import SuperDeal from '@/components/SuperDeal/SuperDeal'
 import TrendingProduct from '@/components/TrendingProduct/TrendingProduct'
 import RecentlyView from '@/components/RecentlyView/RecentlyView'
 
-
+  
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
