@@ -7,7 +7,7 @@ import TrendingProduct from '@/components/TrendingProduct/TrendingProduct'
 import RecentlyView from '@/components/RecentlyView/RecentlyView'
 
 
-
+  
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
@@ -19,10 +19,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-       <Carousel/>
-        <Footer />
       <main className='bg-[#F2F2F2]'>
+      <Carousel/>
         <SuperDeal></SuperDeal>
         <TrendingProduct></TrendingProduct>
         <RecentlyView></RecentlyView>
