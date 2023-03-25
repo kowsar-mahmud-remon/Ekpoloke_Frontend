@@ -1,7 +1,7 @@
 import { IoIosStar } from "react-icons/io";
-import getRatingColor from "../../../utils/getRatingColor";
+import getRatingColor from "../../../utils/calculateAverageRating";
 
-const Rating = ({ value }) => {
+const Rating = ( value: any) => {
   return (
     <span
       style={{

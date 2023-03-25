@@ -5,7 +5,6 @@ import PreviousButton from "./PreviousButton";
 import styles from "../../styles/Carousel.module.css";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCaroData } from "@/features/carousel/carouselSlice";
 
 interface ComponentBProps {
   slides: any;

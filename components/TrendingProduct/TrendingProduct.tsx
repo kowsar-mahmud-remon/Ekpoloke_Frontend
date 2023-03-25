@@ -3,9 +3,11 @@ import React from "react";
 import star from "../../assets/images/star.png";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Navigation } from "swiper";
 
 const TrendingProduct = () => {
+
+  
+  
 
     const products = [
         {
