@@ -1,18 +1,19 @@
+import Link from "next/link";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import styles from "../../styles/MaterialUi.module.css";
 
-type menuProps = {
-  menu: JSX.Element;
-};
+// type menuProps = {
+//   menu: JSX.Element;
+// };
 
-type menusProps = {
-  menus: {
-    label: string;
-    href: string;
-    icon: JSX.Element;
-  }[];
-};
+// type menusProps = {
+//   menus: {
+//     label: string;
+//     href: string;
+//     icon: JSX.Element;
+//   }[];
+// };
 
 type DropdownMenuType = {
   menu: JSX.Element;
@@ -130,6 +131,9 @@ type DropdownMenuType = {
 // };
 
 const DropdownMenu = ({ menu, menus, firstMenu }: DropdownMenuType) => {
+  console.log("menu", menu.props);
+  console.log("menus", menus);
+  console.log("firstMenu", firstMenu);
   return (
     <div className={`${styles.headerDropdownContainer}`}>
       {menu}
@@ -148,7 +152,7 @@ const DropdownMenu = ({ menu, menus, firstMenu }: DropdownMenuType) => {
                     }
                   }}
                   style={{ width: "100%" }}
-                  to={item.href}
+                  href={item.href}
                 >
                   <div className="flex items-center gap-3">
                     <span className="text-primary">{item.icon}</span>{" "}

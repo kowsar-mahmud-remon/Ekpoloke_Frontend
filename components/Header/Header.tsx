@@ -33,37 +33,42 @@ import Link from "next/link";
 // import { signOut } from "../../actions";
 // import { getSearchUrl } from "../../urlConfig";
 
-// const LoggedInMenu = () => {
-//   const auth = useSelector((state) => state.auth);
-//   const dispatch = useDispatch();
+const LoggedInMenu = () => {
+  // const auth = useSelector((state) => state.auth);
+  // const dispatch = useDispatch();
 
-//   const logout = () => {
-//     dispatch(signOut());
-//   };
-//   return (
-//     <DropdownMenu
-//       menu={<a className={`${styles.fullName}`}>{auth.user.fullName}</a>}
-//       menus={[
-//         { label: "My Profile", href: "", icon: <FaRegUser /> },
-//         {
-//           label: "Orders",
-//           href: "/account/orders",
-//           icon: <CgNotes />,
-//         },
-//         { label: "Favorites", href: "", icon: <BsSuitHeart /> },
-//         { label: "Cart", href: "/cart", icon: <BsCart3 /> },
-//         { label: "Reward", href: "", icon: <BsFillGiftFill /> },
-//         { label: "Gift Cards", href: "", icon: <MdCardGiftcard /> },
-//         {
-//           label: "Logout",
-//           href: "",
-//           icon: <MdLogout />,
-//           onClick: logout,
-//         },
-//       ]}
-//     />
-//   );
-// };
+  // const logout = () => {
+  //   dispatch(signOut());
+  // };
+  return (
+    <DropdownMenu
+      menu={
+        <a className={`${styles.fullName}`}>
+          {/* {auth.user.fullName} */}
+          not show
+        </a>
+      }
+      menus={[
+        { label: "My Profile", href: "", icon: <FaRegUser /> },
+        {
+          label: "Orders",
+          href: "/account/orders",
+          icon: <CgNotes />,
+        },
+        { label: "Favorites", href: "", icon: <BsSuitHeart /> },
+        { label: "Cart", href: "/cart", icon: <BsCart3 /> },
+        { label: "Reward", href: "", icon: <BsFillGiftFill /> },
+        { label: "Gift Cards", href: "", icon: <MdCardGiftcard /> },
+        {
+          label: "Logout",
+          href: "",
+          icon: <MdLogout />,
+          // onClick: logout,
+        },
+      ]}
+    />
+  );
+};
 
 const LoggedOutMenu = () => {
   return (
@@ -92,174 +97,172 @@ const LoggedOutMenu = () => {
   );
 };
 
-const Header = () =>
-  // { content }
-  {
-    // const cart = useSelector((state) => state.cart);
-    // const auth = useSelector((state) => state.auth);
-    // const [searchValue, setSearchValue] = useState("");
+const Header = ({ content }: any) => {
+  // const cart = useSelector((state) => state.cart);
+  // const auth = useSelector((state) => state.auth);
+  // const [searchValue, setSearchValue] = useState("");
 
-    // const [searchParams] = useSearchParams();
+  // const [searchParams] = useSearchParams();
 
-    // const location = useLocation();
-    // const navigate = useNavigate();
+  // const location = useLocation();
+  // const navigate = useNavigate();
 
-    // useEffect(() => {
-    //   if (location.pathname === "/search/product") {
-    //     const searchValue = searchParams.get("s");
-    //     setSearchValue(searchValue);
-    //   }
-    // }, [location.pathname, searchParams]);
-    // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   if (location.pathname === "/search/product") {
+  //     const searchValue = searchParams.get("s");
+  //     setSearchValue(searchValue);
+  //   }
+  // }, [location.pathname, searchParams]);
+  // const dispatch = useDispatch();
 
-    // const logout = () => {
-    //   dispatch(signOut());
-    // };
+  // const logout = () => {
+  //   dispatch(signOut());
+  // };
 
-    // const handleSubmitSearch = (e) => {
-    //   e.preventDefault();
-    //   navigate(getSearchUrl(searchValue));
-    // };
+  // const handleSubmitSearch = (e) => {
+  //   e.preventDefault();
+  //   navigate(getSearchUrl(searchValue));
+  // };
 
-    return (
-      <>
-        <div className="drawer">
-          <input id="navbarDrawer" type="checkbox" className="drawer-toggle" />
-          <div className="drawer-content" id="content">
-            <div className="bg-white">
-              <div className="w-full navbar lg:container xl:container xl:px-16 mx-auto lg:px-2 md:px-6 justify-between">
-                <Link href="/" className="px-2 mx-2">
-                  <Image
-                    src={logo}
-                    style={{ width: "170px" }}
-                    alt="Logo"
-                    width={500}
-                    height={500}
+  return (
+    <>
+      <div className="drawer">
+        <input id="navbarDrawer" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content" id="content">
+          <div className="bg-white">
+            <div className="w-full navbar lg:container xl:container xl:px-16 mx-auto lg:px-2 md:px-6 justify-between">
+              <Link href="/" className="px-2 mx-2">
+                <Image
+                  src={logo}
+                  style={{ width: "170px" }}
+                  alt="Logo"
+                  width={170}
+                  height={170}
+                />
+              </Link>
+              <div className="flex-none md:hidden">
+                <label
+                  htmlFor="navbarDrawer"
+                  className="btn btn-square btn-ghost"
+                >
+                  <GiHamburgerMenu className="text-primary" fontSize={30} />
+                </label>
+              </div>
+
+              <div className="flex-1 h-full hidden md:block">
+                <form
+                  // onSubmit={handleSubmitSearch}
+                  className={`${styles.search}`}
+                >
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    // value={searchValue}
+                    // onChange={(e) => setSearchValue(e.target.value)}
                   />
-                </Link>
-                <div className="flex-none md:hidden">
-                  <label
-                    htmlFor="navbarDrawer"
-                    className="btn btn-square btn-ghost"
+                  <button
+                    type="submit"
+                    className="py-0 px-3 lg:px- md:px-6 sm:px-2"
                   >
-                    <GiHamburgerMenu className="text-primary" fontSize={30} />
-                  </label>
-                </div>
+                    <ImSearch /> Search
+                  </button>
+                </form>
+              </div>
 
-                <div className="flex-1 h-full hidden md:block">
-                  <form
-                    // onSubmit={handleSubmitSearch}
-                    className={`${styles.search}`}
-                  >
-                    <input
-                      type="text"
-                      placeholder="Search..."
-                      // value={searchValue}
-                      // onChange={(e) => setSearchValue(e.target.value)}
+              <div className="flex-none hidden md:block">
+                <ul className={`menu menu-horizontal ${styles.navbarItems}`}>
+                  <li>
+                    <DropdownMenu
+                      menu={
+                        <a className={`${styles.more} text-black`}>
+                          <span>More</span>
+                          <IoIosArrowDown />
+                        </a>
+                      }
+                      menus={[
+                        {
+                          label: "Notification Preference",
+                          href: "",
+                          icon: <TbBellRinging />,
+                        },
+                        {
+                          label: "Sell on Ekpoloke",
+                          href: "",
+                          icon: <MdSell />,
+                        },
+                        {
+                          label: "24x7 Customer Care",
+                          href: "",
+                          icon: <MdLiveHelp />,
+                        },
+                        {
+                          label: "Advertise",
+                          href: "",
+                          icon: <GiProgression />,
+                        },
+                        {
+                          label: "Download App",
+                          href: "",
+                          icon: <ImFolderDownload />,
+                        },
+                      ]}
                     />
-                    <button
-                      type="submit"
-                      className="py-0 px-3 lg:px- md:px-6 sm:px-2"
-                    >
-                      <ImSearch /> Search
-                    </button>
-                  </form>
-                </div>
-
-                <div className="flex-none hidden md:block">
-                  <ul className={`menu menu-horizontal ${styles.navbarItems}`}>
-                    {/* <li>
-                      <DropdownMenu
-                        menu={
-                          <a className={`${styles.more} text-black`}>
-                            <span>More</span>
-                            <IoIosArrowDown />
-                          </a>
-                        }
-                        menus={[
-                          {
-                            label: "Notification Preference",
-                            href: "",
-                            icon: <TbBellRinging />,
-                          },
-                          {
-                            label: "Sell on Ekpoloke",
-                            href: "",
-                            icon: <MdSell />,
-                          },
-                          {
-                            label: "24x7 Customer Care",
-                            href: "",
-                            icon: <MdLiveHelp />,
-                          },
-                          {
-                            label: "Advertise",
-                            href: "",
-                            icon: <GiProgression />,
-                          },
-                          {
-                            label: "Download App",
-                            href: "",
-                            icon: <ImFolderDownload />,
-                          },
-                        ]}
-                      />
-                    </li> */}
-                    <li>
-                      {/* {auth.authenticate ? <LoggedInMenu /> : <LoggedOutMenu />} */}
-                    </li>
-                    <li>
-                      <Link href="/cart" className="cart">
-                        {/* <Cart count={Object.keys(cart.cartItems).length} /> */}
-                        <span>Cart</span>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
+                  </li>
+                  <li>
+                    {/* {auth.authenticate ? <LoggedInMenu /> : <LoggedOutMenu />} */}
+                  </li>
+                  <li>
+                    <Link href="/cart" className="cart">
+                      {/* <Cart count={Object.keys(cart.cartItems).length} /> */}
+                      <span>Cart</span>
+                    </Link>
+                  </li>
+                </ul>
               </div>
             </div>
-            {/* {content} */}
           </div>
-          <div className="drawer-side">
-            <label
-              htmlFor="navbarDrawer"
-              className="drawer-overlay backdrop-brightness-50"
-            ></label>
-            <ul
-              className={`menu p-0 relative ${styles.navbarMobileDrawer} overflow-y-auto w-[80%] bg-base-100`}
-            >
-              <li className="bg-primary sticky left-0 top-0 right-0 z-10">
-                <div className="flex items-center justify-between">
-                  <Link
-                    href="/"
-                    className="flex items-center text-white gap-x-3 text-xl"
-                  >
-                    <AiOutlineHome color="#fff" fontSize={32} />
-                  </Link>
+          {content}
+        </div>
+        <div className="drawer-side">
+          <label
+            htmlFor="navbarDrawer"
+            className="drawer-overlay backdrop-brightness-50"
+          ></label>
+          <ul
+            className={`menu p-0 relative ${styles.navbarMobileDrawer} overflow-y-auto w-[80%] bg-base-100`}
+          >
+            <li className="bg-primary sticky left-0 top-0 right-0 z-10">
+              <div className="flex items-center justify-between">
+                <Link
+                  href="/"
+                  className="flex items-center text-white gap-x-3 text-xl"
+                >
+                  <AiOutlineHome color="#fff" fontSize={32} />
+                </Link>
 
-                  {/* <span onClick={() => window.location.reload()}>
+                {/* <span onClick={() => window.location.reload()}>
                     <IoIosRefresh color="#fff" fontSize={32} />
                   </span> */}
 
-                  <label htmlFor="navbarDrawer">
-                    <MdClose color="#fff" fontSize={32} />
-                  </label>
-                </div>
-              </li>
-              <li>
-                <Link
-                  href="/categories"
-                  style={{ fontSize: "20px", fontWeight: "bold" }}
-                >
-                  <BiCategory fontSize={25} /> <span>All Categories</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/language">
-                  <TbLanguage /> <span>Choose Language</span>
-                </Link>
-              </li>
-              {/* <li>
+                <label htmlFor="navbarDrawer">
+                  <MdClose color="#fff" fontSize={32} />
+                </label>
+              </div>
+            </li>
+            <li>
+              <Link
+                href="/categories"
+                style={{ fontSize: "20px", fontWeight: "bold" }}
+              >
+                <BiCategory fontSize={25} /> <span>All Categories</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/language">
+                <TbLanguage /> <span>Choose Language</span>
+              </Link>
+            </li>
+            {/* <li>
                 {auth.authenticate ? (
                   <Link href="/profile">
                     <FaRegUser fontSize={20} />{" "}
@@ -272,73 +275,73 @@ const Header = () =>
                 )}
               </li> */}
 
-              <li>
-                <Link href="/account/orders">
-                  <CgNotes /> <span>My Orders</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/cart">
-                  <BsCart3 /> <span>My Cart</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/favorites">
-                  <BsSuitHeart /> <span>My Favorites</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/favorites">
-                  <FaRegUser /> <span>My Profile</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/offer-zone">
-                  <BsCash /> <span>Offer Zone</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/sell">
-                  <BsHandbag /> <span>Sell On Ekpoloke</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/help">
-                  <RiCustomerService2Fill /> <span>Help Centre</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/help">
-                  <GiClawHammer /> <span>Legal</span>
-                </Link>
-              </li>
-              {/* {auth.authenticate && (
-                <li>
-                  <a
-                    href="/"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      logout();
-                    }}
-                  >
-                    <MdLogout /> <span>Log Out</span>
-                  </a>
-                </li>
-              )} */}
+            <li>
+              <Link href="/account/orders">
+                <CgNotes /> <span>My Orders</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/cart">
+                <BsCart3 /> <span>My Cart</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/favorites">
+                <BsSuitHeart /> <span>My Favorites</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/favorites">
+                <FaRegUser /> <span>My Profile</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/offer-zone">
+                <BsCash /> <span>Offer Zone</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/sell">
+                <BsHandbag /> <span>Sell On Ekpoloke</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/help">
+                <RiCustomerService2Fill /> <span>Help Centre</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/help">
+                <GiClawHammer /> <span>Legal</span>
+              </Link>
+            </li>
+            {/* {auth.authenticate && ( */}
+            <li>
+              <Link
+                href="/"
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   logout();
+                // }}
+              >
+                <MdLogout /> <span>Log Out</span>
+              </Link>
+            </li>
+            {/* )} */}
 
-              {/* // */}
-              {/* <label
+            {/* // */}
+            {/* <label
               htmlFor="navbarDrawer"
               className="absolute p-2 bg-neutral rounded-full right-2 top-2 z-50"
             >
               <MdClose fontSize="25" />
             </label> */}
-              {/* // */}
-            </ul>
-          </div>
+            {/* // */}
+          </ul>
         </div>
-      </>
-    );
-  };
+      </div>
+    </>
+  );
+};
 
 export default Header;
