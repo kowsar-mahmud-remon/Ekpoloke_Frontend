@@ -21,7 +21,6 @@ export default function Home() {
       <main className="bg-[#F2F2F2]">
         <Carousel />
         <HomePage></HomePage>
-        <Footer />
       </main>
     </>
   );

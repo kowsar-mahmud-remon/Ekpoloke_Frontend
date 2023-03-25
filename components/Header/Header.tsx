@@ -1,16 +1,10 @@
-
 import React, { useEffect, useState } from "react";
-import Link from 'next/link'
 import { useDispatch, useSelector } from "react-redux";
-import {
-  useLocation,
-  useNavigate,
-  useSearchParams,
-} from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { DropdownMenu } from "../MaterialUI/MaterialUI";
 import Cart from "../UI/Cart/Cart";
-import styles from "./Header.module.css";
-
+import styles from "../../styles/Header.module.css";
+import logo from "../../assets/logo/logo.png";
 import { IoIosArrowDown, IoIosRefresh } from "react-icons/io";
 import { GiHamburgerMenu, GiProgression, GiClawHammer } from "react-icons/gi";
 import {
@@ -20,7 +14,6 @@ import {
   MdLogout,
   MdClose,
 } from "react-icons/md";
-import logo from '../../assets/logo/logo.png'
 import { FaRegUser } from "react-icons/fa";
 import { BiCategory } from "react-icons/bi";
 import { AiOutlineHome } from "react-icons/ai";
@@ -36,18 +29,25 @@ import { CgNotes } from "react-icons/cg";
 import { TbLanguage, TbBellRinging } from "react-icons/tb";
 import { ImSearch, ImFolderDownload } from "react-icons/im";
 import Image from "next/image";
+import Link from "next/link";
 // import { signOut } from "../../actions";
 // import { getSearchUrl } from "../../urlConfig";
 
 const LoggedInMenu = () => {
-  const auth = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
-  const logout = () => {
-    dispatch(signOut());
-  };
+  // const auth = useSelector((state) => state.auth);
+  // const dispatch = useDispatch();
+
+  // const logout = () => {
+  //   dispatch(signOut());
+  // };
   return (
     <DropdownMenu
-      menu={<a className="fullName">{auth.user.fullName}</a>}
+      menu={
+        <a className={`${styles.fullName}`}>
+          {/* {auth.user.fullName} */}
+          not show
+        </a>
+      }
       menus={[
         { label: "My Profile", href: "", icon: <FaRegUser /> },
         {
@@ -63,7 +63,7 @@ const LoggedInMenu = () => {
           label: "Logout",
           href: "",
           icon: <MdLogout />,
-          onClick: logout,
+          // onClick: logout,
         },
       ]}
     />
@@ -97,27 +97,33 @@ const LoggedOutMenu = () => {
   );
 };
 
-const Header = ({ content }) => {
-  const cart = useSelector((state) => state.cart);
-  const auth = useSelector((state) => state.auth);
-  const [searchValue, setSearchValue] = useState("");
-  const [searchParams] = useSearchParams();
-  const location = useLocation();
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (location.pathname === "/search/product") {
-      const searchValue = searchParams.get("s");
-      setSearchValue(searchValue);
-    }
-  }, [location.pathname, searchParams]);
-  const dispatch = useDispatch();
-  const logout = () => {
-    dispatch(signOut());
-  };
-  const handleSubmitSearch = (e) => {
-    e.preventDefault();
-    navigate(getSearchUrl(searchValue));
-  };
+const Header = ({ content }: any) => {
+  // const cart = useSelector((state) => state.cart);
+  // const auth = useSelector((state) => state.auth);
+  // const [searchValue, setSearchValue] = useState("");
+
+  // const [searchParams] = useSearchParams();
+
+  // const location = useLocation();
+  // const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (location.pathname === "/search/product") {
+  //     const searchValue = searchParams.get("s");
+  //     setSearchValue(searchValue);
+  //   }
+  // }, [location.pathname, searchParams]);
+  // const dispatch = useDispatch();
+
+  // const logout = () => {
+  //   dispatch(signOut());
+  // };
+
+  // const handleSubmitSearch = (e) => {
+  //   e.preventDefault();
+  //   navigate(getSearchUrl(searchValue));
+  // };
+
   return (
     <>
       <div className="drawer">
@@ -126,7 +132,13 @@ const Header = ({ content }) => {
           <div className="bg-white">
             <div className="w-full navbar lg:container xl:container xl:px-16 mx-auto lg:px-2 md:px-6 justify-between">
               <Link href="/" className="px-2 mx-2">
-                <Image src={logo} style={{ width: "170px" }} alt="Logo" />
+                <Image
+                  src={logo}
+                  style={{ width: "170px" }}
+                  alt="Logo"
+                  width={170}
+                  height={170}
+                />
               </Link>
               <div className="flex-none md:hidden">
                 <label
@@ -138,12 +150,15 @@ const Header = ({ content }) => {
               </div>
 
               <div className="flex-1 h-full hidden md:block">
-                <form onSubmit={handleSubmitSearch} className="search">
+                <form
+                  // onSubmit={handleSubmitSearch}
+                  className={`${styles.search}`}
+                >
                   <input
                     type="text"
                     placeholder="Search..."
-                    value={searchValue}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    // value={searchValue}
+                    // onChange={(e) => setSearchValue(e.target.value)}
                   />
                   <button
                     type="submit"
@@ -155,11 +170,11 @@ const Header = ({ content }) => {
               </div>
 
               <div className="flex-none hidden md:block">
-                <ul className="menu menu-horizontal navbarItems">
+                <ul className={`menu menu-horizontal ${styles.navbarItems}`}>
                   <li>
                     <DropdownMenu
                       menu={
-                        <a className="more text-black">
+                        <a className={`${styles.more} text-black`}>
                           <span>More</span>
                           <IoIosArrowDown />
                         </a>
@@ -194,11 +209,11 @@ const Header = ({ content }) => {
                     />
                   </li>
                   <li>
-                    {auth.authenticate ? <LoggedInMenu /> : <LoggedOutMenu />}
+                    {/* {auth.authenticate ? <LoggedInMenu /> : <LoggedOutMenu />} */}
                   </li>
                   <li>
                     <Link href="/cart" className="cart">
-                      <Cart count={Object.keys(cart.cartItems).length} />
+                      {/* <Cart count={Object.keys(cart.cartItems).length} /> */}
                       <span>Cart</span>
                     </Link>
                   </li>
@@ -213,7 +228,9 @@ const Header = ({ content }) => {
             htmlFor="navbarDrawer"
             className="drawer-overlay backdrop-brightness-50"
           ></label>
-          <ul className="menu p-0 relative navbarMobileDrawer overflow-y-auto w-[80%] bg-base-100">
+          <ul
+            className={`menu p-0 relative ${styles.navbarMobileDrawer} overflow-y-auto w-[80%] bg-base-100`}
+          >
             <li className="bg-primary sticky left-0 top-0 right-0 z-10">
               <div className="flex items-center justify-between">
                 <Link
@@ -222,9 +239,11 @@ const Header = ({ content }) => {
                 >
                   <AiOutlineHome color="#fff" fontSize={32} />
                 </Link>
-                <span onClick={() => window.location.reload()}>
-                  <IoIosRefresh color="#fff" fontSize={32} />
-                </span>
+
+                {/* <span onClick={() => window.location.reload()}>
+                    <IoIosRefresh color="#fff" fontSize={32} />
+                  </span> */}
+
                 <label htmlFor="navbarDrawer">
                   <MdClose color="#fff" fontSize={32} />
                 </label>
@@ -243,17 +262,18 @@ const Header = ({ content }) => {
                 <TbLanguage /> <span>Choose Language</span>
               </Link>
             </li>
-            <li>
-              {auth.authenticate ? (
-                <Link href="/profile">
-                  <FaRegUser fontSize={20} /> <span>{auth.user.fullName}</span>
-                </Link>
-              ) : (
-                <Link href="/login">
-                  <FaRegUser fontSize={20} /> <span>Login & Register</span>
-                </Link>
-              )}
-            </li>
+            {/* <li>
+                {auth.authenticate ? (
+                  <Link href="/profile">
+                    <FaRegUser fontSize={20} />{" "}
+                    <span>{auth.user.fullName}</span>
+                  </Link>
+                ) : (
+                  <Link href="/login">
+                    <FaRegUser fontSize={20} /> <span>Login & Register</span>
+                  </Link>
+                )}
+              </li> */}
 
             <li>
               <Link href="/account/orders">
@@ -295,25 +315,28 @@ const Header = ({ content }) => {
                 <GiClawHammer /> <span>Legal</span>
               </Link>
             </li>
-            {auth.authenticate && (
-              <li>
-                <Link
-                  href="/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    logout();
-                  }}
-                >
-                  <MdLogout /> <span>Log Out</span>
-                </Link>
-              </li>
-            )}
+            {/* {auth.authenticate && ( */}
+            <li>
+              <Link
+                href="/"
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   logout();
+                // }}
+              >
+                <MdLogout /> <span>Log Out</span>
+              </Link>
+            </li>
+            {/* )} */}
+
+            {/* // */}
             {/* <label
               htmlFor="navbarDrawer"
               className="absolute p-2 bg-neutral rounded-full right-2 top-2 z-50"
             >
               <MdClose fontSize="25" />
             </label> */}
+            {/* // */}
           </ul>
         </div>
       </div>
