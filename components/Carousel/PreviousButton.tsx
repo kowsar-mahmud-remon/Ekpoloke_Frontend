@@ -8,7 +8,7 @@ interface ComponentBProps {
 const PreviousButton: React.FC<ComponentBProps> = ({ onClick, className }) => {
     return (
       <div className={`${className} ${styles.custom_prev_btn}`} onClick={onClick}>
-        <BiChevronLeft fontSize={40} />
+        <BiChevronLeft fontSize={40} color={'#000'} />
       </div>
     );
   };

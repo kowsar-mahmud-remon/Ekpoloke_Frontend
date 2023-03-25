@@ -10,7 +10,7 @@ interface ComponentBProps {
 const NextButton: React.FC<ComponentBProps> = ({ onClick, className }) => {
   return (
     <div onClick={onClick} className={`${className} ${styles.custom_next_btn} ${styles.homeSlider}`}>
-      <BiChevronRight fontSize={40} />
+      <BiChevronRight fontSize={40} color={'#000'} />
     </div>
   );
 };
