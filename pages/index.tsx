@@ -5,6 +5,7 @@ import Carousel from "@/components/Carousel/Carousel";
 import SuperDeal from "@/components/SuperDeal/SuperDeal";
 import TrendingProduct from "@/components/TrendingProduct/TrendingProduct";
 import RecentlyView from "@/components/RecentlyView/RecentlyView";
+import HomePage from "@/components/HomePage/HomePage";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +20,7 @@ export default function Home() {
       </Head>
       <main className="bg-[#F2F2F2]">
         <Carousel />
-        <SuperDeal></SuperDeal>  
-        <TrendingProduct></TrendingProduct>
-        <RecentlyView></RecentlyView>
+        <HomePage></HomePage>
         <Footer />
       </main>
     </>
