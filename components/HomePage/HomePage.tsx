@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useGetPostQuery } from "../rtkQuery/productApi";
 import Image from "next/image";
-
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";

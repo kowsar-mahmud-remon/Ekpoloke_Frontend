@@ -9,8 +9,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 const MultipleProductSlider = (products: any,) => {
-  console.log(products, "kopikkkkkkkkkkkkkkkkkkkk");
-
   return (
     <div className={`bg-white my-[15px]`}>
       <div className="flex items-center justify-between p-5 md:gap-x-3 gap-x-1">
