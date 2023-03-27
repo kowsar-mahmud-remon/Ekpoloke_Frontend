@@ -1,0 +1,75 @@
+.cartProImgContainer {
+    margin: 10px;
+    width: 112px;
+    height: 112px;
+    overflow: hidden;
+    text-align: center;
+}
+.cartProImgContainer img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    margin: 0 auto;
+}
+.cartItemDetails {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 0 20px 8px;
+    align-items: center;
+    flex: 1;
+}
+.cartItemDetails p:first-child {
+    margin: 0;
+}
+.cartItemDetails .SingleCartPrice {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    margin-top: 5px;
+}
+.cartItemDetails .SingleCartTotal {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+    margin-top: 5px;
+    color: #949494;
+}
+.quantityControl {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+.quantityControl button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #c2c2c2;
+    border-radius: 50%;
+    background: transparent;
+    margin-right: 5px;
+}
+.quantityControl button:active {
+    border: 1px solid #8f8f8f;
+}
+.quantityControl input {
+    width: 40px;
+    height: 20px;
+    border: 1px solid #c2c2c2;
+    text-align: center;
+    margin-right: 5px;
+}
+.quantityControl input:focus {
+    border: 1px solid #c2c2c2;
+    outline: none;
+}
+.cartActionBtn {
+    margin: 0 10px;
+    font-family: 'Roboto';
+    font-weight: 600;
+    border: none;
+    color: #212121;
+    cursor: pointer;
+    font-size: 15px;
+    background: #eeeeee;
+    padding: 5px 15px;
+}

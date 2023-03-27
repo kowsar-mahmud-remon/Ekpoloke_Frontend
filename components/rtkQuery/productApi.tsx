@@ -11,11 +11,15 @@ export const productApi = createApi({
           fields || "name,price,productPictures"
         }&page=${pagination?.page || 1}&limit=${pagination?.limit || 10}`,
     }),
-
+    getCarousel: build.query({
+      query: () =>
+        '/api/slides'
+    }),
     getAllCategory: build.query({
       query: () => "/api/category/getcategory",
     }),
   }),
 });
 
-export const { useGetPostQuery, useGetAllCategoryQuery } = productApi;
+export const { useGetPostQuery, useGetCarouselQuery,useGetAllCategoryQuery } = productApi;
+

@@ -1,19 +1,8 @@
 import Link from "next/link";
 import React, { useState } from "react";
-// import { Link } from "react-router-dom";
-import styles from "../../styles/MaterialUi.module.css";
 
-// type menuProps = {
-//   menu: JSX.Element;
-// };
 
-// type menusProps = {
-//   menus: {
-//     label: string;
-//     href: string;
-//     icon: JSX.Element;
-//   }[];
-// };
+import styles from "./MaterialUi.module.css";
 
 type DropdownMenuType = {
   menu: JSX.Element;
@@ -25,110 +14,107 @@ type DropdownMenuType = {
   }[];
   firstMenu?: any;
 };
+const Modal = (props:any) => {
+  if (!props.visible) {
+    return null;
+  }
+  return (
+    <>
+      <div className={styles.modalFixedBg}>
+        <div style={{ position: "relative" }}>
+          <div className={styles.modalClose} onClick={props.onClose}>
+            X
+          </div>
+          <div className={styles.modalContainer}>{props.children}</div>
+        </div>
+      </div>
+    </>
+  );
+};
 
-// const Modal = (props) => {
-//   if (!props.visible) {
-//     return null;
-//   }
-//   return (
-//     <>
-//       <div className={`${styles.modalFixedBg}`}>
-//         <div style={{ position: "relative" }}>
-//           <div className={`${styles.modalClose}`} onClick={props.onClose}>
-//             X
-//           </div>
-//           <div className={`${styles.modalContainer}`}>{props.children}</div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
+const MaterialInput = (props:any) => {
+  const [focus, setFocus] = useState(false);
+  const [touch, setTouch] = useState(false);
 
-// const MaterialInput = (props) => {
-//   const [focus, setFocus] = useState(false);
-//   const [touch, setTouch] = useState(false);
+  return (
+    <div>
+      <div className={styles.materialInput}>
+        <label
+          className={`label ${focus || props.value ? "focus" : ""}`}
+          style={{
+            top: 0,
+            lineHeight: "none",
+          }}
+        >
+          {props.label}
+        </label>
+        <div
+          style={{
+            display: "flex",
+          }}
+        >
+          <input
+            className="input"
+            type={props.type}
+            value={props.value}
+            onChange={props.onChange}
+            autoComplete="new-password"
+            onFocus={(e) => {
+              setFocus(true);
+              setTouch(true);
+            }}
+            onBlur={(e) => {
+              if (e.target.value === "") {
+                setFocus(false);
+              } else {
+                setTouch(false);
+              }
+            }}
+          />
+          {props.rightElement ? props.rightElement : null}
+        </div>
+      </div>
+      {touch && (
+        <div
+          style={{
+            fontSize: "10px",
+            color: "red",
+            fontWeight: 500,
+          }}
+        >
+          {props.label} is Required
+        </div>
+      )}
+    </div>
+  );
+};
 
-//   return (
-//     <div>
-//       <div className={`${styles.materialInput}`}>
-//         <label
-//           className={`${styles.label} ${
-//             focus || props.value ? styles.focus : ""
-//           }`}
-//           style={{
-//             top: 0,
-//             lineHeight: "none",
-//           }}
-//         >
-//           {props.label}
-//         </label>
-//         <div
-//           style={{
-//             display: "flex",
-//           }}
-//         >
-//           <input
-//             className="input"
-//             type={props.type}
-//             value={props.value}
-//             onChange={props.onChange}
-//             autoComplete="new-password"
-//             onFocus={(e) => {
-//               setFocus(true);
-//               setTouch(true);
-//             }}
-//             onBlur={(e) => {
-//               if (e.target.value === "") {
-//                 setFocus(false);
-//               } else {
-//                 setTouch(false);
-//               }
-//             }}
-//           />
-//           {props.rightElement ? props.rightElement : null}
-//         </div>
-//       </div>
-//       {touch && (
-//         <div
-//           style={{
-//             fontSize: "10px",
-//             color: "red",
-//             fontWeight: 500,
-//           }}
-//         >
-//           {props.label} is Required
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// const MaterialButton = (props) => {
-//   const onClick = () => {
-//     props.onClick && props.onClick();
-//   };
-//   return (
-//     <div
-//       style={{
-//         width: "100%",
-//         ...props.style,
-//       }}
-//     >
-//       <button
-//         onClick={onClick}
-//         style={{
-//           backgroundColor: props.bgColor,
-//           color: props.textColor,
-//           fontWeight: "bold",
-//         }}
-//         className={`${styles.materialButton}`}
-//       >
-//         {props.icon && props.icon}
-//         {props.title && props.title}
-//       </button>
-//     </div>
-//   );
-// };
+const MaterialButton = (props:any) => {
+  const onClick = () => {
+    props.onClick && props.onClick();
+  };
+  return (
+    <div
+      style={{
+        width: "100%",
+        ...props.style,
+      }}
+    >
+      <button
+        onClick={onClick}
+        style={{
+          backgroundColor: props.bgColor,
+          color: props.textColor,
+          fontWeight: "bold",
+        }}
+        className={styles.materialButton}
+      >
+        {props.icon && props.icon}
+        {props.title && props.title}
+      </button>
+    </div>
+  );
+};
 
 const DropdownMenu = ({ menu, menus, firstMenu }: DropdownMenuType) => {
   console.log("menu", menu.props);
@@ -167,36 +153,29 @@ const DropdownMenu = ({ menu, menus, firstMenu }: DropdownMenuType) => {
   );
 };
 
-// const Anchor = (props) => {
-//   return (
-//     <button {...props} className={`${styles.anchorButton}`}>
-//       {props.name}
-//     </button>
-//   );
-// };
-
-// const Breed = (props) => {
-//   const { breed, breedIcon } = props;
-//   return (
-//     <div className="breed">
-//       <ul>
-//         {breed &&
-//           breed.map((item, index) => (
-//             <li key={index}>
-//               <Link to={item.href}>{item.name}</Link>
-//               {breedIcon}
-//             </li>
-//           ))}
-//       </ul>
-//     </div>
-//   );
-// };
-
-export {
-  // Modal,
-  //  MaterialInput,
-  // MaterialButton,
-  DropdownMenu,
-  // Anchor,
-  //  Breed
+const Anchor = (props:any) => {
+  return (
+    <button {...props} className={styles.anchorButton}>
+      {props.name}
+    </button>
+  );
 };
+
+const Breed = (props:any) => {
+  const { breed, breedIcon } = props;
+  return (
+    <div className="breed">
+      <ul>
+        {breed &&
+          breed.map((item:any, index:any) => (
+            <li key={index}>
+              <Link href={item.href}>{item.name}</Link>
+              {breedIcon}
+            </li>
+          ))}
+      </ul>
+    </div>
+  );
+};
+
+export { Modal, MaterialInput, MaterialButton, DropdownMenu, Anchor, Breed };
