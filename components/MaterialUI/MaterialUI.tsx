@@ -1,7 +1,19 @@
+import Link from "next/link";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+
+
 import styles from "./MaterialUi.module.css";
 
+type DropdownMenuType = {
+  menu: JSX.Element;
+  menus: {
+    label: string;
+    href: string;
+    icon: JSX.Element;
+    onClick?: any;
+  }[];
+  firstMenu?: any;
+};
 const Modal = (props:any) => {
   if (!props.visible) {
     return null;
@@ -104,16 +116,19 @@ const MaterialButton = (props:any) => {
   );
 };
 
-const DropdownMenu = (props:any) => {
+const DropdownMenu = ({ menu, menus, firstMenu }: DropdownMenuType) => {
+  console.log("menu", menu.props);
+  console.log("menus", menus);
+  console.log("firstMenu", firstMenu);
   return (
-    <div className={styles.headerDropdownContainer}>
-      {props.menu}
-      <div className={styles.dropdown}>
-        <div className={styles.upArrow}></div>
-        {props.firstMenu}
-        <ul className={styles.headerDropdownMenu}>
-          {props.menus &&
-            props.menus.map((item:any, index:any) => (
+    <div className={`${styles.headerDropdownContainer}`}>
+      {menu}
+      <div className={`${styles.dropdown}`}>
+        <div className={`${styles.upArrow}`}></div>
+        {firstMenu}
+        <ul className={`${styles.headerDropdownMenu}`}>
+          {menus &&
+            menus.map((item, index) => (
               <li key={index}>
                 <Link
                   onClick={(e) => {
@@ -122,11 +137,12 @@ const DropdownMenu = (props:any) => {
                       item.onClick && item.onClick();
                     }
                   }}
-                  style={{width: '100%'}}
-                  to={item.href}
+                  style={{ width: "100%" }}
+                  href={item.href}
                 >
                   <div className="flex items-center gap-3">
-                  <span className="text-primary">{item.icon}</span> <span>{item.label}</span>
+                    <span className="text-primary">{item.icon}</span>{" "}
+                    <span>{item.label}</span>
                   </div>
                 </Link>
               </li>
@@ -153,7 +169,7 @@ const Breed = (props:any) => {
         {breed &&
           breed.map((item:any, index:any) => (
             <li key={index}>
-              <Link to={item.href}>{item.name}</Link>
+              <Link href={item.href}>{item.name}</Link>
               {breedIcon}
             </li>
           ))}

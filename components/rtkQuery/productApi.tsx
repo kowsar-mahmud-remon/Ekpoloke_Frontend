@@ -15,7 +15,11 @@ export const productApi = createApi({
       query: () =>
         '/api/slides'
     }),
+    getAllCategory: build.query({
+      query: () => "/api/category/getcategory",
+    }),
   }),
 });
 
-export const { useGetPostQuery, useGetCarouselQuery } = productApi;
+export const { useGetPostQuery, useGetCarouselQuery,useGetAllCategoryQuery } = productApi;
+
