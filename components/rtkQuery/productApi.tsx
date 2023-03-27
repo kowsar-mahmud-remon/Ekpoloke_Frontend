@@ -11,7 +11,11 @@ export const productApi = createApi({
           fields || "name,price,productPictures"
         }&page=${pagination?.page || 1}&limit=${pagination?.limit || 10}`,
     }),
+    getCarousel: build.query({
+      query: () =>
+        '/api/slides'
+    }),
   }),
 });
 
-export const { useGetPostQuery } = productApi;
+export const { useGetPostQuery, useGetCarouselQuery } = productApi;

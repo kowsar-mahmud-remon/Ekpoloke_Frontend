@@ -1,32 +1,32 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./MaterialUi.css";
+import styles from "./MaterialUi.module.css";
 
-const Modal = (props) => {
+const Modal = (props:any) => {
   if (!props.visible) {
     return null;
   }
   return (
     <>
-      <div className="modalFixedBg">
+      <div className={styles.modalFixedBg}>
         <div style={{ position: "relative" }}>
-          <div className="modalClose" onClick={props.onClose}>
+          <div className={styles.modalClose} onClick={props.onClose}>
             X
           </div>
-          <div className="modalContainer">{props.children}</div>
+          <div className={styles.modalContainer}>{props.children}</div>
         </div>
       </div>
     </>
   );
 };
 
-const MaterialInput = (props) => {
+const MaterialInput = (props:any) => {
   const [focus, setFocus] = useState(false);
   const [touch, setTouch] = useState(false);
 
   return (
     <div>
-      <div className="materialInput">
+      <div className={styles.materialInput}>
         <label
           className={`label ${focus || props.value ? "focus" : ""}`}
           style={{
@@ -77,7 +77,7 @@ const MaterialInput = (props) => {
   );
 };
 
-const MaterialButton = (props) => {
+const MaterialButton = (props:any) => {
   const onClick = () => {
     props.onClick && props.onClick();
   };
@@ -95,7 +95,7 @@ const MaterialButton = (props) => {
           color: props.textColor,
           fontWeight: "bold",
         }}
-        className="materialButton"
+        className={styles.materialButton}
       >
         {props.icon && props.icon}
         {props.title && props.title}
@@ -104,16 +104,16 @@ const MaterialButton = (props) => {
   );
 };
 
-const DropdownMenu = (props) => {
+const DropdownMenu = (props:any) => {
   return (
-    <div className="headerDropdownContainer">
+    <div className={styles.headerDropdownContainer}>
       {props.menu}
-      <div className="dropdown">
-        <div className="upArrow"></div>
+      <div className={styles.dropdown}>
+        <div className={styles.upArrow}></div>
         {props.firstMenu}
-        <ul className="headerDropdownMenu">
+        <ul className={styles.headerDropdownMenu}>
           {props.menus &&
-            props.menus.map((item, index) => (
+            props.menus.map((item:any, index:any) => (
               <li key={index}>
                 <Link
                   onClick={(e) => {
@@ -137,21 +137,21 @@ const DropdownMenu = (props) => {
   );
 };
 
-const Anchor = (props) => {
+const Anchor = (props:any) => {
   return (
-    <button {...props} className="anchorButton">
+    <button {...props} className={styles.anchorButton}>
       {props.name}
     </button>
   );
 };
 
-const Breed = (props) => {
+const Breed = (props:any) => {
   const { breed, breedIcon } = props;
   return (
     <div className="breed">
       <ul>
         {breed &&
-          breed.map((item, index) => (
+          breed.map((item:any, index:any) => (
             <li key={index}>
               <Link to={item.href}>{item.name}</Link>
               {breedIcon}
