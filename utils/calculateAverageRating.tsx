@@ -1,5 +1,5 @@
 const calculateAverageRating = (ratingArray: any) => {
-  if (ratingArray) {
+  if (ratingArray?.length > 0) {
     let sum = 0;
     for (const arr of ratingArray) {
       sum += arr.rate;
