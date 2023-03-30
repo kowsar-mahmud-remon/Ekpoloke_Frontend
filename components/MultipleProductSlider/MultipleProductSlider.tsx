@@ -8,12 +8,14 @@ import calculateAverageRating from "../../utils/calculateAverageRating";
 import Image from "next/image";
 import Link from "next/link";
 
-const MultipleProductSlider = (products: any,) => {
+const MultipleProductSlider = (products: any) => {
+  console.log(products);
+
   return (
     <div className={`bg-white my-[15px]`}>
       <div className="flex items-center justify-between p-5 md:gap-x-3 gap-x-1">
         <h2 className="pr-1 text-lg lg:text-3xl md:text-xl whitespace-nowrap md:pr-3">
-          {products.title ||"Products"}
+          {products.title || "Products"}
         </h2>
         <Link
           href=""
@@ -52,7 +54,7 @@ const MultipleProductSlider = (products: any,) => {
         {products?.products?.map((p: any, index: any) => (
           <SwiperSlide key={index}>
             <Link
-              href={`/product/${p?.slug}/${p._id}/p`}
+              href={`/products/${p._id}`}
               className="px-2 py-3 md:p-3 border-[0.5px] border-white hover:border-gray-300 hover:shadow-md block rounded-md"
             >
               <div className="md:h-[200px] h-[140px] w-full flex items-center justify-center">
@@ -82,7 +84,7 @@ const MultipleProductSlider = (products: any,) => {
                     <del className="md:text-xs text-[10px] text-gray-400">
                       TK. {p?.price + 1000}
                     </del>{" "}
-                    <span className="text-success md:text-sm text-[12px] text-[#41D59F]">
+                    <span className=" md:text-sm text-[12px] text-[#41D59F]">
                       20% Off
                     </span>
                   </div>
