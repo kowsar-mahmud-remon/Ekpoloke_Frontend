@@ -6,7 +6,6 @@ import Card from "../../UI/Card/Card";
 import Rating from "../../UI/Rating/Rating";
 import Price from "../../UI/Price/Price";
 import calculateAverageRating from "../../../utils/calculateAverageRating";
-// import { useGetProductBySlugQuery } from "../../rtkQuery/productApi";
 import Image from "next/image";
 import { Button } from "@mui/material";
 import { useParams } from "react-router-dom";
@@ -23,7 +22,7 @@ const ProductStore = (props: any) => {
 
   const { data: product } = useGetProductBySlugQuery(slug);
   if (product === undefined) {
-    return;
+    return <></>;
   }
   console.log("productssssssssssss", product);
 
