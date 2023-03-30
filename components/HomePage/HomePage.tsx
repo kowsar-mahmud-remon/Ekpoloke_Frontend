@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useGetPostQuery } from "../rtkQuery/productApi";
+import { useGetProductsQuery } from "../rtkQuery/productApi";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -8,7 +8,7 @@ import MultipleProductSlider from "../MultipleProductSlider/MultipleProductSlide
 
 const HomePage = () => {
   const { data, isLoading, error } =
-    useGetPostQuery("ratings,name,productPictures,price,slug") || {};
+  useGetProductsQuery("ratings,name,productPictures,price,slug") || {};
 
   return (
     <div>

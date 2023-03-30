@@ -1,6 +1,6 @@
 import React from "react";
 
-const Price = ( value, fontSize, className, style ) => {
+const Price = ( value:any, fontSize:any, className:any, style:any ) => {
   return (
     <div
       style={{
