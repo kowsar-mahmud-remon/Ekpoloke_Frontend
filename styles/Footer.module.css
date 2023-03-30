@@ -1,12 +1,10 @@
 .footerSocialLinks {
   display: flex;
-  align-items: start;
-  justify-content: start;
-  padding-top: 6px;
+  align-items: center;
+  justify-content: center;
   column-gap: 10px;
   flex-direction: row;
 }
-
 .footerSocialLinks a {
   font-size: 16px;
   width: 40px;
@@ -18,8 +16,7 @@
   border-radius: 50%;
   color: white;
 }
-
-.footerSocialLinks :hover {
+.footerSocialLinks a:hover {
   animation-name: link;
   animation-duration: 0.5s;
   animation-iteration-count: 1;
@@ -29,20 +26,16 @@
   0% {
     padding-top: 0px;
   }
-
   50% {
     padding-top: 20px;
   }
-
   100% {
     padding-top: 0px;
   }
 }
-
 .footerLinks a {
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
-
 .footerLinks a:hover {
   color: #ff6a00;
   padding-left: 20px;
