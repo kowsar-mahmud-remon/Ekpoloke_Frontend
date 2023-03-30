@@ -17,7 +17,7 @@ const ProductDetailsPage = () => {
 
   if (isLoading) {
     return <Loading />;
-  }
+  }  
   if (error) {
     return <Error />;
   }
