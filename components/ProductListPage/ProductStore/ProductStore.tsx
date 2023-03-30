@@ -16,6 +16,7 @@ import { useGetProductBySlugQuery } from "@/components/rtkQuery/productApi";
 const ProductStore = (props: any) => {
   // const { slug } = useParams();
   // console.log("slugggggg", slug);
+
   const router = useRouter();
   const slug = router.query.slug;
   console.log("Routerrrr", slug);
