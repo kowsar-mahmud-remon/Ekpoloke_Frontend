@@ -5,7 +5,7 @@ export const productApi = createApi({
     baseUrl: "https://ekpoloke-backend-old.onrender.com",
   }),
   endpoints: (build) => ({
-    getProducts: build.query({
+    getProducts: build.query({ 
       query: ({ fields, pagination }) =>
         `api/product/trending?fields=${
           fields || "name,price,productPictures"
