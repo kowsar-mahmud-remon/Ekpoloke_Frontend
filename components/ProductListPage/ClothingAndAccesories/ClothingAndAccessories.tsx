@@ -39,9 +39,9 @@ const ClothingAndAccessories = () => {
         }}
       >
         {product?.products.map((product: any, index: any) => (
-          <div key={index} className="caContainer">
+          <div key={index} className={`${styles.caContainer}`}>
             <Link
-              className="caImgContainer"
+              className={`${styles.caImgContainer}`}
               href={`/product/${slug}/${product._id}/p`}
             >
               <Image
@@ -53,13 +53,13 @@ const ClothingAndAccessories = () => {
               />
             </Link>
             <div>
-              <div className="caProductName">
+              <div className={`${styles.caProductName}`}>
                 {product.name.length > 55
                   ? `${product.name.slice(0, 55)}...`
                   : product.name}
               </div>
               <div>{}</div>
-              <div className="caProductPrice">
+              <div className={`${styles.caProductPrice}`}>
                 <p>BDT</p>
                 <p>
                   <CurrencyFormat

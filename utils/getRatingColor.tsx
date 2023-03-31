@@ -1,4 +1,4 @@
-const getRatingColor = (rating:any) => {
+const getRatingColor = (rating: any) => {
   let color = "#388e3c";
   if (rating >= 4) {
     color = "#388e3c";
