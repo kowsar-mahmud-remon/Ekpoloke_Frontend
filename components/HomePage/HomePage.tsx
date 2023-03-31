@@ -8,7 +8,7 @@ import MultipleProductSlider from "../MultipleProductSlider/MultipleProductSlide
 
 const HomePage = () => {
   const { data, isLoading, error } =
-  useGetProductsQuery("ratings,name,productPictures,price,slug") || {};
+  useGetProductsQuery({fields: "ratings,name,productPictures,price,slug"}) || {};
 
   return (
     <div>

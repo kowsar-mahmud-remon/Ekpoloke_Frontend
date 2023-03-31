@@ -48,7 +48,7 @@ const Carousel= ({}) => {
             width={1000} height={800} 
               src={slide?.image}
               alt={slide?.title}
-              className=" w-full"
+              className="w-full "
             />
           </a>
         ) : (
