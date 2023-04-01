@@ -20,12 +20,12 @@ const Modal = (props:any) => {
   }
   return (
     <>
-      <div className={styles.modalFixedBg}>
+      <div className={`${styles.modalFixedBg}`}>
         <div style={{ position: "relative" }}>
-          <div className={styles.modalClose} onClick={props.onClose}>
+          <div className={`${styles.modalClose}`} onClick={props.onClose}>
             X
           </div>
-          <div className={styles.modalContainer}>{props.children}</div>
+          <div className={`${styles.modalContainer}`}>{props.children}</div>
         </div>
       </div>
     </>
@@ -38,7 +38,7 @@ const MaterialInput = (props:any) => {
 
   return (
     <div>
-      <div className={styles.materialInput}>
+      <div className={`${styles.materialInput}`}>
         <label
           className={`label ${focus || props.value ? "focus" : ""}`}
           style={{
