@@ -6,11 +6,12 @@ import ProductDetailsSinglePage from "@/components/ProductDetailsPage/ProductDet
 import Head from "next/head";
 import { useGetProductByIdQuery } from "@/components/rtkQuery/productApi";
 
+
 const ProductDetailsPage = () => {
   const router = useRouter();
   const slug = router.query;
   const id = slug?.productSlug?.[1];
-
+  
   const { data, isLoading, error } = useGetProductByIdQuery(id) || {};
   console.log(data, "all router");
 

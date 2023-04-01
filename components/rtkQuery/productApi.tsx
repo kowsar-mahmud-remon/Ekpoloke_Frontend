@@ -31,5 +31,5 @@ export const {
   useGetCarouselQuery,
   useGetAllCategoryQuery,
   useGetProductBySlugQuery,
-  useGetProductByIdQuery,
+  useGetProductByIdQuery
 } = productApi;

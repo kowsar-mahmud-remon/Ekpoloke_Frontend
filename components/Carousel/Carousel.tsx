@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Slider from "react-slick";
 import NextButton from './NextButton';
 import PreviousButton from './PreviousButton';
-import styles from '../../styles/Carousel.module.css'
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetCarouselQuery } from '../rtkQuery/productApi';
+
 
 
 
@@ -40,7 +40,7 @@ const Carousel= ({}) => {
       }
     return (
       
-        <Slider className={`my-[15px] mx-2 ${styles.homeSlider} bg-gray-400`} {...settings}>
+        <Slider className={`my-[15px] mx-2 bg-gray-400`} {...settings}>
       {data?.slides?.map((slide:any, index:any) =>
         slide.link ? (
           <a key={index}  href={slide?.link}>

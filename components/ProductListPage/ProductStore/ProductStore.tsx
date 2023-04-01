@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 // import { useLocation } from "react-router-dom";
 import Card from "../../UI/Card/Card";
 import Rating from "../../UI/Rating/Rating";
-import Price from "../../UI/Price/Price";
 import calculateAverageRating from "../../../utils/calculateAverageRating";
 import Image from "next/image";
 import { Button } from "@mui/material";
@@ -12,6 +11,7 @@ import { useParams } from "react-router-dom";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useGetProductBySlugQuery } from "@/components/rtkQuery/productApi";
+import Price from "@/components/Price/Price";
 
 const ProductStore = (props: any) => {
   // const { slug } = useParams();

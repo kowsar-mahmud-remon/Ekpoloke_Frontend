@@ -7,8 +7,8 @@ import styles from "./ClothingAndAccessories.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { useGetProductBySlugQuery } from "@/components/rtkQuery/productApi";
-import CurrencyFormat from "react-currency-format";
 import { useRouter } from "next/router";
+import CurrencyFormat from "react-currency-format";
 
 const ClothingAndAccessories = () => {
   // const { slug } = useParams();
@@ -18,7 +18,6 @@ const ClothingAndAccessories = () => {
   console.log("Routerrrr", slug);
 
   const { data: product } = useGetProductBySlugQuery(slug) || {};
-  console.log("productssssssssssss", product);
 
   // const product = useSelector((state) => state.product);
   const dispatch = useDispatch();
@@ -38,40 +37,44 @@ const ClothingAndAccessories = () => {
           flexWrap: "wrap",
         }}
       >
-        {product?.products.map((product: any, index: any) => (
-          <div key={index} className="caContainer">
-            <Link
-              className="caImgContainer"
-              href={`/product/${slug}/${product._id}/p`}
-            >
-              <Image
-                className="w-[100%] h-[100%]"
-                width={100}
-                height={100}
-                src={product.productPictures[0].img}
-                alt={product.name}
-              />
-            </Link>
-            <div>
-              <div className="caProductName">
-                {product.name.length > 55
-                  ? `${product.name.slice(0, 55)}...`
-                  : product.name}
-              </div>
-              <div>{}</div>
-              <div className="caProductPrice">
-                <p>BDT</p>
-                <p>
-                  <CurrencyFormat
-                    thousandSeparator={true}
-                    displayType="text"
-                    value={product.price}
-                  />
-                </p>
+        {product?.products.map((p: any, index: any) => {
+          console.log(p, "pppppppppppppppppppppppp");
+          
+          return (
+            <div key={index} className="caContainer">
+              <Link
+                className="caImgContainer"
+                href={`/product/${slug}/${p._id}/p`}
+              >
+                <Image
+                  className="w-[100%] h-[100%]"
+                  width={100}
+                  height={100}
+                  src={p.productPictures[0].img}
+                  alt={p.name}
+                />
+              </Link>
+              <div>
+                <div className="caProductName">
+                  {p.name.length > 55
+                    ? `${p.name.slice(0, 55)}...`
+                    : p.name}
+                </div>
+                <div>{}</div>
+                <div className="caProductPrice">
+                  <p>BDT</p>
+                  <p>
+                    <CurrencyFormat
+                      thousandSeparator={true}
+                      displayType="text"
+                      value={p.price}
+                    />
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </Card>
     </div>
   );
