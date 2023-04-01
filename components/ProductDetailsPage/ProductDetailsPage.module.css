@@ -1,0 +1,337 @@
+.productDescriptionContainer {
+  display: flex;
+  box-sizing: border-box;
+  padding: 10px;
+}
+.verticalImageStack {
+  width: 67px;
+  display: flex;
+  flex-direction: column;
+}
+.thumbnail {
+  width: 63px;
+  height: 63px;
+  border: 1px solid #f0f0f0;
+  overflow: hidden;
+  text-align: center;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.thumbnail img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.thumbnail.active {
+  border: 2px solid #2874f0;
+}
+.productDescLeftContainer {
+  width: 485px;
+  /* position: sticky;
+  top: 67px; */
+}
+.productDescImgContainer {
+  width: 485px;
+  height: 440px;
+  /* overflow: hidden; */
+  text-align: center;
+  border: 1px solid #f0f0f0;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.productDescImgContainer > img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.breed ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+.breed ul li {
+  list-style: none;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+.breed ul li a {
+  text-decoration: none;
+  color: #777;
+  display: inline-block;
+  font-size: 12px;
+  margin: 0 10px;
+}
+.productDetails {
+  margin: 0 10px;
+}
+.productDetails .productTitle {
+  font-size: 18px;
+  color: #212121;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.productCode {
+  color: #878787;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  margin-top: 0;
+}
+.productDetails .productCode span {
+  color: orange;
+  margin-left: 5px;
+}
+.productDetails .copyId {
+  display: inline-block;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  margin-left: 5px;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+.productDetails .copyId:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+.productDetails .copyId:active {
+  transform: scale(1.5);
+}
+
+.highlights li {
+  font-size: 14px;
+  line-height: 25px;
+  color: #212121;
+  margin-left: 40px;
+}
+.highlights li::before {
+  content: "\2022";
+  color: #878787;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.ratingCount {
+  display: inline-block;
+  background: #388e3c;
+  color: #fff;
+  font-weight: 400;
+  font-size: 12px;
+  border-radius: 3px;
+  padding: 2px 5px;
+}
+.ratingNumbersReviews {
+  font-size: 12px;
+  color: #777;
+  font-weight: 600;
+  display: inline-block;
+  margin: 0 10px;
+}
+.discount {
+  color: #36d399;
+  font-size: 12px;
+  margin: 10px 0px;
+  font-weight: 600;
+}
+.priceContainer {
+  align-items: center;
+}
+.price {
+  font-size: 28px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+.reviewContainer {
+  border: 0.5px solid #f0f0f0;
+  border-radius: 2px;
+}
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.reviewHeader h2 {
+  margin: 5px;
+}
+.review {
+  padding: 20px;
+  border: 0.5px solid #f0f0f0;
+  border-radius: 2px;
+}
+.review .reviewTitle {
+  padding-top: 3px;
+  font-size: 14px;
+  color: #212121;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.reviewTitle {
+  padding-top: 3px;
+  font-size: 14px;
+  color: #212121;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.review .reviewCustomerDetails,
+.review .reviewVerification,
+.review .reviewDate {
+  font-size: 12px;
+  color: #878787;
+  margin: 10px 8px 10px 0;
+}
+
+.reviewStyle {
+  font-size: 12px;
+  color: #878787;
+  margin: 10px 8px 10px 0;
+}
+.reviewVerification {
+  display: flex;
+  align-items: center;
+}
+.review .shortReview {
+  margin-left: 10px;
+}
+.otherReviews {
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+.otherReviews span {
+  cursor: pointer;
+  color: #2874f0;
+}
+.otherReviews svg {
+  fill: #2874f0;
+  cursor: pointer;
+}
+.reviewImagesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 5px;
+}
+.reviewImagesContainer div {
+  height: 80px;
+  width: 80px;
+  margin-right: 5px;
+}
+.reviewImagesContainer img {
+  border-radius: 3px;
+}
+.productRatingLeftText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.productRatingLeftText h2 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  color: #212121;
+  margin-top: 4px;
+}
+.productRatingLeftText p {
+  margin: 2px;
+  font-size: 14px;
+  color: #878787;
+  width: 100%;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+.productRatingRightStatus {
+  width: 100%;
+}
+.productRatingRightStatus p {
+  display: flex;
+  align-items: center;
+}
+.productRatingRightStatus > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.productRatingRightStatus p {
+  margin: 2px 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: #212121;
+  padding: 2px 0;
+}
+.rateProductForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.rateProductForm input,
+.rateProductForm textarea {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+  border: 1px solid #cecece;
+  border-radius: 10px;
+  padding-left: 10px;
+}
+.rateProductForm input:focus,
+.rateProductForm textarea:focus {
+  outline: none;
+  border: 1px solid #cecece;
+}
+.rateProductForm textarea {
+  padding-top: 10px;
+  height: 70px;
+  margin-bottom: 30px;
+}
+.rateProductForm input {
+  height: 40px;
+}
+.ratingImages {
+  width: 50%;
+}
+.ratingImages input {
+  display: none;
+}
+.ratingImages label {
+  background: #fb641b;
+  text-align: center;
+  padding: 9px 0;
+  border-radius: 5px;
+  color: white;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+}
+.allReviewImagesContainer div {
+  height: 80px;
+  width: 80px;
+  margin-top: 5px;
+}
+.allReviewImagesContainer img {
+  border-radius: 3px;
+}
+
+@media only screen and (max-width: 640px) {
+  .productRatingRightStatus > div {
+    margin: 0 10px;
+  }
+}
