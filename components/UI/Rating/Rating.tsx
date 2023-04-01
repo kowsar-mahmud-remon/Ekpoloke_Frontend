@@ -1,8 +1,7 @@
 import getRatingColor from "@/utils/getRatingColor";
 import { IoIosStar } from "react-icons/io";
 
-const Rating = (value: any) => {
-  console.log("value", value.value);
+const Rating = ({ value }: any) => {
   return (
     <span
       style={{
@@ -17,7 +16,7 @@ const Rating = (value: any) => {
         justifyContent: "center",
       }}
     >
-      <span className="mr-1">{value?.value?.toFixed(1)}</span> <IoIosStar />
+      <span className="mr-1">{value?.toFixed(1)}</span> <IoIosStar />
     </span>
   );
 };
