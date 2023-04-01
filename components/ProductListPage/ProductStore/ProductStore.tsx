@@ -1,11 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { Link, useParams } from "react-router-dom";
-// import { useLocation } from "react-router-dom";
 import Card from "../../UI/Card/Card";
-// import Rating from "../../UI/Rating/Rating";
-import Price from "../../UI/Price/Price";
-import Rating from "../../UI/Rating/Rating";
 import calculateAverageRating from "../../../utils/calculateAverageRating";
 import Image from "next/image";
 import { Button } from "@mui/material";
@@ -18,9 +13,6 @@ import Rating from "@/components/UI/Rating/Rating";
 import Price from "@/components/Price/Price";
 
 const ProductStore = (props: any) => {
-  // const { slug } = useParams();
-  // console.log("slugggggg", slug);
-
   const router = useRouter();
   const slug = router.query.slug;
   console.log("Routerrrr", slug);
@@ -31,14 +23,7 @@ const ProductStore = (props: any) => {
   }
   console.log("productssssssssssss", product);
 
-  // const location = useLocation();
-  // const product = useSelector((state) => state.product);
   const priceRange = product?.priceRange;
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(getProductsBySlug(slug));
-  // }, [slug, location]);
 
   return (
     <>

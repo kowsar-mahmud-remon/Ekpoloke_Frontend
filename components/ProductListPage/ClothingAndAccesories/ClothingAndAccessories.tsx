@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../../UI/Card/Card";
-// import "./ClothingAndAccessories.css";
 import styles from "./ClothingAndAccessories.module.css";
 import Link from "next/link";
 import Image from "next/image";
@@ -39,11 +38,11 @@ const ClothingAndAccessories = () => {
       >
         {product?.products.map((p: any, index: any) => {
           console.log(p, "pppppppppppppppppppppppp");
-          
+
           return (
-            <div key={index} className="caContainer">
+            <div key={index} className={`${styles.caContainer}`}>
               <Link
-                className="caImgContainer"
+                className={`${styles.caImgContainer}`}
                 href={`/product/${slug}/${p._id}/p`}
               >
                 <Image
@@ -55,13 +54,11 @@ const ClothingAndAccessories = () => {
                 />
               </Link>
               <div>
-                <div className="caProductName">
-                  {p.name.length > 55
-                    ? `${p.name.slice(0, 55)}...`
-                    : p.name}
+                <div className={`${styles.caProductName}`}>
+                  {p.name.length > 55 ? `${p.name.slice(0, 55)}...` : p.name}
                 </div>
                 <div>{}</div>
-                <div className="caProductPrice">
+                <div className={`${styles.caProductPrice}`}>
                   <p>BDT</p>
                   <p>
                     <CurrencyFormat
