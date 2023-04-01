@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 // import { Link, useParams } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 import Card from "../../UI/Card/Card";
+// import Rating from "../../UI/Rating/Rating";
+import Price from "../../UI/Price/Price";
 import Rating from "../../UI/Rating/Rating";
 import calculateAverageRating from "../../../utils/calculateAverageRating";
 import Image from "next/image";
@@ -11,6 +13,8 @@ import { useParams } from "react-router-dom";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useGetProductBySlugQuery } from "@/components/rtkQuery/productApi";
+import styles from "./ProductStore.module.css";
+import Rating from "@/components/UI/Rating/Rating";
 import Price from "@/components/Price/Price";
 
 const ProductStore = (props: any) => {
@@ -58,6 +62,7 @@ const ProductStore = (props: any) => {
                 <div style={{ display: "flex" }}>
                   {product.productsByPrice[key].map((product: any) => {
                     console.log("newwwwwproduct", product);
+                    console.log("product?.ratings", product);
                     return (
                       <Link
                         href={`/product/${product.slug}/${product._id}/p`}
@@ -70,9 +75,9 @@ const ProductStore = (props: any) => {
                           padding: "10px 0",
                         }}
                         key={product._id}
-                        className="productContainer"
+                        className={`${styles.productContainer}`}
                       >
-                        <div className="productImgContainer">
+                        <div className={`${styles.productImgContainer}`}>
                           <Image
                             width={150}
                             height={150}
@@ -80,7 +85,7 @@ const ProductStore = (props: any) => {
                             alt={product.name}
                           />
                         </div>
-                        <div className="productInfo">
+                        <div className={`${styles.productInfo}`}>
                           <div style={{ margin: "5px 0" }}>{product.name}</div>
                           <div>
                             <Rating
