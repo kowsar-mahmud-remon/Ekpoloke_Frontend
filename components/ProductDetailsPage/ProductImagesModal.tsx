@@ -1,19 +1,21 @@
-import Image from "next/image";
-import { useState } from "react";
+import React, { useState } from "react";
+import ModalClose from "../../components/ModalClose/ModalClose";
 
-
-const ProductModal = (productDetails:any) => {
-    console.log(productDetails, "modalll");
-    
-  const {name, productPictures} = productDetails?.productDetails;
-
+const ProductImagesModal = ({
+  images,
+  productName,
+  setProductPicturesModal,
+}) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  
   return (
-    <div className="hidden lg:block md:block">
-      <input type="checkbox" id="productmodal" className="modal-toggle" />
-      <div className="modal">
-      <div
+    <>
+      <input
+        type="checkbox"
+        id="productPicturesModal"
+        className="modal-toggle"
+      />
+      <div className="overflow-x-auto modal">
+        <div
           className="relative modal-box"
           style={{ width: "90%", maxWidth: "none" }}
         >
@@ -22,29 +24,28 @@ const ProductModal = (productDetails:any) => {
             style={{ borderBottom: "2px solid lightgray" }}
           >
             <h2 className="mx-10 text-xl text-muted">Videos</h2>
-            <h2 className="text-xl text-[#FF6A00]">Images</h2>
+            <h2 className="text-xl text-primary">Images</h2>
           </div>
-          <label htmlFor="productmodal" className="absolute cursor-pointer right-6 top-4">✕</label>
           <div className="flex justify-between">
             <div style={{ width: "70%", height: "450px", padding: "20px" }}>
-              <Image width={550} height={450}
-                src={productPictures[selectedImageIndex].img}
-                className="object-contain mx-auto w-[450px] h-[400px]"
+              <img
+                src={images[selectedImageIndex].img}
+                className="object-contain w-full h-full mx-auto"
                 alt="1"
               />
             </div>
             <div style={{ width: "30%" }}>
               <div>
-                <h4 className="text-lg w-[90%] my-4">{name}</h4>
+                <h4 className="text-lg w-[90%] my-4">{productName}</h4>
               </div>
               <div className="grid w-full grid-cols-5 gap-4">
-                {productPictures?.map((i:any, index:any) => (
+                {images?.map((i, index) => (
                   <div
                     onClick={() => setSelectedImageIndex(index)}
                     key={i._id}
                     style={{ height: "50px", width: "50px" }}
                   >
-                    <Image width={50} height={50}
+                    <img
                       src={i.img}
                       alt={`product thumbnail ${index + 1}`}
                       style={{
@@ -63,11 +64,11 @@ const ProductModal = (productDetails:any) => {
               </div>
             </div>
           </div>
+          <ModalClose top="20px" right="20px" handleClose={() => setProductPicturesModal(false)} />
         </div>
       </div>
-    </div>
-
+    </>
   );
 };
 
-export default ProductModal;
+export default ProductImagesModal;

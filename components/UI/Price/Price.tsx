@@ -1,7 +1,7 @@
 import React from "react";
 
 interface PriceProps {
-  value: number;
+  value: number;  
   fontSize?: string;
   className?: string;
   style?: React.CSSProperties;
