@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
 import Loading from "@/components/Loading/Loading";
 import Error from "@/components/Error/Error";
 import { useRouter } from "next/router";
 import ProductDetailsSinglePage from "@/components/ProductDetailsPage/ProductDetailsSinglePage";
 import Head from "next/head";
-import { useGetProductBySlugQuery } from "@/components/rtkQuery/productApi";
+import { useGetProductByIdQuery } from "@/components/rtkQuery/productApi";
+
 
 const ProductDetailsPage = () => {
   const router = useRouter();
   const slug = router.query;
-  const id = slug?.productSlug?.[1] ;
-
-  const { data, isLoading, error } = useGetProductBySlugQuery(id) || {};
-  console.log(slug, "all router");
+  const id = slug?.productSlug?.[1];
+  
+  const { data, isLoading, error } = useGetProductByIdQuery(id) || {};
+  console.log(data, "all router");
 
   if (isLoading) {
     return <Loading />;
-  }  
+  }
   if (error) {
     return <Error />;
   }
@@ -43,9 +43,7 @@ const ProductDetailsPage = () => {
           />
         </Head>
         <div>
-          <ProductDetailsSinglePage
-            product={data?.product}
-          ></ProductDetailsSinglePage>
+          <ProductDetailsSinglePage product={data?.product}></ProductDetailsSinglePage>
         </div>
       </div>
     </div>
