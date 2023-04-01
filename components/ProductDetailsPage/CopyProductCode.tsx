@@ -1,14 +1,14 @@
-
+import { Tooltip } from "@mui/material";
 import React, { useState } from "react";
-import { GrTooltip } from "react-icons/gr";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
-const  CopyProductCode = (id:any, className:any, style:any) => {
+const CopyProductCode = ({id, className, style}) => {
     const [copyTitle, setCopyTitle] = useState("Copy To Clipboard");
   return (
     <div>
       <p className={`productCode ${className}`} style={style}>
         Product Identity Code
-        <div title={copyTitle}>
+        <Tooltip title={copyTitle}>
           <div
             onClick={() => {
               navigator.clipboard.writeText(id);
@@ -16,9 +16,9 @@ const  CopyProductCode = (id:any, className:any, style:any) => {
             }}
             className="copyId"
           >
-            {/* <ContentCopyIcon style={{ fontSize: "20px" }} /> */}
+            <ContentCopyIcon style={{ fontSize: "20px" }} />
           </div>
-        </div>
+        </Tooltip>
       </p>
     </div>
   );

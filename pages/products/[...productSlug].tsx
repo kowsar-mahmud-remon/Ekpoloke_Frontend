@@ -2,18 +2,35 @@ import React, { useEffect, useState } from "react";
 import Loading from "@/components/Loading/Loading";
 import Error from "@/components/Error/Error";
 import { useRouter } from "next/router";
-import ProductDetailsSinglePage from "@/components/ProductDetailsPage/ProductDetailsSinglePage";
 import Head from "next/head";
 import { useGetProductByIdQuery } from "@/components/rtkQuery/productApi";
+import ProductDetailsDesktop from "@/components/ProductDetailsPage/ProductDetailsDesktop";
+import ProductDetailsMobile from "@/components/ProductDetailsPage/ProductDetailsMobile";
 
 
 const ProductDetailsPage = () => {
   const router = useRouter();
   const slug = router.query;
   const id = slug?.productSlug?.[1];
-  
+
   const { data, isLoading, error } = useGetProductByIdQuery(id) || {};
   console.log(data, "all router");
+
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [reviewSlice, setReviewSlice] = useState(3);
+  const [ratings, setRatings] = useState([]);
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    setRatings(data?.product?.ratings);
+    const r:any = [];
+    data?.product?.ratings?.forEach((rating:any) => {
+      if (rating.reviewTitle && rating.review) {
+        r.push(rating);
+      }
+    });
+    setReviews(r);
+  }, [data?.product?.ratings]);
 
   if (isLoading) {
     return <Loading />;
@@ -43,7 +60,22 @@ const ProductDetailsPage = () => {
           />
         </Head>
         <div>
-          <ProductDetailsSinglePage product={data?.product}></ProductDetailsSinglePage>
+          <ProductDetailsDesktop
+            productDetails={data?.product}
+            selectedImageIndex={selectedImageIndex}
+            setSelectedImageIndex={setSelectedImageIndex}
+            ratings={ratings}
+            reviews={reviews}
+            reviewSlice={reviewSlice}
+            setReviewSlice={setReviewSlice}
+          />
+          <ProductDetailsMobile
+            productDetails={data?.product}
+            ratings={ratings}
+            reviews={reviews}
+            reviewSlice={reviewSlice}
+            setReviewSlice={setReviewSlice}
+          />
         </div>
       </div>
     </div>
