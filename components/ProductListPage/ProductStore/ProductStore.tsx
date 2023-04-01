@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 // import { useLocation } from "react-router-dom";
 import Card from "../../UI/Card/Card";
 // import Rating from "../../UI/Rating/Rating";
-import Price from "../../UI/Price/Price";
-import Rating from "../../UI/Rating/Rating";
 import calculateAverageRating from "../../../utils/calculateAverageRating";
 import Image from "next/image";
 import { Button } from "@mui/material";
