@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { useGetProductByIdQuery } from "@/components/rtkQuery/productApi";
 import Loading from "@/components/Loading/Loading";
 import Error from "@/components/Error/Error";
 import { useRouter } from "next/router";
 import ProductDetailsSinglePage from "@/components/ProductDetailsPage/ProductDetailsSinglePage";
 import Head from "next/head";
+import { useGetProductBySlugQuery } from "@/components/rtkQuery/productApi";
 
 const ProductDetailsPage = () => {
   const router = useRouter();
   const slug = router.query;
   const id = slug?.productSlug?.[1] ;
 
-  const { data, isLoading, error } = useGetProductByIdQuery(id) || {};
+  const { data, isLoading, error } = useGetProductBySlugQuery(id) || {};
   console.log(slug, "all router");
 
   if (isLoading) {

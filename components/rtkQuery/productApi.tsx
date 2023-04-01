@@ -11,11 +11,6 @@ export const productApi = createApi({
           fields || "name,price,productPictures"
         }&page=${pagination?.page || 1}&limit=${pagination?.limit || 10}`,
     }),
-<<<<<<< HEAD
-    getProductById: build.query({
-      query: (_id) =>
-      `api/product/${_id}`,
-=======
     getCarousel: build.query({
       query: () => "/api/slides",
     }),
@@ -24,20 +19,17 @@ export const productApi = createApi({
     }),
     getProductBySlug: build.query({
       query: (slug) => `/api/products/${slug}`,
->>>>>>> 0914c4efd390de91edd3f4252e4d27acb906f51d
+    }),
+    getProductById: build.query({
+      query: (_id) => `/api/products/${_id}`,
     }),
   }),
 });
 
-<<<<<<< HEAD
-export const { useGetProductsQuery, useGetProductByIdQuery } = productApi;
-
-// /product/:productSlug/:productId/p
-=======
 export const {
-  useGetPostQuery,
+  useGetProductsQuery,
   useGetCarouselQuery,
   useGetAllCategoryQuery,
   useGetProductBySlugQuery,
+  useGetProductByIdQuery
 } = productApi;
->>>>>>> 0914c4efd390de91edd3f4252e4d27acb906f51d

@@ -11,10 +11,6 @@ module.exports = {
   theme: {
     extend: {},
   },
-<<<<<<< HEAD
-  plugins: [require("daisyui")],
-}
-=======
   daisyui: {
     themes: [
       {
@@ -42,4 +38,3 @@ module.exports = {
   },
   plugins: [require("daisyui")],
 };
->>>>>>> 0914c4efd390de91edd3f4252e4d27acb906f51d
