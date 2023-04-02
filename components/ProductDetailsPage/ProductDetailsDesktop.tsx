@@ -66,7 +66,7 @@ const ProductDetailsDesktop = ({
                   key={index}
                   onMouseEnter={() => setSelectedImageIndex(index)}
                   className={`${style.thumbnail} ${
-                    index === selectedImageIndex ? "active" : ""
+                    index === selectedImageIndex ? `${style.active}` : ""
                   }`}
                 >
                   <Image
