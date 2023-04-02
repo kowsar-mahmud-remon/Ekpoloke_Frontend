@@ -7,6 +7,8 @@ import "swiper/css/navigation";
 import calculateAverageRating from "../../utils/calculateAverageRating";
 import Image from "next/image";
 import Link from "next/link";
+import Rating from "../UI/Rating/Rating";
+import styles from "./MultipleProductSlider.module.css";
 
 const MultipleProductSlider = (products: any) => {
   console.log(products);
@@ -27,7 +29,7 @@ const MultipleProductSlider = (products: any) => {
       <Swiper
         grabCursor={true}
         modules={[FreeMode, Navigation]}
-        className="multiProductSlider"
+        className={styles.multiProductSlider}
         navigation={true}
         freeMode={true}
         breakpoints={{
@@ -52,51 +54,53 @@ const MultipleProductSlider = (products: any) => {
         }}
       >
         {products?.products?.map((p: any, index: any) => {
-          console.log(p, "pppppppp");
-          
-          return <SwiperSlide key={index}>
-          <Link
-            href={`/products/${p.slug}/${p._id}`}
-            className="px-2 py-3 md:p-3 border-[0.5px] border-white hover:border-gray-300 hover:shadow-md block rounded-md"
-          >
-            <div className="md:h-[200px] h-[140px] w-full flex items-center justify-center">
-              <Image
-                className="object-contain max-w-full max-h-full"
-                src={p?.productPictures[0].img}
-                alt={p?.name}
-                height={200}
-                width={200}
-                onError={({ currentTarget }) => {
-                  currentTarget.onerror = null;
-                  currentTarget.src =
-                    "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png";
-                }}
-              />
-            </div>
-            <div>
-              <p className="pt-3 text-sm font-normal">{p.name}</p>
-              <div className="flex items-center justify-stater gap-x-2">
-                <div>{calculateAverageRating(p?.ratings) || 0}</div>
-                <span className="text-[12px]">
-                  ({p?.ratings?.length || "0"})
-                </span>
-              </div>
-              <div className="flex flex-col justify-start md:items-center md:justify-end gap-x-2 md:flex-row-reverse">
-                <div>
-                  <del className="md:text-xs text-[10px] text-gray-400">
-                    TK. {p?.price + 1000}
-                  </del>{" "}
-                  <span className=" md:text-sm text-[12px] text-[#41D59F]">
-                    20% Off
-                  </span>
+          return (
+            <SwiperSlide key={index} className="pb-5">
+              <Link
+                href={`/products/${p.slug}/${p._id}`}
+                className="px-2 py-3 md:p-3 border-[0.5px] border-white hover:border-gray-300 hover:shadow-md block rounded-md"
+              >
+                <div className="md:h-[200px] h-[140px] w-full flex items-center justify-center">
+                  <Image
+                    className="object-contain max-w-full max-h-full"
+                    src={p?.productPictures[0].img}
+                    alt={p?.name}
+                    height={200}
+                    width={200}
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null;
+                      currentTarget.src =
+                        "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png";
+                    }}
+                  />
                 </div>
-                <p className="text-[12px] md:text-sm font-bold ">
-                  Tk. {p?.price}
-                </p>
-              </div>
-            </div>
-          </Link>
-        </SwiperSlide>
+                <div>
+                  <p className={`${styles.sliderProductName} textTwoLine`}>
+                    {p.name}
+                  </p>
+                  <div className="flex items-center justify-stater gap-x-2">
+                    <Rating value={calculateAverageRating(p?.ratings) || 0} />
+                    <span className="text-[12px]">
+                      ({p?.ratings?.length || "0"})
+                    </span>
+                  </div>
+                  <div className="flex md:items-center justify-start md:justify-end gap-x-2 md:flex-row-reverse flex-col">
+                    <div>
+                      <del className="md:text-xs text-[10px] text-gray-400">
+                        TK. {p?.price + 1000}
+                      </del>{" "}
+                      <span className="text-success md:text-sm text-[12px]">
+                        20% Off
+                      </span>
+                    </div>
+                    <p className="text-[12px] md:text-sm font-bold">
+                      Tk. {p?.price}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </SwiperSlide>
+          );
         })}
       </Swiper>
     </div>

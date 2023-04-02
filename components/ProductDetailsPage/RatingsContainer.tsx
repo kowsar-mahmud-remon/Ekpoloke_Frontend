@@ -10,6 +10,7 @@ import RatingsView from "./RatingsView";
 import { AiFillLike, AiFillDislike } from "react-icons/ai";
 import Image from "next/image";
 import style  from "./ProductDetailsPage.module.css"
+import RatingModal from "./RatingModal";
 
 interface ratingProps {
   product?: any;
@@ -158,6 +159,7 @@ const RatingsContainer = ({
                 {review?.reviewImages?.map((reviewImage: any, index: any) => (
                   <div key={index}>
                     <Image
+                    
                       width={100}
                       height={100}
                       src={generatePublicUrl(reviewImage?.img)}
@@ -190,14 +192,14 @@ const RatingsContainer = ({
           onClick={() => setReviewSlice(10)}
         /> */}
       </div>
-      {/* {ratingModal && (
+      {ratingModal && (
         <RatingModal
           open={ratingModal}
           handleClose={() => setRatingModal(false)}
           product={product}
           setRatingModal={setRatingModal}
         />
-      )} */}
+      )}
     </div>
   );
 };
