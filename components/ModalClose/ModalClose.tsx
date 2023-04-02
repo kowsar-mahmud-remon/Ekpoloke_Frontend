@@ -1,32 +1,19 @@
-// import React from "react";
-// import CloseIcon from "@mui/icons-material/Close";
+import React from "react";
+import {GrClose} from "react-icons/gr"
 
-// const ModalClose = ({
-//   handleClose,
-//   top = "15px",
-//   right = "15px",
-//   className,
-//   rounded = false,
-// }) => {
-//   return (
-//     <div
-//       style={{ top, right, position: "absolute", cursor: "pointer" }}
-//       className={`${className} ${rounded && "p-2 rounded-full bg-slate-200"}`}
-//       onClick={handleClose}
-//     >
-//       <CloseIcon />
-//     </div>
-//   );
-// };
+interface modal {
+  handleClose?: any;
+  rounded?: any;
+}
 
-// export default ModalClose;
-
-import React from 'react';
-
-const ModalClose = () => {
+const ModalClose = ({ handleClose, rounded }: modal) => {
   return (
-    <div>
-      
+    <div
+      style={{ top, right, position: "absolute", cursor: "pointer" }}
+      className={`${} ${rounded && "p-2 rounded-full bg-slate-200"}`}
+      onClick={handleClose}
+    >
+      <GrClose />
     </div>
   );
 };
