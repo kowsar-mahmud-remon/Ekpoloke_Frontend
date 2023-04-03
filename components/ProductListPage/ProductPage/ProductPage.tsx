@@ -7,9 +7,9 @@ import Card from "../../UI/Card/Card";
 import { Carousel } from "react-responsive-carousel";
 
 const ProductPage = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const product = useSelector(state => state.product);
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
   //   const { page } = product;
 
   //   useEffect(() => {
@@ -22,7 +22,9 @@ const ProductPage = () => {
 
   return (
     <div style={{ margin: "0 10px" }}>
-      <h2>Comming Soon</h2>
+      <h2 className="text-2xl text-center font-bold my-20 text-success">
+        Coming Soon...
+      </h2>
       {/* <h3>{page.title}</h3>
       <Carousel renderThumbs={() => {}} autoPlay={true}>
         {page.banners &&
