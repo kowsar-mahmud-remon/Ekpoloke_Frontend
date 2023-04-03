@@ -10,7 +10,7 @@ const CartItem: React.FC<ComponentBProps> = ({cartItem}) => {
         <div  className={styles.cartItemContainer}>
       <div className="flex">
         <div className={styles.cartProImgContainer}>
-          <Image src={img} alt="" />
+          <Image width={100} height={100} src={img} alt="" />
         </div>
         <div className={styles.cartItemDetails}>
           <div>

@@ -3,7 +3,6 @@ import { useState } from "react";
 
 
 const ProductModal = (productDetails:any) => {
-    console.log(productDetails, "modalll");
     
   const {name, productPictures} = productDetails?.productDetails;
 

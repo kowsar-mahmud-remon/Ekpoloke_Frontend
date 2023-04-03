@@ -9,8 +9,8 @@ interface modal {
 const ModalClose = ({ handleClose, rounded }: modal) => {
   return (
     <div
-      style={{ top, right, position: "absolute", cursor: "pointer" }}
-      className={`${} ${rounded && "p-2 rounded-full bg-slate-200"}`}
+      style={{ position: "absolute", cursor: "pointer" }}
+      className={`${rounded && "p-2 rounded-full bg-slate-200"}`}
       onClick={handleClose}
     >
       <GrClose />

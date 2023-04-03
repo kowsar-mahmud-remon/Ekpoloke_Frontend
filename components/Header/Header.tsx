@@ -128,7 +128,7 @@ const Header = ({ content }: any) => {
     <>
       <div className="drawer">
         <input id="navbarDrawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content" id="content">
+        <div className="drawer-content bg-[#F2F2F2]" id="content">
           <div className="bg-white">
             <div className="w-full navbar lg:container xl:container xl:px-16 mx-auto lg:px-2 md:px-6 justify-between">
               <Link href="/" className="px-2 mx-2">
