@@ -13,6 +13,8 @@ import { MdContentCopy } from "react-icons/md";
 import Link from "next/link";
 import style from "./ProductDetailsPage.module.css";
 import ProductModal from "./ProductModal";
+import { useRouter } from "next/router";
+import { addCart } from "../app/tools/cart/cartSlice";
 
 interface productProps {
   productDetails?: any;
@@ -33,11 +35,14 @@ const ProductDetailsDesktop = ({
   reviewSlice,
   setReviewSlice,
 }: productProps) => {
+
+  const router = useRouter()
   const [productPicturesModal, setProductPicturesModal] = useState(false);
   const [selectedSize, setSelectedSize] = useState(productDetails?.sizes?.[0]);
   const [selectedColor, setSelectedColor] = useState(
     productDetails?.colors?.[0]
   );
+  const dispatch = useDispatch()
   const isSelectedColor = (color: any) => {
     return selectedColor._id === color._id;
   };
@@ -130,7 +135,7 @@ const ProductDetailsDesktop = ({
 
             {/* action buttons */}
             <div className="flex">
-              <MaterialButton
+            <MaterialButton
                 title="ADD TO CART"
                 bgColor="#ff9f00"
                 textColor="#ffffff"
@@ -141,6 +146,11 @@ const ProductDetailsDesktop = ({
                 onClick={() => {
                   const { _id, name, price } = productDetails;
                   const img = productDetails.productPictures[0].img;
+                  // dispatch(addToCart({ _id, name, price, img }));
+                  // navigate("/cart");
+                  dispatch(addCart({ _id, name, price, img, qty: 1 }))
+                  router.push("/cart")
+                  
                 }}
               />
               <MaterialButton

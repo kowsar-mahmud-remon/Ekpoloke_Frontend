@@ -40,7 +40,7 @@ const MenuHeader = () => {
     return myCategories;
   };
   return (
-    <div className={`${styles.menuHeader} hidden md:block`}>
+    <div className={`${styles.menuHeader} hidden md:block border-b-2 border-[#cecece]`}>
       <ul>
         {category?.categoryList?.length > 0
           ? renderCategories(category.categoryList)
