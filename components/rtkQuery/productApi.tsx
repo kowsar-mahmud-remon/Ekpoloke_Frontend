@@ -25,9 +25,19 @@ export const productApi = createApi({
     }),
     addReview: build.mutation({
       query: ({ productId, data, params }) => ({
-        url: `/api/rateProduct/${productId}`, params,
+        url: `/api/rateProduct/${productId}`,
+        params,
         method: "POST",
         body: data,
+      }),
+    }),
+
+    addUser: build.mutation({
+      query: (user) => ({
+        url: `/api/signup`,
+        user,
+        method: "POST",
+        body: user,
       }),
     }),
   }),
@@ -40,4 +50,5 @@ export const {
   useGetProductBySlugQuery,
   useGetProductByIdQuery,
   useAddReviewMutation,
+  useAddUserMutation,
 } = productApi;
