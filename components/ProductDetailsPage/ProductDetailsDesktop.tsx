@@ -148,7 +148,7 @@ const ProductDetailsDesktop = ({
                   const img = productDetails.productPictures[0].img;
                   // dispatch(addToCart({ _id, name, price, img }));
                   // navigate("/cart");
-                  dispatch(addCart({ _id, name, price, img, qty: 1 }))
+                  dispatch(addCart({ _id, name, price, img, qty: Number(1) }))
                   router.push("/cart")
                   
                 }}

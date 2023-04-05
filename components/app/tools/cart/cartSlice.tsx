@@ -45,15 +45,38 @@ export const cartSlice = createSlice({
       state.cartItems = action.payload.cartItems;
     },
 
-    removeSingleItem: (state, action) => {},
-
     clearAll: (state, action) => {},
 
-    increment: (state, action) => {},
+    increment: (state: any, action: intializeCartAction) => {
+      console.log("carts", JSON.stringify(state.cartItems));
+      let eachCartproductIndex = state.cartItems.findIndex(
+        (item: any) => item?._id === action.payload.cartItem?._id
+      );
 
-    decrement: (state, action) => {},
+      if (eachCartproductIndex >= 0) {
+        state.cartItems[eachCartproductIndex].qty += 1;
+        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      }
+    },
+    decrement: (state: any, action: intializeCartAction) => {
+      console.log("carts", JSON.stringify(state.cartItems));
+      let eachCartproductIndex = state.cartItems.findIndex(
+        (item: any) => item?._id === action.payload.cartItem?._id
+      );
+
+      if (eachCartproductIndex <= 1) {
+        state.cartItems[eachCartproductIndex].qty -= 1;
+        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      }  
+    },
+
+    removeSingleItem: (state, action) => {
+      const removeItem = state.cartItems.filter((item:any) => item?._id !== action.payload?._id)
+      state.cartItems = removeItem
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+    },
   },
 });
 
-export const { addCart, intializeCart } = cartSlice.actions;
+export const { addCart, intializeCart, increment, decrement, removeSingleItem } = cartSlice.actions;
 export default cartSlice.reducer;
