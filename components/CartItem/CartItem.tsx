@@ -1,16 +1,39 @@
 import Image from 'next/image';
 import React from 'react';
 import styles from './CartItem.module.css'
+import { useDispatch } from 'react-redux';
+import { decrement, increment, removeSingleItem } from '../app/tools/cart/cartSlice';
+
 interface ComponentBProps{
   cartItem:any
 }
+
+
 const CartItem: React.FC<ComponentBProps> = ({cartItem}) => {
+  const dispatch = useDispatch()
+
+  const handleIncrease = (cartItem:any)=>{
+    dispatch(increment({cartItem, qty: cartItem.qty}))
+    console.log("increment data", cartItem.qty);
+    
+  }
+  const handleDecrease = (cartItem:any)=>{
+    if (cartItem.qty <= 1) return;
+    dispatch(decrement({cartItem, qty: cartItem.qty}))
+    console.log("increment data", cartItem.qty);
+    
+  }
+
+  const handleRemove = (cartItem:any)=>{
+    dispatch(removeSingleItem(cartItem))
+  }
+
   const { _id, name, img, price, qty } = cartItem;
     return (
         <div  className={styles.cartItemContainer}>
       <div className="flex">
         <div className={styles.cartProImgContainer}>
-          <Image src={img} alt="" />
+          <Image width={100} height={100} src={img} alt="" />
         </div>
         <div className={styles.cartItemDetails}>
           <div>
@@ -35,19 +58,19 @@ const CartItem: React.FC<ComponentBProps> = ({cartItem}) => {
         }}
       >
         <div className={styles.quantityControl}>
-          <button className="text-xl cursor-default" 
-        //   onClick={onQuantityDecrement}
+          <button className="text-xl" 
+          onClick={()=> handleDecrease(cartItem)}
           >-</button>
           <input
            value={qty} 
            type="value" readOnly />
           <button className="text-xl" 
-        //   onClick={onQuantityIncrement}
+          onClick={()=>handleIncrease(cartItem)}
           >+</button>
         </div>
-        <button className={`${styles.cartActionBtn} cursor-default`}>Save For Later</button>
+        <button className={`${styles.cartActionBtn}`}>Save For Later</button>
         <button
-        //  onClick={() => onRemoveCartItem(_id)} 
+         onClick={() => handleRemove(cartItem)} 
          className={styles.cartActionBtn}>
           Remove
         </button>
