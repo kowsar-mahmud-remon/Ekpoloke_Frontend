@@ -62,7 +62,7 @@ export const cartSlice = createSlice({
       console.log("carts", JSON.stringify(state.cartItems));
       let eachCartproductIndex = state.cartItems.findIndex(
         (item: any) => item?._id === action.payload.cartItem?._id
-      );
+      );  
 
       if (eachCartproductIndex <= 1) {
         state.cartItems[eachCartproductIndex].qty -= 1;
