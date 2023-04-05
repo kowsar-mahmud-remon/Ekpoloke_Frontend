@@ -18,7 +18,13 @@ const wrapper = createWrapper(()=> store)
 
   useEffect(() => {
     const products = localStorage.getItem("cartItems");
-    dispatch(intializeCart({ cartItems: JSON.parse(products || "") }));
+    if(products){
+      dispatch(intializeCart({ cartItems: JSON.parse(products || "") }));
+    }
+    else{
+      console.log("no cart available");
+      
+    }
   }, []);
 
 
