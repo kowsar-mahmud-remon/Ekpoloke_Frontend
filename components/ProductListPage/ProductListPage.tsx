@@ -20,9 +20,9 @@ const ProductListPage = (props: any) => {
       case "store":
         content = <ProductStore {...props} />;
         break;
-      //   case "page":
-      //     content = <ProductPage {...props} />;
-      //     break;
+      case "page":
+        content = <ProductPage {...props} />;
+        break;
       default:
         content = <ClothingAndAccessories {...props} />;
     }
