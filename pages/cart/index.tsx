@@ -5,6 +5,8 @@ import Card from "@/components/UI/Card/Card";
 import styles from "./cart.module.css";
 import CartItem from "@/components/CartItem/CartItem";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface ComponentBProps {
   totalPrice?: any;
@@ -22,6 +24,7 @@ type cartItems = {
 
 const Cart = () => {
   const { cartItems } = useSelector((state) => state?.carts);
+  const router = useRouter();
 
   return (
     <div className={styles.cartContainer} style={{ alignItems: "flex-start" }}>
@@ -44,7 +47,8 @@ const Cart = () => {
             />
           ))}
         </div>
-        <div className="shadow-[0px_6px_30px_2px_rgba(0,0,0,0.08)] border"
+        <div
+          className="shadow-[0px_6px_30px_2px_rgba(0,0,0,0.08)] border"
           style={{
             width: "100%",
             display: "flex",
@@ -55,11 +59,17 @@ const Cart = () => {
             boxSizing: "border-box",
           }}
         >
-          <div className="shadow-[0px_6px_30px_2px_rgba(0,0,0,0.08)] border" style={{ width: "250px", marginRight: "20px" }}>
-            <MaterialButton
-              title="Place Order"
-              // onClick={() => navigate(`/checkout`)}
-            />
+          <div
+            className="shadow-[0px_6px_30px_2px_rgba(0,0,0,0.08)] border"
+            style={{ width: "250px", marginRight: "20px" }}
+          >
+            <Link href="/checkout">
+              <MaterialButton
+                title="Place Order"
+
+                // onClick={() => navigate(`/checkout`)}
+              />
+            </Link>
           </div>
         </div>
       </Card>

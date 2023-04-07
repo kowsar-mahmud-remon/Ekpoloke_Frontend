@@ -1,7 +1,12 @@
 import React from "react";
 import { BsCart3 } from "react-icons/bs";
 
-const Cart = ({ count, color = "#000" }) => {
+interface cartProps {
+  count?: any,
+  color?: any
+}
+
+const Cart = ({ count, color = "#000" }: cartProps) => {
   return (
     <div style={{ fontSize: "20px", position: "relative" }}>
       <span

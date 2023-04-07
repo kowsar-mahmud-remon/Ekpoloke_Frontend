@@ -29,7 +29,7 @@ const MultipleProductSlider = (products: any) => {
       <Swiper
         grabCursor={true}
         modules={[FreeMode, Navigation]}
-        className={styles.multiProductSlider}
+        className={`${styles.multiProductSlider} `}
         navigation={true}
         freeMode={true}
         breakpoints={{
@@ -84,7 +84,7 @@ const MultipleProductSlider = (products: any) => {
                       ({p?.ratings?.length || "0"})
                     </span>
                   </div>
-                  <div className="flex md:items-center justify-start md:justify-end gap-x-2 md:flex-row-reverse flex-col">
+                  <div className="flex flex-col justify-start md:items-center md:justify-end gap-x-2 md:flex-row-reverse">
                     <div>
                       <del className="md:text-xs text-[10px] text-gray-400">
                         TK. {p?.price + 1000}

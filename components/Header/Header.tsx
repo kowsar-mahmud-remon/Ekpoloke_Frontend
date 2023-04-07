@@ -75,7 +75,7 @@ const LoggedOutMenu = () => {
     <DropdownMenu
       menu={
         <Link
-          className="text-black font-bold flex items-center gap-2"
+          className="flex items-center gap-2 font-bold text-black"
           href="/login"
         >
           <FaRegUser /> <span>Login</span>
@@ -130,7 +130,7 @@ const Header = ({ content }: any) => {
         <input id="navbarDrawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content bg-[#F2F2F2]" id="content">
           <div className="bg-white">
-            <div className="w-full navbar lg:container xl:container xl:px-16 mx-auto lg:px-2 md:px-6 justify-between">
+            <div className="justify-between w-full mx-auto navbar lg:container xl:container xl:px-16 lg:px-2 md:px-6">
               <Link href="/" className="px-2 mx-2">
                 <Image
                   src={logo}
@@ -149,7 +149,7 @@ const Header = ({ content }: any) => {
                 </label>
               </div>
 
-              <div className="flex-1 h-full hidden md:block">
+              <div className="flex-1 hidden h-full md:block">
                 <form
                   // onSubmit={handleSubmitSearch}
                   className={`${styles.search}`}
@@ -162,7 +162,7 @@ const Header = ({ content }: any) => {
                   />
                   <button
                     type="submit"
-                    className="py-0 px-3 lg:px- md:px-6 sm:px-2"
+                    className="px-3 py-0 lg:px- md:px-6 sm:px-2"
                   >
                     <ImSearch /> Search
                   </button>
@@ -231,11 +231,11 @@ const Header = ({ content }: any) => {
           <ul
             className={`menu p-0 relative ${styles.navbarMobileDrawer} overflow-y-auto w-[80%] bg-base-100`}
           >
-            <li className="bg-primary sticky left-0 top-0 right-0 z-10">
+            <li className="sticky top-0 left-0 right-0 z-10 bg-primary">
               <div className="flex items-center justify-between">
                 <Link
                   href="/"
-                  className="flex items-center text-white gap-x-3 text-xl"
+                  className="flex items-center text-xl text-white gap-x-3"
                 >
                   <AiOutlineHome color="#fff" fontSize={32} />
                 </Link>
@@ -332,7 +332,7 @@ const Header = ({ content }: any) => {
             {/* // */}
             {/* <label
               htmlFor="navbarDrawer"
-              className="absolute p-2 bg-neutral rounded-full right-2 top-2 z-50"
+              className="absolute z-50 p-2 rounded-full bg-neutral right-2 top-2"
             >
               <MdClose fontSize="25" />
             </label> */}
