@@ -11,6 +11,7 @@ import { Checkbox, FormControlLabel } from "@mui/material";
 // import ForgotPasswordModal from "./ForgotPasswordModal";
 import { Helmet } from "react-helmet";
 import Link from "next/link";
+import { useAddLoginUserMutation } from "../rtkQuery/productApi";
 
 const LoginPage = () => {
   // const [passwordShow, setPasswordShow] = useState(false);
@@ -21,6 +22,8 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
+  const [addLoginUser] = useAddLoginUserMutation();
+
   // const auth = useSelector((state) => state.auth);
 
   // const dispatch = useDispatch();
@@ -28,9 +31,11 @@ const LoginPage = () => {
   // const location = useLocation();
   // const from = location.state?.from?.pathname || "/";
 
-  // const handleFormSubmit = (data) => {
-  //   dispatch(login(data));
-  // };
+  const handleFormSubmit = (data: any) => {
+    addLoginUser(data);
+    console.log(addLoginUser);
+    // dispatch(login(data));
+  };
 
   // if (auth.authenticate) {
   //   navigate(from, { replace: true });
@@ -60,7 +65,7 @@ const LoginPage = () => {
             Log<span className="text-primary">in</span>
           </h2>
           <form
-            // onSubmit={handleSubmit(handleFormSubmit)}
+            onSubmit={handleSubmit(handleFormSubmit)}
             className={`${styles.loginForm} lg:px-[30px]`}
           >
             <input

@@ -40,6 +40,15 @@ export const productApi = createApi({
         body: user,
       }),
     }),
+
+    addLoginUser: build.mutation({
+      query: (user) => ({
+        url: `/api/signin`,
+        user,
+        method: "POST",
+        body: user,
+      }),
+    }),
   }),
 });
 
@@ -51,4 +60,5 @@ export const {
   useGetProductByIdQuery,
   useAddReviewMutation,
   useAddUserMutation,
+  useAddLoginUserMutation,
 } = productApi;

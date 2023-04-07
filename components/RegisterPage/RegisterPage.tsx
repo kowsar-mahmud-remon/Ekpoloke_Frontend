@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Lottie from "lottie-react";
 import registerLottie from "../../assets/lotties/register.json";
 import { useForm } from "react-hook-form";
@@ -11,9 +11,15 @@ import { Helmet } from "react-helmet";
 import Link from "next/link";
 import styles from "./RegisterPage.module.css";
 import { useAddUserMutation } from "../rtkQuery/productApi";
+import { signUp } from "../app/tools/userSlice/userSlice";
+import { useRouter } from "next/router";
 
 const RegisterPage = () => {
+  const [user, setUser] = useState({});
   const [passwordShow, setPasswordShow] = useState(false);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -25,12 +31,35 @@ const RegisterPage = () => {
   // const location = useLocation();
   // const from = location.state?.from?.pathname || "/";
 
-  const [addUser] = useAddUserMutation();
+  const [addUser, { data: userInfo, isError, isSuccess, error }] =
+    useAddUserMutation();
+
   console.log("useAddTodoMutation", addUser);
+
+  console.log("data:isSuccess", isSuccess);
+  console.log("data:isError", isError);
+  console.log("data:error.data", error?.data?.error);
+
+  if (isSuccess) {
+    const token = userInfo?.token;
+    const user = userInfo?.user;
+    console.log("token user", token, user);
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
+    // dispatch(signUp({ token: token, user: user }));
+    console.log("data:userInfo1", userInfo);
+    router.push("/");
+  }
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   const user = JSON.parse(localStorage.getItem("user"));
+  //   dispatch(signUp({ token: token, user: user }));
+  // }, ["token", "user"]);
+
   const handleFormSubmit = (data: any) => {
     console.log("dataaaaaaaa", data);
     addUser(data);
-    // dispatch(signUp(data));
   };
 
   // if (auth.authenticate) {
@@ -113,7 +142,9 @@ const RegisterPage = () => {
               label="Show Password"
               onChange={() => setPasswordShow(!passwordShow)}
             />
-            {/* <span className="text-red-500 block font-bold">{auth?.error}</span> */}
+            <span className="text-red-500 block font-bold">
+              {error?.data?.error}
+            </span>
             <input
               type="submit"
               value="Register"

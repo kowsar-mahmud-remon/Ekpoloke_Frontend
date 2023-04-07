@@ -30,10 +30,13 @@ import { TbLanguage, TbBellRinging } from "react-icons/tb";
 import { ImSearch, ImFolderDownload } from "react-icons/im";
 import Image from "next/image";
 import Link from "next/link";
+import { signUp } from "../app/tools/userSlice/userSlice";
 // import { signOut } from "../../actions";
 // import { getSearchUrl } from "../../urlConfig";
 
 const LoggedInMenu = () => {
+  const { user } = useSelector((state) => state?.user);
+  // const newUser = JSON.parse(localStorage.getItem("user"));
   // const auth = useSelector((state) => state.auth);
   // const dispatch = useDispatch();
 
@@ -42,12 +45,7 @@ const LoggedInMenu = () => {
   // };
   return (
     <DropdownMenu
-      menu={
-        <a className={`${styles.fullName}`}>
-          {/* {auth.user.fullName} */}
-          not show
-        </a>
-      }
+      menu={<a className={`${styles.fullName}`}>{user?.fullName}</a>}
       menus={[
         { label: "My Profile", href: "", icon: <FaRegUser /> },
         {
@@ -98,6 +96,15 @@ const LoggedOutMenu = () => {
 };
 
 const Header = ({ content }: any) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const user = JSON.parse(localStorage.getItem("user"));
+    dispatch(signUp({ token: token, user: user }));
+  }, ["token", "user"]);
+
+  const { accessToken, user } = useSelector((state) => state?.user);
   // const cart = useSelector((state) => state.cart);
   // const auth = useSelector((state) => state.auth);
   // const [searchValue, setSearchValue] = useState("");
@@ -208,9 +215,7 @@ const Header = ({ content }: any) => {
                       ]}
                     />
                   </li>
-                  <li>
-                    {/* {auth.authenticate ? <LoggedInMenu /> : <LoggedOutMenu />} */}
-                  </li>
+                  <li>{accessToken ? <LoggedInMenu /> : <LoggedOutMenu />}</li>
                   <li>
                     <Link href="/cart" className="cart">
                       {/* <Cart count={Object.keys(cart.cartItems).length} /> */}
