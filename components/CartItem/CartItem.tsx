@@ -1,36 +1,37 @@
-import Image from 'next/image';
-import React from 'react';
-import styles from './CartItem.module.css'
-import { useDispatch } from 'react-redux';
-import { decrement, increment, removeSingleItem } from '../app/tools/cart/cartSlice';
+import Image from "next/image";
+import React from "react";
+import styles from "./CartItem.module.css";
+import { useDispatch } from "react-redux";
+import {
+  decrement,
+  increment,
+  removeSingleItem,
+} from "../app/tools/cart/cartSlice";
 
-interface ComponentBProps{
-  cartItem:any
+interface ComponentBProps {
+  cartItem: any;
 }
 
+const CartItem: React.FC<ComponentBProps> = ({ cartItem }) => {
+  const dispatch = useDispatch();
 
-const CartItem: React.FC<ComponentBProps> = ({cartItem}) => {
-  const dispatch = useDispatch()
-
-  const handleIncrease = (cartItem:any)=>{
-    dispatch(increment({cartItem, qty: cartItem.qty}))
+  const handleIncrease = (cartItem: any) => {
+    dispatch(increment({ cartItem, qty: cartItem.qty }));
     console.log("increment data", cartItem.qty);
-    
-  }
-  const handleDecrease = (cartItem:any)=>{
+  };
+  const handleDecrease = (cartItem: any) => {
     if (cartItem.qty <= 1) return;
-    dispatch(decrement({cartItem, qty: cartItem.qty}))
+    dispatch(decrement({ cartItem, qty: cartItem.qty }));
     console.log("increment data", cartItem.qty);
-    
-  }
+  };
 
-  const handleRemove = (cartItem:any)=>{
-    dispatch(removeSingleItem(cartItem))
-  }
+  const handleRemove = (cartItem: any) => {
+    dispatch(removeSingleItem(cartItem));
+  };
 
   const { _id, name, img, price, qty } = cartItem;
-    return (
-        <div  className={styles.cartItemContainer}>
+  return (
+    <div className={styles.cartItemContainer}>
       <div className="flex">
         <div className={styles.cartProImgContainer}>
           <Image width={100} height={100} src={img} alt="" />
@@ -39,13 +40,11 @@ const CartItem: React.FC<ComponentBProps> = ({cartItem}) => {
           <div>
             <p>{name}</p>
             <p className={styles.SingleCartPrice}>
-              Tk. 
+              Tk.
               <span>{price}</span>
             </p>
             <p className={styles.SingleCartTotal}>
-              Total - <span>
-                {price * qty}
-                </span>
+              Total - <span>{price * qty}</span>
             </p>
           </div>
           <div style={{ marginRight: "20px" }}>Deliver in 3 to 5 days</div>
@@ -58,25 +57,24 @@ const CartItem: React.FC<ComponentBProps> = ({cartItem}) => {
         }}
       >
         <div className={styles.quantityControl}>
-          <button className="text-xl" 
-          onClick={()=> handleDecrease(cartItem)}
-          >-</button>
-          <input
-           value={qty} 
-           type="value" readOnly />
-          <button className="text-xl" 
-          onClick={()=>handleIncrease(cartItem)}
-          >+</button>
+          <button className="text-xl" onClick={() => handleDecrease(cartItem)}>
+            -
+          </button>
+          <input value={qty} type="value" readOnly />
+          <button className="text-xl" onClick={() => handleIncrease(cartItem)}>
+            +
+          </button>
         </div>
         <button className={`${styles.cartActionBtn}`}>Save For Later</button>
         <button
-         onClick={() => handleRemove(cartItem)} 
-         className={styles.cartActionBtn}>
+          onClick={() => handleRemove(cartItem)}
+          className={styles.cartActionBtn}
+        >
           Remove
         </button>
       </div>
     </div>
-    );
+  );
 };
 
 export default CartItem;
