@@ -8,21 +8,41 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
 // import { login } from "../../actions";
 import { Checkbox, FormControlLabel } from "@mui/material";
-// import ForgotPasswordModal from "./ForgotPasswordModal";
+import ForgotPasswordModal from "./ForgotPasswordModal";
 import { Helmet } from "react-helmet";
 import Link from "next/link";
 import { useAddLoginUserMutation } from "../rtkQuery/productApi";
+import { useRouter } from "next/router";
 
 const LoginPage = () => {
-  // const [passwordShow, setPasswordShow] = useState(false);
-  // const [forgotPasswordModal, setForgotPasswordModal] = useState(false);
+  const router = useRouter();
+  const [passwordShow, setPasswordShow] = useState(false);
+  const [forgotPasswordModal, setForgotPasswordModal] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const [addLoginUser] = useAddLoginUserMutation();
+  const [addLoginUser, { data: loginUserInfo, isError, isSuccess, error }] =
+    useAddLoginUserMutation();
+
+  console.log("useAddLoginUserMutation", loginUserInfo);
+
+  console.log("data:isSuccess", isSuccess);
+  console.log("data:isError", isError);
+  console.log("data:error.data", error);
+
+  if (isSuccess) {
+    const token = loginUserInfo?.token;
+    const user = loginUserInfo?.user;
+    console.log("token user", token, user);
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
+    // dispatch(signUp({ token: token, user: user }));
+    console.log("data:loginUserInfo1", loginUserInfo);
+    router.push("/");
+  }
 
   // const auth = useSelector((state) => state.auth);
 
@@ -33,7 +53,7 @@ const LoginPage = () => {
 
   const handleFormSubmit = (data: any) => {
     addLoginUser(data);
-    console.log(addLoginUser);
+    // console.log(addLoginUser);
     // dispatch(login(data));
   };
 
@@ -86,7 +106,7 @@ const LoginPage = () => {
                 required: true,
                 minLength: 6,
               })}
-              // type={passwordShow ? "text" : "password"}
+              type={passwordShow ? "text" : "password"}
               placeholder="Password"
             />
             <span className="text-red-500 block">
@@ -98,17 +118,19 @@ const LoginPage = () => {
               <FormControlLabel
                 control={<Checkbox />}
                 label="Show Password"
-                // onChange={() => setPasswordShow(!passwordShow)}
+                onChange={() => setPasswordShow(!passwordShow)}
               />
               <label
                 htmlFor="forgotPasswordModal"
-                // onClick={() => setForgotPasswordModal(true)}
+                onClick={() => setForgotPasswordModal(true)}
                 className="text-primary cursor-pointer"
               >
                 Forgot Password?
               </label>
             </div>
-            {/* <span className="text-red-500 block font-bold">{auth?.error}</span> */}
+            <span className="text-red-500 block font-bold">
+              {error?.data?.error}
+            </span>
             <input
               type="submit"
               value="Login"
@@ -126,9 +148,9 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
-      {/* {forgotPasswordModal && (
+      {forgotPasswordModal && (
         <ForgotPasswordModal setForgotPasswordModal={setForgotPasswordModal} />
-      )} */}
+      )}
     </div>
   );
 };

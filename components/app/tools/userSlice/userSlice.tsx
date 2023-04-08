@@ -26,8 +26,13 @@ export const userSlice = createSlice({
     //   const token = localStorage.getItem("token");
     //   const user = JSON.parse(localStorage.getItem("user"));
     // },
+
+    forgetPasswordToken: (state: any, action: any) => {
+      // console.log("usseeerrSSSSSSSSlice", action?.payload);
+      state.accessToken = action?.payload?.token;
+    },
   },
 });
 
-export const { signUp } = userSlice.actions;
+export const { signUp, forgetPasswordToken } = userSlice.actions;
 export default userSlice.reducer;

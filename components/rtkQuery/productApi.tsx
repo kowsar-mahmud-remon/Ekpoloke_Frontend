@@ -49,6 +49,24 @@ export const productApi = createApi({
         body: user,
       }),
     }),
+
+    forgotPasswordAtLogin: build.mutation({
+      query: (user) => ({
+        url: `/api/forgotPassword`,
+        user,
+        method: "PUT",
+        body: user,
+      }),
+    }),
+
+    resetPasswordAtLogin: build.mutation({
+      query: (user) => ({
+        url: `/api/resetPassword`,
+        user,
+        method: "PUT",
+        body: user,
+      }),
+    }),
   }),
 });
 
@@ -61,4 +79,6 @@ export const {
   useAddReviewMutation,
   useAddUserMutation,
   useAddLoginUserMutation,
+  useForgotPasswordAtLoginMutation,
+  useResetPasswordAtLoginMutation,
 } = productApi;
