@@ -30,7 +30,7 @@ import { TbLanguage, TbBellRinging } from "react-icons/tb";
 import { ImSearch, ImFolderDownload } from "react-icons/im";
 import Image from "next/image";
 import Link from "next/link";
-import { signUp } from "../app/tools/userSlice/userSlice";
+import { signOut, signUp } from "../app/tools/userSlice/userSlice";
 // import { signOut } from "../../actions";
 // import { getSearchUrl } from "../../urlConfig";
 
@@ -38,13 +38,15 @@ const LoggedInMenu = () => {
   const { user } = useSelector((state) => state?.user);
   // const newUser = JSON.parse(localStorage.getItem("user"));
   // const auth = useSelector((state) => state.auth);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-
-
-  // const logout = () => {
-  //   dispatch(signOut());
-  // };
+  const logout = () => {
+    // dispatch(signOut());
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    dispatch(signOut());
+    console.log(" useruser user", user);
+  };
   return (
     <DropdownMenu
       menu={<a className={`${styles.fullName}`}>{user?.fullName}</a>}
@@ -63,7 +65,7 @@ const LoggedInMenu = () => {
           label: "Logout",
           href: "",
           icon: <MdLogout />,
-          // onClick: logout,
+          onClick: logout,
         },
       ]}
     />
@@ -107,10 +109,11 @@ const Header = ({ content }: any) => {
   }, ["token", "user"]);
 
   const { accessToken, user } = useSelector((state) => state?.user);
+
   // const cart = useSelector((state) => state.cart);
   // const auth = useSelector((state) => state.auth);
   // const [searchValue, setSearchValue] = useState("");
-  const { cartItems } = useSelector((state) => state?.carts); 
+  const { cartItems } = useSelector((state) => state?.carts);
 
   // const [searchParams] = useSearchParams();
 
@@ -125,9 +128,13 @@ const Header = ({ content }: any) => {
   // }, [location.pathname, searchParams]);
   // const dispatch = useDispatch();
 
-  // const logout = () => {
-  //   dispatch(signOut());
-  // };
+  const logout = () => {
+    // dispatch(signOut());
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    dispatch(signOut());
+    console.log(" useruser user", user);
+  };
 
   // const handleSubmitSearch = (e) => {
   //   e.preventDefault();
@@ -248,9 +255,9 @@ const Header = ({ content }: any) => {
                   <AiOutlineHome color="#fff" fontSize={32} />
                 </Link>
 
-                {/* <span onClick={() => window.location.reload()}>
-                    <IoIosRefresh color="#fff" fontSize={32} />
-                  </span> */}
+                <span onClick={() => window.location.reload()}>
+                  <IoIosRefresh color="#fff" fontSize={32} />
+                </span>
 
                 <label htmlFor="navbarDrawer">
                   <MdClose color="#fff" fontSize={32} />
@@ -270,18 +277,17 @@ const Header = ({ content }: any) => {
                 <TbLanguage /> <span>Choose Language</span>
               </Link>
             </li>
-            {/* <li>
-                {auth.authenticate ? (
-                  <Link href="/profile">
-                    <FaRegUser fontSize={20} />{" "}
-                    <span>{auth.user.fullName}</span>
-                  </Link>
-                ) : (
-                  <Link href="/login">
-                    <FaRegUser fontSize={20} /> <span>Login & Register</span>
-                  </Link>
-                )}
-              </li> */}
+            <li>
+              {user ? (
+                <Link href="/profile">
+                  <FaRegUser fontSize={20} /> <span>{user?.fullName}</span>
+                </Link>
+              ) : (
+                <Link href="/login">
+                  <FaRegUser fontSize={20} /> <span>Login & Register</span>
+                </Link>
+              )}
+            </li>
 
             <li>
               <Link href="/account/orders">
@@ -323,19 +329,19 @@ const Header = ({ content }: any) => {
                 <GiClawHammer /> <span>Legal</span>
               </Link>
             </li>
-            {/* {auth.authenticate && ( */}
-            <li>
-              <Link
-                href="/"
-                // onClick={(e) => {
-                //   e.preventDefault();
-                //   logout();
-                // }}
-              >
-                <MdLogout /> <span>Log Out</span>
-              </Link>
-            </li>
-            {/* )} */}
+            {accessToken && (
+              <li>
+                <Link
+                  href="/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    logout();
+                  }}
+                >
+                  <MdLogout /> <span>Log Out</span>
+                </Link>
+              </li>
+            )}
 
             {/* // */}
             {/* <label

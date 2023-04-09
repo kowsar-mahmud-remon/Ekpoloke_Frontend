@@ -31,8 +31,13 @@ export const userSlice = createSlice({
       // console.log("usseeerrSSSSSSSSlice", action?.payload);
       state.accessToken = action?.payload?.token;
     },
+
+    signOut: (state: any, action: any) => {
+      console.log("usseeerrSSSSSSSSlice", action?.payload);
+      (state.accessToken = undefined), (state.user = undefined);
+    },
   },
 });
 
-export const { signUp, forgetPasswordToken } = userSlice.actions;
+export const { signUp, forgetPasswordToken, signOut } = userSlice.actions;
 export default userSlice.reducer;
