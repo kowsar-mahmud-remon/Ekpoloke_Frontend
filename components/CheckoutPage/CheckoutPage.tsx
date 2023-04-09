@@ -311,7 +311,7 @@ const CheckoutPage = () => {
                   title="CONTINUE"
                   style={{ width: "200px" }}
                 />
-              </div>
+              </div>  
             </Card>
           )}
 
