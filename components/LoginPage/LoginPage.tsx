@@ -24,14 +24,17 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const [addLoginUser, { data: loginUserInfo, isError, isSuccess, error }] =
-    useAddLoginUserMutation();
+  const [
+    addLoginUser,
+    { data: loginUserInfo, isLoading, isError, isSuccess, error },
+  ] = useAddLoginUserMutation();
 
   console.log("useAddLoginUserMutation", loginUserInfo);
 
   console.log("data:isSuccess", isSuccess);
   console.log("data:isError", isError);
   console.log("data:error.data", error);
+  console.log("data.isLoading", isLoading);
 
   if (isSuccess) {
     const token = loginUserInfo?.token;
@@ -42,6 +45,10 @@ const LoginPage = () => {
     // dispatch(signUp({ token: token, user: user }));
     console.log("data:loginUserInfo1", loginUserInfo);
     router.push("/");
+  }
+
+  if (isLoading) {
+    return <Loading />;
   }
 
   // const auth = useSelector((state) => state.auth);
