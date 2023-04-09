@@ -32,8 +32,7 @@ export const userSlice = createSlice({
       state.accessToken = action?.payload?.token;
     },
 
-    signOut: (state: any, action: any) => {
-      console.log("usseeerrSSSSSSSSlice", action?.payload);
+    signOut: (state: any) => {
       (state.accessToken = undefined), (state.user = undefined);
     },
   },

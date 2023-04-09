@@ -31,7 +31,7 @@ const RegisterPage = () => {
   // const location = useLocation();
   // const from = location.state?.from?.pathname || "/";
 
-  const [addUser, { data: userInfo, isError, isSuccess, error }] =
+  const [addUser, { data: userInfo, isLoading, isError, isSuccess, error }] =
     useAddUserMutation();
 
   console.log("useAddTodoMutation", addUser);
@@ -49,6 +49,10 @@ const RegisterPage = () => {
     // dispatch(signUp({ token: token, user: user }));
     console.log("data:userInfo1", userInfo);
     router.push("/");
+  }
+
+  if (isLoading) {
+    return <Loading />;
   }
 
   // useEffect(() => {
