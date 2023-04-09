@@ -6,23 +6,38 @@ import { useForm } from "react-hook-form";
 import { MdClose } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+// import {
+//   forgotPasswordAtLogin,
+//   resetPasswordAtLogin,
+// } from "../../actions/auth.action";
 import {
-  forgotPasswordAtLogin,
-  resetPasswordAtLogin,
-} from "../../actions/auth.action";
-// import ModalClose from "../ModalClose/ModalClose";
+  useForgotPasswordAtLoginMutation,
+  useResetPasswordAtLoginMutation,
+} from "../rtkQuery/productApi";
+import ModalClose from "../ModalClose/ModalClose";
+import { forgetPasswordToken } from "../app/tools/userSlice/userSlice";
+import styles from "./LoginPage.module.css";
 
-const ForgotPasswordModal = ({ setForgotPasswordModal }) => {
-  const auth = useSelector((state) => state.auth);
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm();
+const ForgotPasswordModal = ({ setForgotPasswordModal }: any) => {
+  // const auth = useSelector((state) => state.auth);
+  const { accessToken } = useSelector((state) => state?.user);
+  console.log("accessTokenaccessTokenaccessToken", accessToken);
+  const [
+    forgotPasswordAtLogin,
+    { data: loginUserInfo, isError, isSuccess, error },
+  ] = useForgotPasswordAtLoginMutation();
+  console.log("forgotPasswordAtLogin loginUserInfo1", loginUserInfo);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   // const dispatch = useDispatch();
-  // const handleForgotPassword = (data) => {
-  //   dispatch(forgotPasswordAtLogin(data));
-  // };
+  const handleForgotPassword = (data: any) => {
+    // dispatch(forgotPasswordAtLogin(data));
+    forgotPasswordAtLogin(data);
+  };
   return (
     <>
       <input
@@ -32,7 +47,7 @@ const ForgotPasswordModal = ({ setForgotPasswordModal }) => {
       />
       <div className="modal modal-bottom sm:modal-middle backdrop-blur-sm">
         <div className="modal-box relative">
-          {auth?.forgotAndResetPassword?.token ? (
+          {accessToken ? (
             <OtpScreen setForgotPasswordModal={setForgotPasswordModal} />
           ) : (
             <EmailScreen setForgotPasswordModal={setForgotPasswordModal} />
@@ -43,15 +58,27 @@ const ForgotPasswordModal = ({ setForgotPasswordModal }) => {
   );
 };
 
-const EmailScreen = ({ setForgotPasswordModal }) => {
-  const auth = useSelector((state) => state.auth);
+const EmailScreen = ({ setForgotPasswordModal }: any) => {
+  // const auth = useSelector((state) => state.auth);
+  const [
+    forgotPasswordAtLogin,
+    { data: loginUserInfo, isError, isSuccess, error },
+  ] = useForgotPasswordAtLoginMutation();
+  const token = loginUserInfo?.token;
+  console.log("forgotPasswordAtLogin loginUserInfo2", loginUserInfo);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
-  const handleForgotPassword = (data) => {
+
+  if (isSuccess) {
+    dispatch(forgetPasswordToken({ token: token }));
+  }
+
+  const handleForgotPassword = (data: any) => {
+    forgotPasswordAtLogin(data);
     // dispatch(forgotPasswordAtLogin(data));
   };
   return (
@@ -62,7 +89,7 @@ const EmailScreen = ({ setForgotPasswordModal }) => {
       </p>
       <form
         onSubmit={handleSubmit(handleForgotPassword)}
-        className="login-form"
+        className={`${styles.loginForm}`}
       >
         <input
           type="text"
@@ -82,13 +109,13 @@ const EmailScreen = ({ setForgotPasswordModal }) => {
           })}
         />
         <span className="text-red-500">
-          {/* {errors?.email?.type === "required" && errors?.email?.message} */}
+          {errors?.email?.type === "required" && errors?.email?.message}
         </span>
         <span className="text-red-500">
-          {/* {errors?.email?.type === "pattern" && errors?.email?.message} */}
+          {errors?.email?.type === "pattern" && errors?.email?.message}
         </span>
         <span className="font-bold block text-red-500 text-center mt-4">
-          {auth?.forgotAndResetPassword?.error}
+          {loginUserInfo?.forgotAndResetPassword?.error}
         </span>
         <input
           type="submit"
@@ -107,8 +134,33 @@ const EmailScreen = ({ setForgotPasswordModal }) => {
   );
 };
 
-const OtpScreen = ({ setForgotPasswordModal }) => {
-  const auth = useSelector((state) => state.auth);
+const OtpScreen = ({ setForgotPasswordModal }: any) => {
+  // const auth = useSelector((state) => state.auth);
+  const { accessToken } = useSelector((state) => state?.user);
+  const [
+    resetPasswordAtLogin,
+    { data: resetPasswordInfo, isError, isSuccess, error },
+  ] = useResetPasswordAtLoginMutation();
+
+  console.log("OtpScreenOtpScreen1", resetPasswordInfo);
+  console.log("isSuccessisSuccessisSuccess", isSuccess);
+  console.log("errorerrorerror", error);
+
+  if (isSuccess) {
+    console.log("OtpScreenOtpScreen222", resetPasswordInfo);
+    setForgotPasswordModal(false);
+    toast.success("Successfully Changed The Password", {
+      hideProgressBar: true,
+      position: "bottom-center",
+      progress: undefined,
+      theme: "dark",
+      draggable: true,
+      style: { borderRadius: 0 },
+      autoClose: 6000,
+      pauseOnHover: false,
+    });
+  }
+
   const inputContainerRef = useRef();
   const otherInputRef = useRef();
   const firstInputRef = useRef();
@@ -120,7 +172,7 @@ const OtpScreen = ({ setForgotPasswordModal }) => {
       firstInputRef.current.focus();
     }
   }, [firstInputRef]);
-  const handleOtpChange = (e, index) => {
+  const handleOtpChange = (e: any, index: any) => {
     setOtp([
       ...otp.map((value, i) =>
         i === index
@@ -135,7 +187,7 @@ const OtpScreen = ({ setForgotPasswordModal }) => {
       e.target.nextSibling.focus();
     }
   };
-  const handleBackSpace = (e) => {
+  const handleBackSpace = (e: any) => {
     if (e.key === "Backspace") {
       setOtp(new Array(6).fill(""));
       inputContainerRef.current?.firstChild?.focus();
@@ -147,7 +199,7 @@ const OtpScreen = ({ setForgotPasswordModal }) => {
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
-  const handleResetPassword = (data) => {
+  const handleResetPassword = (data: any) => {
     if (data.password !== data.confirmPassword) {
       toast.error("Passwords do not match", {
         hideProgressBar: true,
@@ -162,21 +214,10 @@ const OtpScreen = ({ setForgotPasswordModal }) => {
       const params = {
         otp: Number(otp.join("")),
         newPassword: data.password,
-        resetPasswordToken: auth?.forgotAndResetPassword?.token,
+        resetPasswordToken: accessToken,
+        // resetPasswordToken: resetPasswordInfo?.forgotAndResetPassword?.token,
       };
-      dispatch(resetPasswordAtLogin(params)).then(() => {
-        setForgotPasswordModal(false);
-        toast.success("Successfully Changed The Password", {
-          hideProgressBar: true,
-          position: "bottom-center",
-          progress: undefined,
-          theme: "dark",
-          draggable: true,
-          style: { borderRadius: 0 },
-          autoClose: 6000,
-          pauseOnHover: false,
-        });
-      });
+      resetPasswordAtLogin(params);
     }
   };
 
@@ -187,32 +228,38 @@ const OtpScreen = ({ setForgotPasswordModal }) => {
         Check Out The Email We Sent To You. <br /> (Also Check The Promotion
         Tab)
       </p>
-      <form onSubmit={handleSubmit(handleResetPassword)} className="login-form">
+      <form
+        onSubmit={handleSubmit(handleResetPassword)}
+        className={`${styles.loginForm}`}
+      >
         <div
           ref={inputContainerRef}
           className="flex items-center justify-center md:px-12"
         >
-          {otp.map((o, index) => (
-            <input
-              type="number"
-              ref={index === 0 ? firstInputRef : otherInputRef}
-              maxLength={1}
-              onChange={(e) => handleOtpChange(e, index)}
-              value={o.length > 1 ? o.slice(0, 1) : o}
-              key={index}
-              style={{
-                margin: "0 5px",
-                height: "45px",
-                width: "100%",
-                textAlign: "center",
-                paddingLeft: 0,
-                fontSize: "23px",
-              }}
-              onKeyUp={(e) => handleBackSpace(e)}
-              onFocus={(e) => e.target.select()}
-              placeholder={0}
-            />
-          ))}
+          {otp.map((o, index) => {
+            console.log("ooooooooottttttppppp", o);
+            return (
+              <input
+                type="number"
+                ref={index === 0 ? firstInputRef : otherInputRef}
+                maxLength={1}
+                onChange={(e) => handleOtpChange(e, index)}
+                value={o.length > 1 ? o.slice(0, 1) : o}
+                key={index}
+                style={{
+                  margin: "0 5px",
+                  height: "45px",
+                  width: "100%",
+                  textAlign: "center",
+                  paddingLeft: 0,
+                  fontSize: "23px",
+                }}
+                onKeyUp={(e) => handleBackSpace(e)}
+                onFocus={(e) => e.target.select()}
+                placeholder={0}
+              />
+            );
+          })}
         </div>
         <div className="mt-6">
           <label htmlFor="newPassword" className="mt-6">
@@ -257,7 +304,7 @@ const OtpScreen = ({ setForgotPasswordModal }) => {
           onChange={() => setPasswordShow(!passwordShow)}
         />
         <span className="block text-red-500 text-center text-md">
-          {auth?.forgotAndResetPassword?.error}
+          {resetPasswordInfo?.forgotAndResetPassword?.error}
         </span>
         <input
           type="submit"
@@ -271,7 +318,7 @@ const OtpScreen = ({ setForgotPasswordModal }) => {
           }
         />
       </form>
-      {/* <ModalClose rounded handleClose={() => setForgotPasswordModal(false)} /> */}
+      <ModalClose rounded handleClose={() => setForgotPasswordModal(false)} />
     </>
   );
 };

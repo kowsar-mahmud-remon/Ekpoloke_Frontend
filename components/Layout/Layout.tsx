@@ -3,6 +3,7 @@ import React from "react";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import MenuHeader from "../MenuHeader/MenuHeader";
+import { useRouter } from "next/router";
 // import Search from "../Search/Search";
 
 const Layout = ({
@@ -12,6 +13,11 @@ const Layout = ({
   // search = true,
   footer = true,
 }: any) => {
+  const router = useRouter();
+  const newPage = router.pathname;
+  if (newPage === "/login" || newPage === "/register") {
+    return children;
+  }
   return (
     <>
       {/* <AdHeader /> */}

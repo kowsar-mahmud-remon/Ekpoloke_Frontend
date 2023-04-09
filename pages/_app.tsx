@@ -7,27 +7,22 @@ import "slick-carousel/slick/slick-theme.css";
 import Layout from "@/components/Layout/Layout";
 import { useEffect } from "react";
 import { log } from "console";
-import {createWrapper} from "next-redux-wrapper"
+import { createWrapper } from "next-redux-wrapper";
 import { intializeCart } from "@/components/app/tools/cart/cartSlice";
 
-const wrapper = createWrapper(()=> store)
+const wrapper = createWrapper(() => store);
 
- function App({ Component, pageProps }: AppProps) {
-
+function App({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
 
   useEffect(() => {
     const products = localStorage.getItem("cartItems");
-    if(products){
+    if (products) {
       dispatch(intializeCart({ cartItems: JSON.parse(products || "") }));
-    }
-    else{
+    } else {
       console.log("no cart available");
-      
     }
   }, []);
-
-
 
   return (
     <Provider store={store}>

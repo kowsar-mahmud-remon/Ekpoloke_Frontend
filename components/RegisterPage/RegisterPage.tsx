@@ -1,65 +1,71 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Lottie from "lottie-react";
-import loginLottie from "../../assets/lotties/login.json";
-import styles from "./LoginPage.module.css";
+import registerLottie from "../../assets/lotties/register.json";
 import { useForm } from "react-hook-form";
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
-// import { login } from "../../actions";
+// import { signUp } from "../../actions";
 import { Checkbox, FormControlLabel } from "@mui/material";
-import ForgotPasswordModal from "./ForgotPasswordModal";
 import { Helmet } from "react-helmet";
 import Link from "next/link";
-import { useAddLoginUserMutation } from "../rtkQuery/productApi";
+import styles from "./RegisterPage.module.css";
+import { useAddUserMutation } from "../rtkQuery/productApi";
+import { signUp } from "../app/tools/userSlice/userSlice";
 import { useRouter } from "next/router";
 
-const LoginPage = () => {
-  const router = useRouter();
+const RegisterPage = () => {
+  const [user, setUser] = useState({});
   const [passwordShow, setPasswordShow] = useState(false);
-  const [forgotPasswordModal, setForgotPasswordModal] = useState(false);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const [addLoginUser, { data: loginUserInfo, isError, isSuccess, error }] =
-    useAddLoginUserMutation();
-
-  console.log("useAddLoginUserMutation", loginUserInfo);
-
-  console.log("data:isSuccess", isSuccess);
-  console.log("data:isError", isError);
-  console.log("data:error.data", error);
-
-  if (isSuccess) {
-    const token = loginUserInfo?.token;
-    const user = loginUserInfo?.user;
-    console.log("token user", token, user);
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(user));
-    // dispatch(signUp({ token: token, user: user }));
-    console.log("data:loginUserInfo1", loginUserInfo);
-    router.push("/");
-  }
-
   // const auth = useSelector((state) => state.auth);
-
   // const dispatch = useDispatch();
   // const navigate = useNavigate();
   // const location = useLocation();
   // const from = location.state?.from?.pathname || "/";
 
+  const [addUser, { data: userInfo, isError, isSuccess, error }] =
+    useAddUserMutation();
+
+  console.log("useAddTodoMutation", addUser);
+
+  console.log("data:isSuccess", isSuccess);
+  console.log("data:isError", isError);
+  console.log("data:error.data", error?.data?.error);
+
+  if (isSuccess) {
+    const token = userInfo?.token;
+    const user = userInfo?.user;
+    console.log("token user", token, user);
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
+    // dispatch(signUp({ token: token, user: user }));
+    console.log("data:userInfo1", userInfo);
+    router.push("/");
+  }
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   const user = JSON.parse(localStorage.getItem("user"));
+  //   dispatch(signUp({ token: token, user: user }));
+  // }, ["token", "user"]);
+
   const handleFormSubmit = (data: any) => {
-    addLoginUser(data);
-    // console.log(addLoginUser);
-    // dispatch(login(data));
+    console.log("dataaaaaaaa", data);
+    addUser(data);
   };
 
   // if (auth.authenticate) {
   //   navigate(from, { replace: true });
   // }
+
   // if (auth.authenticating) {
   //   return <Loading />;
   // }
@@ -67,7 +73,7 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Login - Ekpoloke</title>
+        <title>Register - Ekpoloke</title>
       </Helmet>
       <div className="flex justify-center items-center w-full bg-primary h-[120px]">
         <span>Ad</span>
@@ -76,18 +82,35 @@ const LoginPage = () => {
         <div className="lg:w-[50%] md:w-[70%] w-[100%] flex items-center justify-center">
           <Lottie
             style={{ width: "70%" }}
-            animationData={loginLottie}
+            animationData={registerLottie}
             loop={false}
           />
         </div>
         <div className="lg:flex-1 w-full lg:p-0 p-6">
           <h2 className="text-center text-5xl font-bold">
-            Log<span className="text-primary">in</span>
+            Regi<span className="text-primary">ster</span>
           </h2>
           <form
             onSubmit={handleSubmit(handleFormSubmit)}
-            className={`${styles.loginForm} lg:px-[30px]`}
+            className={`${styles.loginForm} ${styles.registerForm} lg:px-[30px]`}
+            autoComplete="off"
           >
+            <div className="flex items-center sm:flex-row flex-col justify-center gap-x-3">
+              <input
+                type="text"
+                {...register("firstName", {
+                  required: true,
+                })}
+                placeholder="First Name"
+              />
+              <input
+                type="text"
+                {...register("lastName", {
+                  required: true,
+                })}
+                placeholder="Last Name"
+              />
+            </div>
             <input
               type="text"
               {...register("email", {
@@ -114,33 +137,24 @@ const LoginPage = () => {
               {errors?.password?.type === "minLength" &&
                 "At least 6 characters required"}
             </span>
-            <div className="flex items-center mt-[15px] justify-between">
-              <FormControlLabel
-                control={<Checkbox />}
-                label="Show Password"
-                onChange={() => setPasswordShow(!passwordShow)}
-              />
-              <label
-                htmlFor="forgotPasswordModal"
-                onClick={() => setForgotPasswordModal(true)}
-                className="text-primary cursor-pointer"
-              >
-                Forgot Password?
-              </label>
-            </div>
+            <FormControlLabel
+              control={<Checkbox />}
+              label="Show Password"
+              onChange={() => setPasswordShow(!passwordShow)}
+            />
             <span className="text-red-500 block font-bold">
               {error?.data?.error}
             </span>
             <input
               type="submit"
-              value="Login"
-              className={`btn btn-primary text-white font-bold text-xl block w-full ${styles.loginSubmitBtn}`}
+              value="Register"
+              className="btn btn-primary text-white font-bold text-xl block w-full loginSubmitBtn"
               disabled={errors.password || errors.email ? true : false}
             />
           </form>
           <div className="flex font-bold justify-between lg:px-8 px-0 mt-4">
-            <Link href="/register" className="text-secondary">
-              Register
+            <Link href="/login" className="text-secondary">
+              Login
             </Link>
             <Link href="/" className="text-secondary">
               Go To Home
@@ -148,11 +162,8 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
-      {forgotPasswordModal && (
-        <ForgotPasswordModal setForgotPasswordModal={setForgotPasswordModal} />
-      )}
     </div>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
