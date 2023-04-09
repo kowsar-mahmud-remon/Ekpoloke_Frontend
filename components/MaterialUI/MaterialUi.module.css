@@ -47,6 +47,15 @@
   background: transparent;
   line-height: 30px;
 }
+.materialInputinput {
+  width: 100%;
+  flex: 1;
+  outline: none;
+  border: none;
+  z-index: 1;
+  background: transparent;
+  line-height: 30px;
+}
 .materialInput .label {
   position: absolute;
   line-height: 30px;
@@ -56,7 +65,19 @@
   letter-spacing: 1px;
   transition: all 0.1s ease-in-out;
 }
+.materialInputlabel {
+  position: absolute;
+  line-height: 30px;
+  color: grey;
+  z-index: 0;
+  font-size: 12px;
+  letter-spacing: 1px;
+  transition: all 0.1s ease-in-out;
+}
 .materialInput .label.focus {
+  top: -20px !important;
+}
+.materialInputlabelfocus {
   top: -20px !important;
 }
 

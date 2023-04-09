@@ -37,6 +37,8 @@ const LoggedInMenu = () => {
   // const auth = useSelector((state) => state.auth);
   // const dispatch = useDispatch();
 
+
+
   // const logout = () => {
   //   dispatch(signOut());
   // };
@@ -101,6 +103,7 @@ const Header = ({ content }: any) => {
   // const cart = useSelector((state) => state.cart);
   // const auth = useSelector((state) => state.auth);
   // const [searchValue, setSearchValue] = useState("");
+  const { cartItems } = useSelector((state) => state?.carts); 
 
   // const [searchParams] = useSearchParams();
 
@@ -213,7 +216,7 @@ const Header = ({ content }: any) => {
                   </li>
                   <li>
                     <Link href="/cart" className="cart">
-                      {/* <Cart count={Object.keys(cart.cartItems).length} /> */}
+                      <Cart count={Object.keys(cartItems).length} />
                       <span>Cart</span>
                     </Link>
                   </li>

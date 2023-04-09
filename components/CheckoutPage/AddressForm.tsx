@@ -100,7 +100,7 @@ const AddressForm = () => {
   const renderAddressForm = () => {
     return (
       <>
-        <div className="flex">
+        <div className="flex gap-[10px]">
           <div >
             <MaterialInput
               label="Name"
@@ -115,7 +115,7 @@ const AddressForm = () => {
             />
           </div>
         </div>
-        <div className="flex">
+        <div className="flex gap-[10px] ">
           <div>
             <MaterialInput
               label="Pincode"
@@ -129,7 +129,7 @@ const AddressForm = () => {
             />
           </div>
         </div>
-        <div className="flex">
+        <div className="flex gap-[10px]">
           <div>
             <MaterialInput
               label="Address"
@@ -138,7 +138,7 @@ const AddressForm = () => {
           </div>
         </div>
 
-        <div className="flex">
+        <div className="flex gap-[10px]">
           <div>
             <MaterialInput
               label="City/District/Town"
@@ -152,7 +152,7 @@ const AddressForm = () => {
             />
           </div>
         </div>
-        <div className="flex">
+        <div className="flex gap-[10px]">
           <div>
             <MaterialInput
               label="Landmark (Optional)"

@@ -40,7 +40,7 @@ const MaterialInput = (props:any) => {
     <div>
       <div className={`${styles.materialInput}`}>
         <label
-          className={`label ${focus || props.value ? "focus" : ""}`}
+          className={`${styles.materialInputlabel} label ${`${styles.materialInputlabelfocus}` || props.value ? "focus" : ""}`}
           style={{
             top: 0,
             lineHeight: "none",
@@ -49,12 +49,10 @@ const MaterialInput = (props:any) => {
           {props.label}
         </label>
         <div
-          style={{
-            display: "flex",
-          }}
+          className="flex"
         >
           <input
-            className="input"
+            className={`${styles.materialInputinput} input`}
             type={props.type}
             value={props.value}
             onChange={props.onChange}
