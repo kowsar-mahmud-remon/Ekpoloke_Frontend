@@ -40,7 +40,7 @@ const CartItem: React.FC<ComponentBProps> = ({ cartItem }) => {
           <div>
             <p>{name}</p>
             <p className={styles.SingleCartPrice}>
-              Tk.
+              Tk. 
               <span>{price}</span>
             </p>
             <p className={styles.SingleCartTotal}>

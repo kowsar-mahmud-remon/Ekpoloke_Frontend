@@ -28,7 +28,6 @@ const RatingModal = ({
 
   const [addReview, {isError, isLoading, isSuccess}] = useAddReviewMutation() || {};
 
-  console.log(product, "productsssssssssssss modalllllllll");
 
   
 
@@ -192,7 +191,7 @@ const RatingModal = ({
               </div>
             </form>
             <div
-              className="cursor-pointer p-2 rounded-full hover:bg-slate-200 absolute top-2 right-2"
+              className="absolute p-2 rounded-full cursor-pointer hover:bg-slate-200 top-2 right-2"
               onClick={handleClose}
             >
               <GrClose />

@@ -39,8 +39,8 @@ const MaterialInput = (props:any) => {
   return (
     <div>
       <div className={`${styles.materialInput}`}>
-        <label
-          className={`${styles.materialInputlabel} label ${`${styles.materialInputlabelfocus}` || props.value ? "focus" : ""}`}
+      <label
+          className={`${styles.materialInputlabel} ${focus || props.value ? `${styles.materialInputlabelfocus}` : ""}`}
           style={{
             top: 0,
             lineHeight: "none",
@@ -163,11 +163,11 @@ const Breed = (props:any) => {
   const { breed, breedIcon } = props;
   return (
     <div className="breed">
-      <ul>
+      <ul className="flex items-center">
         {breed &&
           breed.map((item:any, index:any) => (
-            <li key={index}>
-              <Link href={item.href}>{item.name}</Link>
+            <li className="flex items-center mr-[5px] text-xs" key={index}>
+              <Link className="mx-[10px] text-xs text-[#777] font-medium" href={item.href}>{item.name}</Link>
               {breedIcon}
             </li>
           ))}
