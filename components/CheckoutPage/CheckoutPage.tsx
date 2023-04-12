@@ -3,8 +3,6 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CartItem from "../CartItem/CartItem";
-
 import {
   Anchor,
   MaterialButton,
@@ -13,8 +11,12 @@ import {
 import PriceDetails from "../../components/PriceDetails/PriceDetails";
 import Card from "../../components/UI/Card/Card";
 import AddressForm from "./AddressForm";
-import styles from "./CheckoutPage.module.css"
-import style from "../../pages/cart/cart.module.css"
+import styles from "./CheckoutPage.module.css";
+import style from "../../pages/cart/cart.module.css";
+import CartPage from "../../pages/cart/index";
+import { log } from "console";
+import { useRouter } from "next/router";
+import { addOrder } from "../app/tools/addressSlice/addressSlice";
 
 interface checkoutProps {
   active?: any;
@@ -31,6 +33,7 @@ const CheckoutStep = ({
   body,
   onClick,
 }: checkoutProps) => {
+  console.log(active, "isactive");
   return (
     <div className={styles.checkoutStep}>
       <div
@@ -66,7 +69,10 @@ const Address = ({
   background,
 }: addressProps) => {
   return (
-    <div className={`flex ${styles.addressContainer}`} style={{ background: "#f5faff" }}>
+    <div
+      className={`flex ${styles.addressContainer}`}
+      style={{ background: "#f5faff" }}
+    >
       <div style={{ marginLeft: "15px" }}>
         <input
           id="selectAddress"
@@ -85,7 +91,9 @@ const Address = ({
               <div>
                 <span className={styles.addressName}>{adr.name}</span>
                 <span className={styles.addressType}>{adr.addressType}</span>
-                <span className={styles.addressMobileNumber}>{adr.mobileNumber}</span>
+                <span className={styles.addressMobileNumber}>
+                  {adr.mobileNumber}
+                </span>
               </div>
               {adr.selected && (
                 // <Anchor
@@ -132,9 +140,14 @@ const Address = ({
 };
 
 const CheckoutPage = () => {
+  const { addreess } = useSelector((state) => state?.addreess);
+
   const { cartItems } = useSelector((state) => state?.carts);
-  const [auth, setAuth] = useState("");
-  const [user, setUser] = useState("");
+
+  console.log(cartItems, "cartitemsssssssss");
+  
+
+  const { user } = useSelector((state) => state?.user);
   const [newAddress, setNewAddress] = useState(false);
   const [address, setAddress] = useState([]);
   const [confirmAddress, setConfirmAddress] = useState(false);
@@ -143,31 +156,40 @@ const CheckoutPage = () => {
   const [orderConfirmation, setOrderConfirmation] = useState(false);
   const [paymentOption, setPaymentOption] = useState(false);
   const [confirmOrder, setConfirmOrder] = useState(false);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  
+
   const onAddressSubmit = (addr: any) => {
     setSelectedAddress(addr);
     setConfirmAddress(true);
     setOrderSummary(true);
   };
-
   useEffect(() => {
-    const addres = address.map((adr: any) => ({
+    user;
+  }, []);
+  useEffect(() => {
+    const address = addreess?.map((adr: any) => ({
       ...adr,
       selected: false,
       edit: false,
     }));
     setAddress(address);
-  }, []);
+  }, [addreess]);
   const selectAddress = (addr: any) => {
-    const updatedAddress = address.map((adr: any) =>
+    const updatedAddress = addreess.map((adr: any) =>
       adr._id === addr._id
         ? { ...adr, selected: true }
         : { ...adr, selected: false }
     );
+    setAddress(updatedAddress);
   };
   const enableAddressEditForm = (addr: any) => {
-    const updatedAddress = address.map((adr: any) =>
-      adr === addr ? { ...adr, edit: true } : { ...adr, edit: false }
+    const updatedAddress = addreess?.map((adr: any) =>
+      adr._id === addr._id ? { ...adr, edit: true } : { ...adr, edit: false }
     );
+    setAddress(updatedAddress);
   };
   const userOrderConfirmation = () => {
     setOrderConfirmation(true);
@@ -180,19 +202,24 @@ const CheckoutPage = () => {
     setOrderSummary(true);
   };
   const onConfirmOrder = () => {
-    const totalPrice = Object.keys(cartItems.cartItems).reduce(
-      (totalPrice, key) => {
-        const { price, qty } = cartItems.cartItems[key];
-        return totalPrice + price * qty;
-      },
-      0
-    );
+    const totalPrice = Object.keys(cartItems).reduce((totalPrice, key) => {
+      const { price, qty } = cartItems[key];
+      return totalPrice + price * qty;
+    }, 0);
     const totalPayable = totalPrice + 100;
-    const items = Object.keys(cartItems.cartItems).map((key) => ({
-      productId: key,
-      payablePrice: cartItems.cartItems[key].price,
-      purchasedQty: cartItems.cartItems[key].qty,
-    }));
+    const items = cartItems;
+    const payload = {
+      addressId: selectedAddress._id,
+      totalAmount: totalPayable,
+      items,
+      paymentStatus: "pending",
+      paymentType: "cod",
+    };
+   const order = dispatch(addOrder(payload));
+   if(order){
+    router.push("/account/orders");
+   }
+   
   };
   return (
     <>
@@ -201,17 +228,17 @@ const CheckoutPage = () => {
           <CheckoutStep
             stepNumber={1}
             title="LOGIN"
-            active={!auth}
+            active={!user}
             body={
-              auth ? (
+              user ? (
                 <div className={styles.loggedInId}>
                   <span style={{ fontWeight: "500" }}>
                     <span>Name:</span>
-                    {auth}
+                    {user.fullName}
                   </span>
                   <span style={{ margin: "0" }}>
                     <span>Email:</span>
-                    {auth}
+                    {user.email}
                   </span>
                 </div>
               ) : (
@@ -227,11 +254,13 @@ const CheckoutPage = () => {
           <CheckoutStep
             stepNumber={2}
             title="DELIVERY ADDRESS"
-            active={!confirmAddress && auth}
+            active={!confirmAddress}
             body={
               <>
                 {confirmAddress ? (
-                  <div className={`flex ${styles.addressContainer} ${styles.stepCompleted}`}>
+                  <div
+                    className={`flex ${styles.addressContainer} ${styles.stepCompleted}`}
+                  >
                     <div>
                       <input
                         onClick={() => selectAddress(selectedAddress)}
@@ -245,11 +274,17 @@ const CheckoutPage = () => {
                     >
                       <div style={{ width: "100%" }}>
                         <div className={styles.addressDetail}>
-                          <span className={styles.addressName}></span>
-                          <span className={styles.addressType}></span>
-                          <span className={styles.addressMobileNumber}></span>
+                          <span className={styles.addressName}>
+                            {selectedAddress?.name}
+                          </span>
+                          <span className={styles.addressType}>
+                            {selectedAddress?.addressType}
+                          </span>
+                          <span className={styles.addressMobileNumber}>
+                            {selectedAddress?.mobileNumber}
+                          </span>
                         </div>
-                        <div></div>
+                        <div>{selectedAddress?.address}</div>
                       </div>
                     </div>
                   </div>
@@ -290,7 +325,7 @@ const CheckoutPage = () => {
                 <CartPage onlyCartItems={true} />
               ) : orderConfirmation ? (
                 <div className={styles.stepCompleted}>
-                  {Object.keys(cartItems.cartItems).length} Items
+                  {Object.keys(cartItems).length} Items
                 </div>
               ) : null
             }
@@ -299,19 +334,19 @@ const CheckoutPage = () => {
           {orderSummary && (
             <Card style={{ margin: "10px 0" }}>
               <div
-                className="flex sb"
+                className="flex justify-between"
                 style={{ padding: "20px", alignItems: "center" }}
               >
                 <p>
                   Order confirmation email will be sent to{" "}
-                  <strong>{auth}</strong>
+                  <strong>{user?.email} {` `}</strong>
                 </p>
                 <MaterialButton
                   onClick={userOrderConfirmation}
                   title="CONTINUE"
                   style={{ width: "200px" }}
                 />
-              </div>  
+              </div>
             </Card>
           )}
 

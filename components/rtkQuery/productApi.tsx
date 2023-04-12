@@ -67,6 +67,22 @@ export const productApi = createApi({
         body: user,
       }),
     }),
+
+    addAddress: build.mutation({
+      query: (user) => ({
+        url: `/api/user/address/create`,
+        user,
+        method: "POST",
+        body: user,
+      }),
+    }),
+
+    getAddress: build.mutation<any, void>({
+      query: () => ({
+        url: `/api/user/getAddress`,
+        method: "POST"
+      }),
+    }),
   }),
 });
 
@@ -81,4 +97,6 @@ export const {
   useAddLoginUserMutation,
   useForgotPasswordAtLoginMutation,
   useResetPasswordAtLoginMutation,
+  useAddAddressMutation,
+  useGetAddressMutation
 } = productApi;
