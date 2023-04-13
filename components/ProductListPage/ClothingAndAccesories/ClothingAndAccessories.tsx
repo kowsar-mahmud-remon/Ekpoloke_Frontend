@@ -43,7 +43,7 @@ const ClothingAndAccessories = () => {
             <div key={index} className={`${styles.caContainer}`}>
               <Link
                 className={`${styles.caImgContainer}`}
-                href={`/product/${slug}/${p._id}/p`}
+                href={`/products/${slug}/${p._id}`}
               >
                 <Image
                   className="w-[100%] h-[100%]"

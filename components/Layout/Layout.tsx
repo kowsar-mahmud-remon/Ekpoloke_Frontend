@@ -4,13 +4,14 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import MenuHeader from "../MenuHeader/MenuHeader";
 import { useRouter } from "next/router";
+import Search from "../Search/Search";
 // import Search from "../Search/Search";
 
 const Layout = ({
   children,
   menuHeader = true,
   // bottomNavbar = true,
-  // search = true,
+  search = true,
   footer = true,
 }: any) => {
   const router = useRouter();
@@ -24,7 +25,7 @@ const Layout = ({
       <Header
         content={
           <>
-            {/* {search && <Search />} */}
+            {search && <Search />}
             {menuHeader && <MenuHeader />}
             {children}
             {/* {bottomNavbar && <BottomNavbar />} */}

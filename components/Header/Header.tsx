@@ -31,6 +31,8 @@ import { ImSearch, ImFolderDownload } from "react-icons/im";
 import Image from "next/image";
 import Link from "next/link";
 import { signOut, signUp } from "../app/tools/userSlice/userSlice";
+import { useRouter } from "next/router";
+import { getSearchUrl } from "@/urlConfig";
 // import { signOut } from "../../actions";
 // import { getSearchUrl } from "../../urlConfig";
 
@@ -112,13 +114,23 @@ const Header = ({ content }: any) => {
 
   // const cart = useSelector((state) => state.cart);
   // const auth = useSelector((state) => state.auth);
-  // const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState("");
   const { cartItems } = useSelector((state) => state?.carts);
 
   // const [searchParams] = useSearchParams();
 
   // const location = useLocation();
   // const navigate = useNavigate();
+  const router = useRouter();
+  const { s } = router.query;
+
+  useEffect(() => {
+    if (router.asPath === "/search/product") {
+      const searchValue = s;
+      console.log("header searchValue under useEffect", s);
+      setSearchValue(searchValue);
+    }
+  }, [router?.asPath, s]);
 
   // useEffect(() => {
   //   if (location.pathname === "/search/product") {
@@ -136,10 +148,14 @@ const Header = ({ content }: any) => {
     console.log(" useruser user", user);
   };
 
-  // const handleSubmitSearch = (e) => {
-  //   e.preventDefault();
-  //   navigate(getSearchUrl(searchValue));
-  // };
+  const handleSubmitSearch = (e: any) => {
+    e.preventDefault();
+    console.log("header searchValue searchValue searchValue", searchValue);
+    const newRouter = getSearchUrl(searchValue);
+    console.log("header newRouter newRouter newRouter", newRouter);
+    router.push(getSearchUrl(searchValue));
+    // navigate(getSearchUrl(searchValue));
+  };
 
   return (
     <>
@@ -168,14 +184,14 @@ const Header = ({ content }: any) => {
 
               <div className="flex-1 hidden h-full md:block">
                 <form
-                  // onSubmit={handleSubmitSearch}
+                  onSubmit={handleSubmitSearch}
                   className={`${styles.search}`}
                 >
                   <input
                     type="text"
                     placeholder="Search..."
-                    // value={searchValue}
-                    // onChange={(e) => setSearchValue(e.target.value)}
+                    value={searchValue}
+                    onChange={(e) => setSearchValue(e.target.value)}
                   />
                   <button
                     type="submit"

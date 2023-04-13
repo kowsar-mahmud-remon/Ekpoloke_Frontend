@@ -50,7 +50,7 @@ const ProductStore = (props: any) => {
                     console.log("product?.ratings", product);
                     return (
                       <Link
-                        href={`/product/${product.slug}/${product._id}/p`}
+                        href={`/products/${product.slug}/${product._id}`}
                         rel="noreferrer noopener"
                         target="_blank"
                         style={{
