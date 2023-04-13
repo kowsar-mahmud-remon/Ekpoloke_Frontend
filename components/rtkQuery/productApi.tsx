@@ -67,6 +67,14 @@ export const productApi = createApi({
         body: user,
       }),
     }),
+    getSearchProduct: build.query({
+      query: ({ searchText, sortBy, page, limit, fields }) =>
+        `/api/product/search?s=${searchText}&sort=${sortBy || ""}&page=${
+          page || 1
+        }&limit=${limit || 20}&fields=${
+          fields || "name productPictures price"
+        }`,
+    }),
   }),
 });
 
@@ -81,4 +89,5 @@ export const {
   useAddLoginUserMutation,
   useForgotPasswordAtLoginMutation,
   useResetPasswordAtLoginMutation,
+  useGetSearchProductQuery,
 } = productApi;
