@@ -67,6 +67,7 @@ export const productApi = createApi({
         body: user,
       }),
     }),
+    
     getSearchProduct: build.query({
       query: ({ searchText, sortBy, page, limit, fields }) =>
         `/api/product/search?s=${searchText}&sort=${sortBy || ""}&page=${
@@ -74,6 +75,21 @@ export const productApi = createApi({
         }&limit=${limit || 20}&fields=${
           fields || "name productPictures price"
         }`,
+        
+    addAddress: build.mutation({
+      query: (user) => ({
+        url: `/api/user/address/create`,
+        user,
+        method: "POST",
+        body: user,
+      }),
+    }),
+
+    getAddress: build.mutation<any, void>({
+      query: () => ({
+        url: `/api/user/getAddress`,
+        method: "POST"
+      }),
     }),
   }),
 });
@@ -90,4 +106,6 @@ export const {
   useForgotPasswordAtLoginMutation,
   useResetPasswordAtLoginMutation,
   useGetSearchProductQuery,
+  useAddAddressMutation,
+  useGetAddressMutation
 } = productApi;

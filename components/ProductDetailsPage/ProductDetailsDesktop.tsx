@@ -144,11 +144,11 @@ const ProductDetailsDesktop = ({
                 }}
                 icon={<IoMdCart />}
                 onClick={() => {
-                  const { _id, name, price } = productDetails;
+                  const { _id, name, price, description, highlights, } = productDetails;
                   const img = productDetails.productPictures[0].img;
                   // dispatch(addToCart({ _id, name, price, img }));
                   // navigate("/cart");
-                  dispatch(addCart({ _id, name, price, img, qty: Number(1) }))
+                  dispatch(addCart({ _id, name, price, img, description, highlights, qty: Number(1) }))
                   router.push("/cart")
                   
                 }}

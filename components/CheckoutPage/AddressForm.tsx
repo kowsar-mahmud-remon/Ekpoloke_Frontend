@@ -4,165 +4,176 @@ import {
   MaterialButton,
   MaterialInput,
 } from "../../components/MaterialUI/MaterialUI";
-import styles from "./CheckoutPage.module.css"
+import { useAddAddressMutation } from "../rtkQuery/productApi";
+import styles from "./CheckoutPage.module.css";
+import { addAddress } from "../app/tools/addressSlice/addressSlice";
 
 /**
  * @author
  * @function AddressForm
  **/
 
-const AddressForm = () => {
-  // const { initialData, withoutLayout, onSubmitForm } = props;
-  // const [name, setName] = useState(initialData ? initialData.name : "");
-  // const [mobileNumber, setMobileNumber] = useState(
-  //   initialData ? initialData.mobileNumber : ""
-  // );
-  // const [pinCode, setPinCode] = useState(
-  //   initialData ? initialData.pinCode : ""
-  // );
-  // const [locality, setLocality] = useState(
-  //   initialData ? initialData.locality : ""
-  // );
-  // const [address, setAddress] = useState(
-  //   initialData ? initialData.address : ""
-  // );
-  // const [cityDistrictTown, setCityDistrictTown] = useState(
-  //   initialData ? initialData.cityDistrictTown : ""
-  // );
-  // const [state, setState] = useState(initialData ? initialData.state : "");
-  // const [landmark, setLandmark] = useState(
-  //   initialData ? initialData.landmark : ""
-  // );
-  // const [alternatePhone, setAlternatePhone] = useState(
-  //   initialData ? initialData.alternatePhone : ""
-  // );
-  // const [addressType, setAddressType] = useState(
-  //   initialData ? initialData.addressType : ""
-  // );
-  // const [id, setId] = useState(initialData ? initialData._id : "");
-  // const user = useSelector((state) => state.user);
-  // const [submitFlag, setSubmitFLag] = useState(false);
-  // const dispatch = useDispatch();
+const AddressForm = (props: any) => {
+  const { initialData, withoutLayout, onSubmitForm } = props;
+  const [name, setName] = useState(initialData ? initialData.name : "");
+  const [mobileNumber, setMobileNumber] = useState(
+    initialData ? initialData.mobileNumber : ""
+  );
+  const [pinCode, setPinCode] = useState(
+    initialData ? initialData.pinCode : ""
+  );
+  const [locality, setLocality] = useState(
+    initialData ? initialData.locality : ""
+  );
+  const [address, setAddress] = useState(
+    initialData ? initialData.address : ""
+  );
+  const [cityDistrictTown, setCityDistrictTown] = useState(
+    initialData ? initialData.cityDistrictTown : ""
+  );
+  const [state, setState] = useState(initialData ? initialData.state : "");
+  const [landmark, setLandmark] = useState(
+    initialData ? initialData.landmark : ""
+  );
+  const [alternatePhone, setAlternatePhone] = useState(
+    initialData ? initialData.alternatePhone : ""
+  );
+  const [addressType, setAddressType] = useState(
+    initialData ? initialData.addressType : ""
+  );
+  const [id, setId] = useState(initialData ? initialData._id : "");
+  const { user } = useSelector((state) => state?.user);
+  const [submitFlag, setSubmitFLag] = useState(false);
+  const dispatch = useDispatch();
 
-  // const inputContainer = {
-  //   width: "100%",
-  //   marginRight: 10,
-  // };
+  const inputContainer = {
+    width: "100%",
+    marginRight: 10,
+  };
 
-  // const onAddressSubmit = (e) => {
-  //   const payload = {
-  //     address: {
-  //       name,
-  //       mobileNumber,
-  //       pinCode,
-  //       locality,
-  //       address,
-  //       cityDistrictTown,
-  //       state,
-  //       landmark,
-  //       alternatePhone,
-  //       addressType,
-  //     },
-  //   };
-  //   if (id) {
-  //     payload.address._id = id;
-  //   }
-  //   dispatch(addAddress(payload));
-  //   setSubmitFLag(true);
-  // };
 
-  // useEffect(() => {
-  //   console.log("addressCount", user.address);
-  //   if (submitFlag) {
-  //     console.log("where we are", user);
-  //     let _address = {};
-  //     if (id) {
-  //       _address = {
-  //         _id: id,
-  //         name,
-  //         mobileNumber,
-  //         pinCode,
-  //         locality,
-  //         address,
-  //         cityDistrictTown,
-  //         state,
-  //         landmark,
-  //         alternatePhone,
-  //         addressType,
-  //       };
-  //     } else {
-  //       _address = user.address.slice(user.address.length - 1)[0];
-  //     }
-  //     onSubmitForm(_address);
-  //   }
-  // }, [user.address]);
+  const onAddressSubmit = (e) => {
+    const payload = {
+      address: {
+        name,
+        mobileNumber,
+        pinCode,
+        locality,
+        address,
+        cityDistrictTown,
+        state,
+        landmark,
+        alternatePhone,
+        addressType,
+      },
+    };
+    if (id) {
+      payload.address._id = id;
+    }
+    dispatch(addAddress(payload.address));
+    setSubmitFLag(true);
+  };
+
+  useEffect(() => {
+    console.log("addressCount", user);
+    if (submitFlag) {
+      console.log("where we are", user);
+      let _address = {};
+      if (id) {
+        _address = {
+          _id: id,
+          name,
+          mobileNumber,
+          pinCode,
+          locality,
+          address,
+          cityDistrictTown,
+          state,
+          landmark,
+          alternatePhone,
+          addressType,
+        };
+      } else {
+        _address = user?.address?.slice(user.address.length - 1)[0];
+      }
+      onSubmitForm(_address);
+    }
+  }, [user]);
 
   const renderAddressForm = () => {
     return (
       <>
-        <div className="flex gap-[10px]">
-          <div >
+        <div className="flex">
+          <div style={inputContainer}>
             <MaterialInput
               label="Name"
-          
-              // onChange={(e) => setName(e.target.value)}
+              value={name}
+              onChange={(e: any) => setName(e.target.value)}
             />
           </div>
-          <div>
+          <div style={inputContainer}>
             <MaterialInput
               label="10-digit mobile number"
-              
+              value={mobileNumber}
+              onChange={(e: any) => setMobileNumber(e.target.value)}
             />
           </div>
         </div>
-        <div className="flex gap-[10px] ">
-          <div>
+        <div className="flex">
+          <div style={inputContainer}>
             <MaterialInput
               label="Pincode"
-            
+              value={pinCode}
+              onChange={(e: any) => setPinCode(e.target.value)}
             />
           </div>
-          <div>
+          <div style={inputContainer}>
             <MaterialInput
               label="Locality"
-      
+              value={locality}
+              onChange={(e: any) => setLocality(e.target.value)}
             />
           </div>
         </div>
-        <div className="flex gap-[10px]">
-          <div>
+        <div className="flex">
+          <div style={inputContainer}>
             <MaterialInput
               label="Address"
-
+              value={address}
+              onChange={(e: any) => setAddress(e.target.value)}
             />
           </div>
         </div>
 
-        <div className="flex gap-[10px]">
-          <div>
+        <div className="flex">
+          <div style={inputContainer}>
             <MaterialInput
               label="City/District/Town"
-     
+              value={cityDistrictTown}
+              onChange={(e: any) => setCityDistrictTown(e.target.value)}
             />
           </div>
-          <div>
+          <div style={inputContainer}>
             <MaterialInput
               label="State"
-  
+              value={state}
+              onChange={(e: any) => setState(e.target.value)}
             />
           </div>
         </div>
-        <div className="flex gap-[10px]">
-          <div>
+        <div className="flex">
+          <div style={inputContainer}>
             <MaterialInput
               label="Landmark (Optional)"
-
+              value={landmark}
+              onChange={(e: any) => setLandmark(e.target.value)}
             />
           </div>
-          <div>
+          <div style={inputContainer}>
             <MaterialInput
               label="Alternate Phone (Optional)"
-    
+              value={alternatePhone}
+              onChange={(e: any) => setAlternatePhone(e.target.value)}
             />
           </div>
         </div>
@@ -171,7 +182,7 @@ const AddressForm = () => {
             className="flex"
             style={{
               alignItems: "center",
-              marginTop: "15px"
+              marginTop: "15px",
             }}
           >
             <label>
@@ -180,7 +191,7 @@ const AddressForm = () => {
             <div style={{ marginRight: "10px" }}>
               <input
                 type="radio"
-             
+                onClick={() => setAddressType("home")}
                 name="addressType"
                 value="home"
               />
@@ -189,7 +200,7 @@ const AddressForm = () => {
             <div>
               <input
                 type="radio"
-             
+                onClick={() => setAddressType("work")}
                 name="addressType"
                 value="work"
               />
@@ -197,10 +208,10 @@ const AddressForm = () => {
             </div>
           </div>
         </div>
-        <div className="flex" style={{ justifyContent: 'flex-end' }}>
+        <div className="flex" style={{ justifyContent: "flex-end" }}>
           <MaterialButton
             title="SAVE AND DELIVER HERE"
-        
+            onClick={onAddressSubmit}
             style={{
               width: "250px",
               margin: "20px 0",
@@ -212,13 +223,13 @@ const AddressForm = () => {
     );
   };
 
-  // if (withoutLayout:any) {
-  //   return <div>{renderAddressForm()}</div>;
-  // }
+  if (withoutLayout) {
+    return <div>{renderAddressForm()}</div>;
+  }
 
   return (
     <div className={styles.checkoutStep} style={{ background: "#f5faff" }}>
-      <div className={styles.checkoutHeader}>
+      <div className={`${styles.checkoutHeader}`}>
         <div>
           <span className={styles.stepNumber}>+</span>
           <span className={styles.stepTitle}>{"ADD NEW ADDRESS"}</span>
@@ -238,3 +249,5 @@ const AddressForm = () => {
 };
 
 export default AddressForm;
+
+
