@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
-// import { useSearchParams } from "react-router-dom";
 import { useSearchParams } from "next/navigation";
-// import { searchProduct } from "../../actions";
 import Error from "../Error/Error";
 import Layout from "../Layout/Layout";
 import Loading from "../Loading/Loading";
 import noResultSearchError from "../../assets/images/noResultSearchError.png";
-// import "./ProductSearchPage.css";
 import styles from "./ProductSearchPage.module.css";
 import ProductCard1 from "../ProductCard1/ProductCard1";
 import SortWithModal from "../SortWithModal/SortWithModal";
@@ -18,19 +15,14 @@ import { useGetSearchProductQuery } from "../rtkQuery/productApi";
 
 const ProductSearchPage = () => {
   const [sortModal, setSortModal] = useState(false);
-  // const [searchParams, setSearchParams] = useSearchParams();
-
-  // router.push({
-  //   query: { ...router.query, category: "one" },
-  // });
 
   const router = useRouter();
   const { s } = router.query;
   const { sort } = router.query;
   const { page } = router.query;
+  console.log("page page page", page);
   const { limit } = router.query;
   const searchText = s;
-  // console.log("searchProduct searchProduct", searchProduct);
 
   let sortBy = "";
   switch (sort) {
@@ -83,8 +75,8 @@ const ProductSearchPage = () => {
     <>
       <Helmet>
         <title>
-          {searchText}
-          {searchText && " - Search - "}Ekpoloke
+          {` ${searchText}
+          ${searchText && " - Search - "}Ekpoloke`}
         </title>
       </Helmet>
       {!isLoading ? (
@@ -109,76 +101,55 @@ const ProductSearchPage = () => {
                 <div className={`${styles.sortTabs}`}>
                   <p>Sort By</p>
                   <span
-                    className={`${sort === "relevance" && "active"}`}
-                    onClick={
-                      () =>
-                        router.push({
-                          query: { ...router.query, sort: "relevance" },
-                        })
-                      // setSearchParams({
-                      //   ...queries,
-                      //   sort: "relevance",
-                      // })
+                    className={`${sort === "relevance" && styles.active}`}
+                    onClick={() =>
+                      router.push({
+                        query: { ...router.query, sort: "relevance" },
+                      })
                     }
                   >
                     Relevance
                   </span>
                   <span
-                    className={`${sort === "popularity" && "active"}`}
-                    onClick={
-                      () =>
-                        router.push({
-                          query: { ...router.query, sort: "popularity" },
-                        })
-                      // setSearchParams({
-                      //   ...queries,
-                      //   sort: "popularity",
-                      // })
+                    className={`${sort === "popularity" && styles.active}`}
+                    onClick={() =>
+                      router.push({
+                        query: { ...router.query, sort: "popularity" },
+                      })
                     }
                   >
                     Popularity
                   </span>
                   <span
-                    className={`${sort === "price-low-to-high" && "active"}`}
-                    onClick={
-                      () =>
-                        router.push({
-                          query: { ...router.query, sort: "price-low-to-high" },
-                        })
-                      // setSearchParams({
-                      //   ...queries,
-                      //   sort: "price-low-to-high",
-                      // })
+                    className={`${
+                      sort === "price-low-to-high" && styles.active
+                    }`}
+                    onClick={() =>
+                      router.push({
+                        query: { ...router.query, sort: "price-low-to-high" },
+                      })
                     }
                   >
                     Price - Low to High
                   </span>
                   <span
-                    className={sort === "price-high-to-low" && "active"}
-                    onClick={
-                      () =>
-                        router.push({
-                          query: { ...router.query, sort: "price-high-to-low" },
-                        })
-                      // setSearchParams({
-                      //   ...queries,
-                      //   sort: "price-high-to-low",
-                      // })
+                    className={`${
+                      sort === "price-high-to-low" && styles.active
+                    }`}
+                    onClick={() =>
+                      router.push({
+                        query: { ...router.query, sort: "price-high-to-low" },
+                      })
                     }
                   >
                     Price - Hgh to Low
                   </span>
                   <span
-                    className={sort === "newest-first" && "active"}
-                    onClick={
-                      () =>
-                        router.push({
-                          query: { ...router.query, sort: "newest-first" },
-                        })
-                      // setSearchParams({
-                      //   ...queries,
-                      //   sort: "newest-first",
-                      // })
+                    className={`${sort === "newest-first" && styles.active}`}
+                    onClick={() =>
+                      router.push({
+                        query: { ...router.query, sort: "newest-first" },
+                      })
                     }
                   >
                     Newest first
@@ -213,12 +184,6 @@ const ProductSearchPage = () => {
                               limit: limit,
                             },
                           });
-                          // setSearchParams({
-                          //   s: searchText,
-                          //   sort: sort,
-                          //   page: 1,
-                          //   limit: limit,
-                          // });
                         }}
                         className="font-bold uppercase w-fit hidden md:block"
                       >
@@ -235,12 +200,6 @@ const ProductSearchPage = () => {
                               limit: limit,
                             },
                           });
-                          // setSearchParams({
-                          //   s: searchText,
-                          //   sort: sort,
-                          //   page: Number(page) - 1,
-                          //   limit: limit,
-                          // });
                         }}
                       >
                         Previous
@@ -254,77 +213,58 @@ const ProductSearchPage = () => {
                       Number(page) + 5
                     )
                     ?.map((p, index) => {
+                      console.log("pppppp ppppp ppppp", p, "page", page);
                       return (
                         <span
                           className={`${
-                            Number(p) === Number(page) && "active"
-                          } page`}
+                            Number(p) === Number(page) && styles.active
+                          } ${styles.page}`}
                           key={index}
-                          onClick={
-                            () =>
-                              router.push({
-                                query: {
-                                  ...router.query,
-                                  s: searchText,
-                                  sort: sort,
-                                  page: p,
-                                  limit: limit,
-                                },
-                              })
-                            // setSearchParams({
-                            //   s: searchText,
-                            //   sort: sort,
-                            //   page: p,
-                            //   limit: limit,
-                            // })
+                          onClick={() =>
+                            router.push({
+                              query: {
+                                ...router.query,
+                                s: searchText,
+                                sort: sort,
+                                page: p,
+                                limit: limit,
+                              },
+                            })
                           }
                         >
                           {p}
                         </span>
                       );
                     })}
+
                   {page < searchProduct?.pageNeeded && (
                     <div className="flex items-center justify-center text-secondary ml-5 gap-x-6">
                       <span
-                        onClick={
-                          () =>
-                            router.push({
-                              query: {
-                                ...router.query,
-                                s: searchText,
-                                sort: sort,
-                                page: Number(page) + 1,
-                                limit: limit,
-                              },
-                            })
-                          // setSearchParams({
-                          //   s: searchText,
-                          //   sort: sort,
-                          //   page: Number(page) + 1,
-                          //   limit: limit,
-                          // })
+                        onClick={() =>
+                          router.push({
+                            query: {
+                              ...router.query,
+                              s: searchText,
+                              sort: sort,
+                              page: Number(page) + 1,
+                              limit: limit,
+                            },
+                          })
                         }
                       >
                         Next
                       </span>
                       <span
-                        onClick={
-                          () =>
-                            router.push({
-                              query: {
-                                ...router.query,
-                                s: searchText,
-                                sort: sort,
-                                page: searchProduct?.pageNeeded,
-                                limit: limit,
-                              },
-                            })
-                          // setSearchParams({
-                          //   s: searchText,
-                          //   sort: sort,
-                          //   page: search?.pageNeeded,
-                          //   limit: limit,
-                          // })
+                        onClick={() =>
+                          router.push({
+                            query: {
+                              ...router.query,
+                              s: searchText,
+                              sort: sort,
+                              page: searchProduct?.pageNeeded,
+                              limit: limit,
+                            },
+                          })
                         }
                         className="bg-none font-bold uppercase w-fit hidden md:block"
                       >

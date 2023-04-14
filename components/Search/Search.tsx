@@ -4,6 +4,7 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 // import { getSearchUrl } from "../../urlConfig";
 import { useRouter } from "next/router";
 import { getSearchUrl } from "@/urlConfig";
+import styles from "./Search.module.css";
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -11,7 +12,7 @@ const Search = () => {
   const router = useRouter();
   const { s } = router.query;
   console.log("router2 router2 router2", s);
-  console.log("router22222 router22222222 router222222", router.asPath);
+  console.log("router22222 router22222222 router222222", router?.asPath);
   console.log("router4444444 router4444444222 router44444442", searchValue);
   // const location = useLocation();
   // const navigate = useNavigate();
@@ -32,7 +33,7 @@ const Search = () => {
   };
   return (
     <div className="flex-1 my-2 bg-white block md:hidden py-2 px-3">
-      <form onSubmit={handleSubmitSearch} className="search">
+      <form onSubmit={handleSubmitSearch} className={`${styles.search}`}>
         <input
           type="text"
           value={searchValue}
