@@ -1,9 +1,9 @@
 import React from "react";
-// import { Link } from "react-router-dom";
 import calculateAverageRating from "../../utils/calculateAverageRating";
 import Rating from "../UI/Rating/Rating";
 import Image from "next/image";
 import Link from "next/link";
+import styles from "./ProductCard1.module.css";
 
 const ProductCard1 = ({ product }: any) => {
   return (
@@ -14,15 +14,15 @@ const ProductCard1 = ({ product }: any) => {
     >
       <div className="h-[200px] w-full flex items-center justify-center">
         <Image
-          className="max-h-full max-w-full object-contain"
-          width={100}
-          height={100}
+          className="h-full w-full object-contain"
+          width="100"
+          height="100"
           src={product?.productPictures[0]?.img}
           alt={product?.name}
         />
       </div>
       <div>
-        <p className="textTwoLine">{product.name}</p>
+        <p className={`${styles.textTwoLine}`}>{product.name}</p>
         <div className="flex items-center justify-stater gap-x-2">
           <Rating value={calculateAverageRating(product?.ratings) || 0} />
           <span className="text-[12px]">
