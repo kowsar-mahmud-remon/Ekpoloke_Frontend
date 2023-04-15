@@ -33,7 +33,7 @@ export const userSlice = createSlice({
     },
 
     signOut: (state: any) => {
-      (state.accessToken = undefined), (state.user = undefined);
+      (state.accessToken = undefined), (state.user = undefined);  
     },
   },
 });

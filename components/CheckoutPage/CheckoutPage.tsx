@@ -16,7 +16,7 @@ import style from "../../pages/cart/cart.module.css";
 import CartPage from "../../pages/cart/index";
 import { log } from "console";
 import { useRouter } from "next/router";
-import { addOrder } from "../app/tools/addressSlice/addressSlice";
+import { addOrder } from "../features/address/addressSlice";
 
 interface checkoutProps {
   active?: any;
