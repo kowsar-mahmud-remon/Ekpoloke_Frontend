@@ -1,20 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { productApi } from "../rtkQuery/productApi";
-import cartSlice from "./tools/cart/cartSlice";
-import userSlice from "./tools/userSlice/userSlice";
 import addressSlice from "./tools/addressSlice/addressSlice";
+import { apiSlice } from "../features/api/apiSlice";
+import cartItemsSlice from "../features/cartItems/cartItemsSlice";
+import  userSlice  from "../features/auth/authSlice";
 
 export const store = configureStore({
   reducer: {
-    [productApi.reducerPath]: productApi.reducer,
-    carts: cartSlice,
+    [apiSlice.reducerPath]: apiSlice.reducer,
+    carts: cartItemsSlice,
     user: userSlice,
     addreess: addressSlice,
   },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(productApi.middleware),
+    getDefaultMiddleware().concat(apiSlice.middleware),
 });
 
 setupListeners(store.dispatch);

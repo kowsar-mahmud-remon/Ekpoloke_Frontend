@@ -5,9 +5,9 @@ import Card from "../../UI/Card/Card";
 import styles from "./ClothingAndAccessories.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { useGetProductBySlugQuery } from "@/components/rtkQuery/productApi";
 import { useRouter } from "next/router";
 import CurrencyFormat from "react-currency-format";
+import { useGetProductBySlugQuery } from "@/components/features/products/productsApi";
 
 const ClothingAndAccessories = () => {
   // const { slug } = useParams();

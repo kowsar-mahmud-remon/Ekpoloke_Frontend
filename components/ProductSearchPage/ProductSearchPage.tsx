@@ -11,7 +11,7 @@ import ProductCard1 from "../ProductCard1/ProductCard1";
 import SortWithModal from "../SortWithModal/SortWithModal";
 import Filter from "../Filter/Filter";
 import { useRouter } from "next/router";
-import { useGetSearchProductQuery } from "../rtkQuery/productApi";
+import { useGetSearchProductQuery } from "../features/search/searchApi";
 
 const ProductSearchPage = () => {
   const [sortModal, setSortModal] = useState(false);
@@ -91,8 +91,8 @@ const ProductSearchPage = () => {
               />
               <Filter className="md:hidden" />
             </div>
-            <div className="container mx-auto md:px-4 px-2">
-              <div className="md:ml-10 font-bold pt-10 text-center">
+            <div className="container px-2 mx-auto md:px-4">
+              <div className="pt-10 font-bold text-center md:ml-10">
                 <h5 className="text-xl">
                   Showing {searchProduct?.showingFrom} -{" "}
                   {searchProduct?.showingTo} of {searchProduct?.matchCount}{" "}
@@ -156,7 +156,7 @@ const ProductSearchPage = () => {
                   </span>
                 </div>
               </div>
-              <div className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 md:gap-5 gap-1">
+              <div className="grid grid-cols-2 gap-1 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 md:gap-5">
                 {searchProduct?.products?.map((product: any, index: any) => {
                   return <ProductCard1 key={index} product={product} />;
                 })}
@@ -185,7 +185,7 @@ const ProductSearchPage = () => {
                             },
                           });
                         }}
-                        className="font-bold uppercase w-fit hidden md:block"
+                        className="hidden font-bold uppercase w-fit md:block"
                       >
                         First
                       </span>
@@ -238,7 +238,7 @@ const ProductSearchPage = () => {
                     })}
 
                   {page < searchProduct?.pageNeeded && (
-                    <div className="flex items-center justify-center text-secondary ml-5 gap-x-6">
+                    <div className="flex items-center justify-center ml-5 text-secondary gap-x-6">
                       <span
                         onClick={() =>
                           router.push({
@@ -266,7 +266,7 @@ const ProductSearchPage = () => {
                             },
                           })
                         }
-                        className="bg-none font-bold uppercase w-fit hidden md:block"
+                        className="hidden font-bold uppercase bg-none w-fit md:block"
                       >
                         Last
                       </span>

@@ -10,7 +10,7 @@ import Image from "next/image";
 import ModalClose from "../ModalClose/ModalClose";
 import style from "./ProductDetailsPage.module.css";
 import { GrClose } from "react-icons/gr";
-import { useAddReviewMutation } from "../rtkQuery/productApi";
+import { useAddReviewMutation } from "../features/review/reviewApi";
 
 interface ratingModal {
   handleClose?: any;

@@ -30,9 +30,9 @@ import { TbLanguage, TbBellRinging } from "react-icons/tb";
 import { ImSearch, ImFolderDownload } from "react-icons/im";
 import Image from "next/image";
 import Link from "next/link";
-import { signOut, signUp } from "../app/tools/userSlice/userSlice";
 import { useRouter } from "next/router";
 import { getSearchUrl } from "@/urlConfig";
+import { signOut, signUp } from "../features/auth/authSlice";
 // import { signOut } from "../../actions";
 // import { getSearchUrl } from "../../urlConfig";
 

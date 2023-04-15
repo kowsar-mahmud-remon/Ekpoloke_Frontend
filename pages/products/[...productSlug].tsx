@@ -3,9 +3,9 @@ import Loading from "@/components/Loading/Loading";
 import Error from "@/components/Error/Error";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { useGetProductByIdQuery } from "@/components/rtkQuery/productApi";
 import ProductDetailsDesktop from "@/components/ProductDetailsPage/ProductDetailsDesktop";
 import ProductDetailsMobile from "@/components/ProductDetailsPage/ProductDetailsMobile";
+import { useGetProductByIdQuery } from "@/components/features/products/productsApi";
 
 
 const ProductDetailsPage = () => {
