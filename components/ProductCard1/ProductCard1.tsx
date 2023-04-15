@@ -8,7 +8,7 @@ import styles from "./ProductCard1.module.css";
 const ProductCard1 = ({ product }: any) => {
   return (
     <Link
-      href={`/product/${product?.slug}/${product._id}/p`}
+      href={`/products/${product?.slug}/${product._id}`}
       className="px-2 py-3 md:p-3 border-[0.5px] border-white hover:border-gray-200 hover:shadow-xl block rounded-md bg-white"
       key={product?._id}
     >
