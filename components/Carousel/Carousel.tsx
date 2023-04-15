@@ -5,7 +5,8 @@ import PreviousButton from "./PreviousButton";
 import styles from "../../styles/Carousel.module.css";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { useGetCarouselQuery } from "../rtkQuery/productApi";
+import { useGetCarouselQuery } from "../features/products/productsApi";
+
 
 interface ComponentBProps {
   slides: any;
@@ -46,7 +47,7 @@ const Carousel = ({}) => {
               height={800}
               src={slide?.image}
               alt={slide?.title}
-              className=" w-full"
+              className="w-full "
             />
           </a>
         ) : (

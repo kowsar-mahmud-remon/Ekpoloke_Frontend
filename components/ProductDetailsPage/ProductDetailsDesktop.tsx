@@ -14,7 +14,7 @@ import Link from "next/link";
 import style from "./ProductDetailsPage.module.css";
 import ProductModal from "./ProductModal";
 import { useRouter } from "next/router";
-import { addCart } from "../app/tools/cart/cartSlice";
+import { addCart } from "../features/cartItems/cartItemsSlice";
 
 interface productProps {
   productDetails?: any;

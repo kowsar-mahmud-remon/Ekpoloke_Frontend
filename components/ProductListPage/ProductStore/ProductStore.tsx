@@ -7,10 +7,10 @@ import { Button } from "@mui/material";
 import { useParams } from "react-router-dom";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useGetProductBySlugQuery } from "@/components/rtkQuery/productApi";
 import styles from "./ProductStore.module.css";
 import Rating from "@/components/UI/Rating/Rating";
 import Price from "@/components/Price/Price";
+import { useGetProductBySlugQuery } from "@/components/features/products/productsApi";
 
 const ProductStore = (props: any) => {
   const router = useRouter();

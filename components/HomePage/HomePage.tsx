@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
-import { useGetProductsQuery } from "../rtkQuery/productApi";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import MultipleProductSlider from "../MultipleProductSlider/MultipleProductSlider";
+import { useGetAllProductsQuery } from "../features/products/productsApi";
 
 const HomePage = () => {
   const { data, isLoading, error } =
-  useGetProductsQuery({fields: "ratings,name,productPictures,price,slug"}) || {};
+  useGetAllProductsQuery({fields: "ratings,name,productPictures,price,slug"}) || {};
 
   return (
     <div>

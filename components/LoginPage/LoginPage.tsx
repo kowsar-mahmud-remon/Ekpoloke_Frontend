@@ -11,8 +11,8 @@ import { Checkbox, FormControlLabel } from "@mui/material";
 import ForgotPasswordModal from "./ForgotPasswordModal";
 import { Helmet } from "react-helmet";
 import Link from "next/link";
-import { useAddLoginUserMutation } from "../rtkQuery/productApi";
 import { useRouter } from "next/router";
+import { useAddLoginUserMutation } from "../features/auth/authApi";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -79,7 +79,7 @@ const LoginPage = () => {
       <div className="flex justify-center items-center w-full bg-primary h-[120px]">
         <span>Ad</span>
       </div>
-      <div className="flex lg:flex-row md:flex-row flex-col container mx-auto items-center justify-center lg:p-10 md:p-6 p-0">
+      <div className="container flex flex-col items-center justify-center p-0 mx-auto lg:flex-row md:flex-row lg:p-10 md:p-6">
         <div className="lg:w-[50%] md:w-[70%] w-[100%] flex items-center justify-center">
           <Lottie
             style={{ width: "70%" }}
@@ -87,8 +87,8 @@ const LoginPage = () => {
             loop={false}
           />
         </div>
-        <div className="lg:flex-1 w-full lg:p-0 p-6">
-          <h2 className="text-center text-5xl font-bold">
+        <div className="w-full p-6 lg:flex-1 lg:p-0">
+          <h2 className="text-5xl font-bold text-center">
             Log<span className="text-primary">in</span>
           </h2>
           <form
@@ -104,7 +104,7 @@ const LoginPage = () => {
               })}
               placeholder="Email"
             />
-            <span className="text-red-500 block">
+            <span className="block text-red-500">
               {errors?.email?.type === "required" && "Email is required"}
               {errors?.email?.type === "pattern" && "Valid Email is required"}
             </span>
@@ -116,7 +116,7 @@ const LoginPage = () => {
               type={passwordShow ? "text" : "password"}
               placeholder="Password"
             />
-            <span className="text-red-500 block">
+            <span className="block text-red-500">
               {errors?.password?.type === "required" && "Password Is Required"}
               {errors?.password?.type === "minLength" &&
                 "At least 6 characters required"}
@@ -130,12 +130,12 @@ const LoginPage = () => {
               <label
                 htmlFor="forgotPasswordModal"
                 onClick={() => setForgotPasswordModal(true)}
-                className="text-primary cursor-pointer"
+                className="cursor-pointer text-primary"
               >
                 Forgot Password?
               </label>
             </div>
-            <span className="text-red-500 block font-bold">
+            <span className="block font-bold text-red-500">
               {error?.data?.error}
             </span>
             <input
@@ -145,7 +145,7 @@ const LoginPage = () => {
               disabled={errors.password || errors.email ? true : false}
             />
           </form>
-          <div className="flex font-bold justify-between lg:px-8 px-0 mt-4">
+          <div className="flex justify-between px-0 mt-4 font-bold lg:px-8">
             <Link href="/register" className="text-secondary">
               Register
             </Link>

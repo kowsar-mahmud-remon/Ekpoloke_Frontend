@@ -8,7 +8,7 @@ import Layout from "@/components/Layout/Layout";
 import { useEffect } from "react";
 import { log } from "console";
 import { createWrapper } from "next-redux-wrapper";
-import { intializeCart } from "@/components/app/tools/cart/cartSlice";
+import { intializeCart } from "@/components/features/cartItems/cartItemsSlice";
 
 const wrapper = createWrapper(() => store);
 
