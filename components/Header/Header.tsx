@@ -33,19 +33,15 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { getSearchUrl } from "@/urlConfig";
 import { signOut, signUp } from "../features/auth/authSlice";
-// import { signOut } from "../../actions";
-// import { getSearchUrl } from "../../urlConfig";
 
 const LoggedInMenu = () => {
   const { user } = useSelector((state) => state?.user);
-  // const newUser = JSON.parse(localStorage.getItem("user"));
-  // const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const logout = () => {
-    // dispatch(signOut());
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    localStorage.clear();
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("user");
     dispatch(signOut());
     console.log(" useruser user", user);
   };
@@ -112,15 +108,9 @@ const Header = ({ content }: any) => {
 
   const { accessToken, user } = useSelector((state) => state?.user);
 
-  // const cart = useSelector((state) => state.cart);
-  // const auth = useSelector((state) => state.auth);
   const [searchValue, setSearchValue] = useState("");
   const { cartItems } = useSelector((state) => state?.carts);
 
-  // const [searchParams] = useSearchParams();
-
-  // const location = useLocation();
-  // const navigate = useNavigate();
   const router = useRouter();
   const { s } = router.query;
 
@@ -132,18 +122,10 @@ const Header = ({ content }: any) => {
     }
   }, [router?.asPath, s]);
 
-  // useEffect(() => {
-  //   if (location.pathname === "/search/product") {
-  //     const searchValue = searchParams.get("s");
-  //     setSearchValue(searchValue);
-  //   }
-  // }, [location.pathname, searchParams]);
-  // const dispatch = useDispatch();
-
   const logout = () => {
-    // dispatch(signOut());
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    localStorage.clear();
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("user");
     dispatch(signOut());
     console.log(" useruser user", user);
   };
@@ -154,7 +136,6 @@ const Header = ({ content }: any) => {
     const newRouter = getSearchUrl(searchValue);
     console.log("header newRouter newRouter newRouter", newRouter);
     router.push(getSearchUrl(searchValue));
-    // navigate(getSearchUrl(searchValue));
   };
 
   return (
@@ -359,14 +340,12 @@ const Header = ({ content }: any) => {
               </li>
             )}
 
-            {/* // */}
             {/* <label
               htmlFor="navbarDrawer"
               className="absolute z-50 p-2 rounded-full bg-neutral right-2 top-2"
             >
               <MdClose fontSize="25" />
             </label> */}
-            {/* // */}
           </ul>
         </div>
       </div>
