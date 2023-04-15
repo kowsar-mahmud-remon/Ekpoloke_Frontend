@@ -6,7 +6,8 @@ import {
 } from "../../components/MaterialUI/MaterialUI";
 import { useAddAddressMutation } from "../rtkQuery/productApi";
 import styles from "./CheckoutPage.module.css";
-import { addAddress } from "../app/tools/addressSlice/addressSlice";
+import { addAddress } from "../features/address/addressSlice";
+
 
 /**
  * @author
