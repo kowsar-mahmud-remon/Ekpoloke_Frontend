@@ -6,10 +6,6 @@ import { useForm } from "react-hook-form";
 import { MdClose } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-// import {
-//   forgotPasswordAtLogin,
-//   resetPasswordAtLogin,
-// } from "../../actions/auth.action";
 import {
   useForgotPasswordAtLoginMutation,
   useResetPasswordAtLoginMutation,
@@ -19,7 +15,6 @@ import { forgetPasswordToken } from "../app/tools/userSlice/userSlice";
 import styles from "./LoginPage.module.css";
 
 const ForgotPasswordModal = ({ setForgotPasswordModal }: any) => {
-  // const auth = useSelector((state) => state.auth);
   const { accessToken } = useSelector((state) => state?.user);
   console.log("accessTokenaccessTokenaccessToken", accessToken);
   const [
@@ -33,9 +28,7 @@ const ForgotPasswordModal = ({ setForgotPasswordModal }: any) => {
     formState: { errors },
   } = useForm();
 
-  // const dispatch = useDispatch();
   const handleForgotPassword = (data: any) => {
-    // dispatch(forgotPasswordAtLogin(data));
     forgotPasswordAtLogin(data);
   };
   return (
@@ -59,7 +52,6 @@ const ForgotPasswordModal = ({ setForgotPasswordModal }: any) => {
 };
 
 const EmailScreen = ({ setForgotPasswordModal }: any) => {
-  // const auth = useSelector((state) => state.auth);
   const [
     forgotPasswordAtLogin,
     { data: loginUserInfo, isError, isSuccess, error },
@@ -79,7 +71,6 @@ const EmailScreen = ({ setForgotPasswordModal }: any) => {
 
   const handleForgotPassword = (data: any) => {
     forgotPasswordAtLogin(data);
-    // dispatch(forgotPasswordAtLogin(data));
   };
   return (
     <>
@@ -135,7 +126,6 @@ const EmailScreen = ({ setForgotPasswordModal }: any) => {
 };
 
 const OtpScreen = ({ setForgotPasswordModal }: any) => {
-  // const auth = useSelector((state) => state.auth);
   const { accessToken } = useSelector((state) => state?.user);
   const [
     resetPasswordAtLogin,
@@ -215,7 +205,6 @@ const OtpScreen = ({ setForgotPasswordModal }: any) => {
         otp: Number(otp.join("")),
         newPassword: data.password,
         resetPasswordToken: accessToken,
-        // resetPasswordToken: resetPasswordInfo?.forgotAndResetPassword?.token,
       };
       resetPasswordAtLogin(params);
     }

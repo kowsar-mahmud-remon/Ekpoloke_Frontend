@@ -1,20 +1,12 @@
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { getAllCategories } from "../../actions";
-// import "./MenuHeader.css";
 import styles from "../../styles/MenuHeader.module.css";
 import { useGetAllCategoryQuery } from "../features/products/productsApi";
 
 const MenuHeader = () => {
   const { data: category } =
     useGetAllCategoryQuery("name,parentId,slug,type") || {};
-
-  // const category = useSelector(state => state.category);
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //     dispatch(getAllCategories());
-  // }, []);
 
   const renderCategories = (categoryList: any) => {
     let myCategories = [];
