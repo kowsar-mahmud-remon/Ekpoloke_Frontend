@@ -3,10 +3,8 @@ import Lottie from "lottie-react";
 import loginLottie from "../../assets/lotties/login.json";
 import styles from "./LoginPage.module.css";
 import { useForm } from "react-hook-form";
-// import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
-// import { login } from "../../actions";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import ForgotPasswordModal from "./ForgotPasswordModal";
 import { Helmet } from "react-helmet";
@@ -42,7 +40,6 @@ const LoginPage = () => {
     console.log("token user", token, user);
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
-    // dispatch(signUp({ token: token, user: user }));
     console.log("data:loginUserInfo1", loginUserInfo);
     router.push("/");
   }
@@ -51,25 +48,9 @@ const LoginPage = () => {
     return <Loading />;
   }
 
-  // const auth = useSelector((state) => state.auth);
-
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  // const location = useLocation();
-  // const from = location.state?.from?.pathname || "/";
-
   const handleFormSubmit = (data: any) => {
     addLoginUser(data);
-    // console.log(addLoginUser);
-    // dispatch(login(data));
   };
-
-  // if (auth.authenticate) {
-  //   navigate(from, { replace: true });
-  // }
-  // if (auth.authenticating) {
-  //   return <Loading />;
-  // }
 
   return (
     <div className="min-h-screen">

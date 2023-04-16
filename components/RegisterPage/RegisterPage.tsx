@@ -46,7 +46,6 @@ const RegisterPage = () => {
     console.log("token user", token, user);
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
-    // dispatch(signUp({ token: token, user: user }));
     console.log("data:userInfo1", userInfo);
     router.push("/");
   }
@@ -55,24 +54,10 @@ const RegisterPage = () => {
     return <Loading />;
   }
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   const user = JSON.parse(localStorage.getItem("user"));
-  //   dispatch(signUp({ token: token, user: user }));
-  // }, ["token", "user"]);
-
   const handleFormSubmit = (data: any) => {
     console.log("dataaaaaaaa", data);
     addUser(data);
   };
-
-  // if (auth.authenticate) {
-  //   navigate(from, { replace: true });
-  // }
-
-  // if (auth.authenticating) {
-  //   return <Loading />;
-  // }
 
   return (
     <div className="min-h-screen">
