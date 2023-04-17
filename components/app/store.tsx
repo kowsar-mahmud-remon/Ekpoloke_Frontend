@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { apiSlice } from "../features/api/apiSlice";
 import cartItemsSlice from "../features/cartItems/cartItemsSlice";
-import  userSlice  from "../features/auth/authSlice";
+import userSlice from "../features/auth/authSlice";
 import addressSlice from "../features/address/addressSlice";
 
 export const store = configureStore({
@@ -18,3 +18,6 @@ export const store = configureStore({
 });
 
 setupListeners(store.dispatch);
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

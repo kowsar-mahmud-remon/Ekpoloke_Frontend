@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface intializeCartAction {
   type: string;
@@ -7,16 +7,46 @@ interface intializeCartAction {
   // };
 }
 
-const initialState = {
-  accessToken: undefined,
-  user: undefined,
+interface ISignUpAction {
+  token: string;
+  user: {
+    _id: string;
+    email: string;
+    firstName: string;
+    fullName: string;
+    lastName: string;
+    role: string;
+  };
+}
+interface IInitialState {
+  accessToken: string;
+  user: {
+    _id: string;
+    email: string;
+    firstName: string;
+    fullName: string;
+    lastName: string;
+    role: string;
+  };
+}
+
+const initialState: IInitialState = {
+  accessToken: "",
+  user: {
+    _id: "",
+    email: "",
+    firstName: "",
+    fullName: "",
+    lastName: "",
+    role: "",
+  },
 };
 
 export const userSlice = createSlice({
   name: "newUser",
   initialState,
   reducers: {
-    signUp: (state: any, action: any) => {
+    signUp: (state: IInitialState, action: PayloadAction<ISignUpAction>) => {
       console.log("usseeerrSSSSSSSSlice", action?.payload);
       state.accessToken = action?.payload?.token;
       state.user = action?.payload?.user;
@@ -33,7 +63,7 @@ export const userSlice = createSlice({
     },
 
     signOut: (state: any) => {
-      (state.accessToken = undefined), (state.user = undefined);  
+      (state.accessToken = undefined), (state.user = undefined);
     },
   },
 });

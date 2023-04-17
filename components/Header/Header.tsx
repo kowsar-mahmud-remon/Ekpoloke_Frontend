@@ -33,9 +33,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { getSearchUrl } from "@/urlConfig";
 import { signOut, signUp } from "../features/auth/authSlice";
+import { RootState } from "../app/store";
 
 const LoggedInMenu = () => {
-  const { user } = useSelector((state) => state?.user);
+  const { user } = useSelector((state: RootState) => state?.user);
   const dispatch = useDispatch();
 
   const logout = () => {
@@ -101,15 +102,16 @@ const Header = ({ content }: any) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const user = JSON.parse(localStorage.getItem("user"));
+    const token = localStorage.getItem("token") || "";
+    const user = JSON.parse(localStorage.getItem("user") || "");
     dispatch(signUp({ token: token, user: user }));
+    console.log("userrrrrrrr rrrr", user);
   }, ["token", "user"]);
 
-  const { accessToken, user } = useSelector((state) => state?.user);
+  const { accessToken, user } = useSelector((state: RootState) => state?.user);
 
-  const [searchValue, setSearchValue] = useState("");
-  const { cartItems } = useSelector((state) => state?.carts);
+  const [searchValue, setSearchValue] = useState<string | string[]>("");
+  const { cartItems } = useSelector((state: RootState) => state?.carts);
 
   const router = useRouter();
   const { s } = router.query;
@@ -118,7 +120,7 @@ const Header = ({ content }: any) => {
     if (router.asPath === "/search/product") {
       const searchValue = s;
       console.log("header searchValue under useEffect", s);
-      setSearchValue(searchValue);
+      searchValue && setSearchValue(searchValue);
     }
   }, [router?.asPath, s]);
 
