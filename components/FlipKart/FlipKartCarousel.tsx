@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-import NextButton from "./NextButton";
-import PreviousButton from "./PreviousButton";
+import NextButton from "../Carousel/NextButton";
+import PreviousButton from "../Carousel/PreviousButton";
 import styles from "../../styles/Carousel.module.css";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetCarouselQuery } from "../features/products/productsApi";
+import img from "../../assets/images/flipkartCarouselImg1.jpg";
+import img2 from "../../assets/images/flipkartCarouselImg2.jpg";
+import img3 from "../../assets/images/flipkartCarouselImg3.jpg";
+import img4 from "../../assets/images/flipkartCarouselImg4.jpg";
+import Link from "next/link";
 
 interface ComponentBProps {
   slides: any;
@@ -13,8 +18,27 @@ interface ComponentBProps {
   className: any;
 }
 
-const Carousel = ({}) => {
+const FlipKartCarousel = ({}) => {
   const { data, isLoading, isSuccess } = useGetCarouselQuery([]);
+
+  const flipKartCarouselDetails = [
+    {
+      _id: 1,
+      image: img,
+    },
+    {
+      _id: 2,
+      image: img2,
+    },
+    {
+      _id: 3,
+      image: img3,
+    },
+    {
+      _id: 4,
+      image: img4,
+    },
+  ];
 
   const settings = {
     dots: true,
@@ -38,24 +62,24 @@ const Carousel = ({}) => {
       className={`my-[15px] mx-2 ${styles.homeSlider} bg-gray-400`}
       {...settings}
     >
-      {data?.slides?.map((slide: any, index: any) =>
+      {flipKartCarouselDetails.map((slide: any, index: any) =>
         slide.link ? (
-          <a key={index} href={slide?.link}>
+          <Link key={index} href="/">
             <Image
               width={1000}
               height={800}
               src={slide?.image}
-              alt={slide?.title}
+              alt=""
               className="w-full "
             />
-          </a>
+          </Link>
         ) : (
           <Image
             width={1000}
             height={800}
             key={index}
             src={slide?.image}
-            alt={slide?.title}
+            alt=""
           />
         )
       )}
@@ -63,4 +87,4 @@ const Carousel = ({}) => {
   );
 };
 
-export default Carousel;
+export default FlipKartCarousel;
