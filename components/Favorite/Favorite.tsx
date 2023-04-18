@@ -2,17 +2,27 @@ import React from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 // import { addToFavorite, removeFromFavorite } from "../../actions";
-import styles from "./Favorite.module.css"
+import styles from "./Favorite.module.css";
+import {
+  useAddToFavoriteMutation,
+  useGetFavoritesQuery,
+  useRemoveFromFavoriteMutation,
+} from "../features/favourite/favouriteApi";
 
-interface favProps{
-  productId:any
+interface favProps {
+  productId: any;
 }
 
-const Favorite = ({ productId }:favProps) => {
-  const dispatch = useDispatch();
-  const favorite = useSelector((state) => state?.favorite);
+const Favorite = ({ productId }: favProps) => {
+  const [addToFavorite, { isError, isLoading, isSuccess }] =
+    useAddToFavoriteMutation() || {};
+  const [removeFromFavorite] = useRemoveFromFavoriteMutation() || {};
+  const { data } = useGetFavoritesQuery([]) || {};
+
   const isProductInFavorite = () => {
-    const inFavorite = favorite?.favorites?.find((f:any) => f.product === productId);
+    const inFavorite = data?.favorites?.find(
+      (f: any) => f.product === productId
+    );
     if (inFavorite) {
       return true;
     } else {
@@ -21,8 +31,8 @@ const Favorite = ({ productId }:favProps) => {
   };
   const handleFavorite = () => {
     isProductInFavorite()
-      ? dispatch(removeFromFavorite(productId))
-      : dispatch(addToFavorite(productId));
+      ? removeFromFavorite(productId)
+      : addToFavorite(productId);
   };
   return (
     <span className={styles.favorite} onClick={handleFavorite}>

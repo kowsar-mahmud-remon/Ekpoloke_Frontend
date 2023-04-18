@@ -1,12 +1,23 @@
 import { Tooltip } from "@mui/material";
 import React, { useState } from "react";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import styles from "./ProductDetailsPage.module.css"
 
-const CopyProductCode = ({id, className, style}) => {
-    const [copyTitle, setCopyTitle] = useState("Copy To Clipboard");
+import { Roboto } from "@next/font/google";
+
+const roboto = Roboto({ weight: "500", subsets: ["latin"] });
+
+interface copyProps {
+  id?: any;
+  className?: any;
+  style?: any;
+}
+
+const CopyProductCode = ({ id, className, style }: copyProps) => {
+  const [copyTitle, setCopyTitle] = useState("Copy To Clipboard");
   return (
     <div>
-      <p className={`productCode ${className}`} style={style}>
+      <p className={`${styles.productCode} ${roboto.className} font-bold`}>
         Product Identity Code
         <Tooltip title={copyTitle}>
           <div
@@ -14,7 +25,7 @@ const CopyProductCode = ({id, className, style}) => {
               navigator.clipboard.writeText(id);
               setCopyTitle("Copied To CLipboard");
             }}
-            className="copyId"
+            className={styles.copyId}
           >
             <ContentCopyIcon style={{ fontSize: "20px" }} />
           </div>

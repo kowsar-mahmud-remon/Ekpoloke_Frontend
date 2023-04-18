@@ -15,6 +15,8 @@ import style from "./ProductDetailsPage.module.css";
 import ProductModal from "./ProductModal";
 import { useRouter } from "next/router";
 import { addCart } from "../features/cartItems/cartItemsSlice";
+import Favorite from "../Favorite/Favorite";
+import CopyProductCode from "./CopyProductCode";
 
 interface productProps {
   productDetails?: any;
@@ -118,7 +120,7 @@ const ProductDetailsDesktop = ({
                 height: "100%",
               }
             }} /> */}
-              {/* <Favorite productId={productDetails._id} /> */}
+              <Favorite productId={productDetails._id} />
             </div>
             {/* <ReactImageMagnify {...{
               smallImage: {
@@ -210,13 +212,8 @@ const ProductDetailsDesktop = ({
           </div>
           {/* product description */}
           <div className="productDetails">
-            <p className="text-lg font-semibold text-[#212121] mb-[10px]">{productDetails.name}</p>
-            <div className="flex items-center gap-3 mb-3">
-              <p className="text-[#878787] font-medium text-base">
-                Product Identity Code
-              </p>
-              <MdContentCopy color="#878787" />
-            </div>
+            <p className="text-lg text-[#212121] mb-[10px]">{productDetails.name}</p>
+            <CopyProductCode />
             <div>
               <Rating value={calculateAverageRating(ratings && ratings)} />
               <span className={`${style.ratingNumbersReviews}`}>
@@ -314,7 +311,7 @@ const ProductDetailsDesktop = ({
                 <h2 className="mt-5 text-2xl font-bold">Description</h2>
                 <p
                   style={{
-                    fontSize: "12px",
+                    fontSize: "13px",
                     color: "#212121",
                   }}
                 >
