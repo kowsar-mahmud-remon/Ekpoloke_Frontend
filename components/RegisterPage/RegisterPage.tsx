@@ -5,14 +5,12 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
-// import { signUp } from "../../actions";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import { Helmet } from "react-helmet";
 import Link from "next/link";
 import styles from "./RegisterPage.module.css";
-import { useAddUserMutation } from "../rtkQuery/productApi";
-import { signUp } from "../app/tools/userSlice/userSlice";
 import { useRouter } from "next/router";
+import { useAddUserMutation } from "../features/auth/authApi";
 
 const RegisterPage = () => {
   const [user, setUser] = useState({});
@@ -25,28 +23,15 @@ const RegisterPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  // const auth = useSelector((state) => state.auth);
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  // const location = useLocation();
-  // const from = location.state?.from?.pathname || "/";
 
   const [addUser, { data: userInfo, isLoading, isError, isSuccess, error }] =
     useAddUserMutation();
 
-  console.log("useAddTodoMutation", addUser);
-
-  console.log("data:isSuccess", isSuccess);
-  console.log("data:isError", isError);
-  console.log("data:error.data", error?.data?.error);
-
   if (isSuccess) {
     const token = userInfo?.token;
     const user = userInfo?.user;
-    console.log("token user", token, user);
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
-    console.log("data:userInfo1", userInfo);
     router.push("/");
   }
 

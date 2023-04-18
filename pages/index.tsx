@@ -8,12 +8,10 @@ import RecentlyView from "@/components/RecentlyView/RecentlyView";
 import HomePage from "@/components/HomePage/HomePage";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { intializeCart } from "@/components/app/tools/cart/cartSlice";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-
   return (
     <>
       <Head>

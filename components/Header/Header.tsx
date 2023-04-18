@@ -105,7 +105,6 @@ const Header = ({ content }: any) => {
     const token = localStorage.getItem("token") || "";
     const user = JSON.parse(localStorage.getItem("user") || "");
     dispatch(signUp({ token: token, user: user }));
-    console.log("userrrrrrrr rrrr", user);
   }, ["token", "user"]);
 
   const { accessToken, user } = useSelector((state: RootState) => state?.user);
@@ -119,7 +118,6 @@ const Header = ({ content }: any) => {
   useEffect(() => {
     if (router.asPath === "/search/product") {
       const searchValue = s;
-      console.log("header searchValue under useEffect", s);
       searchValue && setSearchValue(searchValue);
     }
   }, [router?.asPath, s]);
@@ -129,14 +127,11 @@ const Header = ({ content }: any) => {
     // localStorage.removeItem("token");
     // localStorage.removeItem("user");
     dispatch(signOut());
-    console.log(" useruser user", user);
   };
 
   const handleSubmitSearch = (e: any) => {
     e.preventDefault();
-    console.log("header searchValue searchValue searchValue", searchValue);
     const newRouter = getSearchUrl(searchValue);
-    console.log("header newRouter newRouter newRouter", newRouter);
     router.push(getSearchUrl(searchValue));
   };
 

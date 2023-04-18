@@ -42,7 +42,7 @@ const Carousel = ({}) => {
         slide.link ? (
           <a key={index} href={slide?.link}>
             <Image
-              width={1000}
+              width={1500}
               height={800}
               src={slide?.image}
               alt={slide?.title}
@@ -51,7 +51,7 @@ const Carousel = ({}) => {
           </a>
         ) : (
           <Image
-            width={1000}
+            width={1500}
             height={800}
             key={index}
             src={slide?.image}
