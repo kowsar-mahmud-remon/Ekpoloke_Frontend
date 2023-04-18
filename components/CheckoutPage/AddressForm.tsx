@@ -4,17 +4,18 @@ import {
   MaterialButton,
   MaterialInput,
 } from "../../components/MaterialUI/MaterialUI";
-import { useAddAddressMutation } from "../rtkQuery/productApi";
-import styles from "./CheckoutPage.module.css";
-import { addAddress } from "../features/address/addressSlice";
-
+import { useAddAddressMutation, useGetAddressMutation } from "../features/address/addressApi";
+import style from "./CheckoutPage.module.css"
 
 /**
  * @author
  * @function AddressForm
  **/
 
-const AddressForm = (props: any) => {
+const AddressForm = (props:any) => {
+  const [addAddress, {isError, isLoading, isSuccess}] = useAddAddressMutation() || {};
+  const [getAddress, { data }] = useGetAddressMutation() || {};
+  console.log(data, "dataaaaaaaaaaaaaaaaaaa11111");
   const { initialData, withoutLayout, onSubmitForm } = props;
   const [name, setName] = useState(initialData ? initialData.name : "");
   const [mobileNumber, setMobileNumber] = useState(
@@ -43,18 +44,18 @@ const AddressForm = (props: any) => {
     initialData ? initialData.addressType : ""
   );
   const [id, setId] = useState(initialData ? initialData._id : "");
-  const { user } = useSelector((state) => state?.user);
+  // const user = useSelector((state) => state.user);
   const [submitFlag, setSubmitFLag] = useState(false);
   const dispatch = useDispatch();
+
 
   const inputContainer = {
     width: "100%",
     marginRight: 10,
   };
 
-
-  const onAddressSubmit = (e) => {
-    const payload = {
+  const onAddressSubmit = (e:any) => {
+    const payload:any = {
       address: {
         name,
         mobileNumber,
@@ -71,14 +72,16 @@ const AddressForm = (props: any) => {
     if (id) {
       payload.address._id = id;
     }
-    dispatch(addAddress(payload.address));
+    addAddress(payload);
     setSubmitFLag(true);
   };
 
+   // adAddress({payload:{address:addressObj}});
+
   useEffect(() => {
-    console.log("addressCount", user);
+    console.log("addressCount", data?.address);
     if (submitFlag) {
-      console.log("where we are", user);
+      console.log("where we are", data);
       let _address = {};
       if (id) {
         _address = {
@@ -95,11 +98,11 @@ const AddressForm = (props: any) => {
           addressType,
         };
       } else {
-        _address = user?.address?.slice(user.address.length - 1)[0];
+        _address = address.slice(data?.address?.length - 1)[0];
       }
       onSubmitForm(_address);
     }
-  }, [user]);
+  }, [data?.address]);
 
   const renderAddressForm = () => {
     return (
@@ -109,14 +112,14 @@ const AddressForm = (props: any) => {
             <MaterialInput
               label="Name"
               value={name}
-              onChange={(e: any) => setName(e.target.value)}
+              onChange={(e:any) => setName(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
             <MaterialInput
               label="10-digit mobile number"
               value={mobileNumber}
-              onChange={(e: any) => setMobileNumber(e.target.value)}
+              onChange={(e:any) => setMobileNumber(e.target.value)}
             />
           </div>
         </div>
@@ -125,14 +128,14 @@ const AddressForm = (props: any) => {
             <MaterialInput
               label="Pincode"
               value={pinCode}
-              onChange={(e: any) => setPinCode(e.target.value)}
+              onChange={(e:any) => setPinCode(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
             <MaterialInput
               label="Locality"
               value={locality}
-              onChange={(e: any) => setLocality(e.target.value)}
+              onChange={(e:any) => setLocality(e.target.value)}
             />
           </div>
         </div>
@@ -141,7 +144,7 @@ const AddressForm = (props: any) => {
             <MaterialInput
               label="Address"
               value={address}
-              onChange={(e: any) => setAddress(e.target.value)}
+              onChange={(e:any) => setAddress(e.target.value)}
             />
           </div>
         </div>
@@ -151,14 +154,14 @@ const AddressForm = (props: any) => {
             <MaterialInput
               label="City/District/Town"
               value={cityDistrictTown}
-              onChange={(e: any) => setCityDistrictTown(e.target.value)}
+              onChange={(e:any) => setCityDistrictTown(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
             <MaterialInput
               label="State"
               value={state}
-              onChange={(e: any) => setState(e.target.value)}
+              onChange={(e:any) => setState(e.target.value)}
             />
           </div>
         </div>
@@ -167,14 +170,14 @@ const AddressForm = (props: any) => {
             <MaterialInput
               label="Landmark (Optional)"
               value={landmark}
-              onChange={(e: any) => setLandmark(e.target.value)}
+              onChange={(e:any) => setLandmark(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
             <MaterialInput
               label="Alternate Phone (Optional)"
               value={alternatePhone}
-              onChange={(e: any) => setAlternatePhone(e.target.value)}
+              onChange={(e:any) => setAlternatePhone(e.target.value)}
             />
           </div>
         </div>
@@ -183,7 +186,7 @@ const AddressForm = (props: any) => {
             className="flex"
             style={{
               alignItems: "center",
-              marginTop: "15px",
+              marginTop: "15px"
             }}
           >
             <label>
@@ -209,7 +212,7 @@ const AddressForm = (props: any) => {
             </div>
           </div>
         </div>
-        <div className="flex" style={{ justifyContent: "flex-end" }}>
+        <div className="flex" style={{ justifyContent: 'flex-end' }}>
           <MaterialButton
             title="SAVE AND DELIVER HERE"
             onClick={onAddressSubmit}
@@ -229,11 +232,11 @@ const AddressForm = (props: any) => {
   }
 
   return (
-    <div className={styles.checkoutStep} style={{ background: "#f5faff" }}>
-      <div className={`${styles.checkoutHeader}`}>
+    <div className={style.checkoutStep} style={{ background: "#f5faff" }}>
+      <div className={`${style.checkoutHeader}`}>
         <div>
-          <span className={styles.stepNumber}>+</span>
-          <span className={styles.stepTitle}>{"ADD NEW ADDRESS"}</span>
+          <span className={style.stepNumber}>+</span>
+          <span className={style.stepTitle}>{"ADD NEW ADDRESS"}</span>
         </div>
       </div>
       <div
@@ -250,5 +253,3 @@ const AddressForm = (props: any) => {
 };
 
 export default AddressForm;
-
-

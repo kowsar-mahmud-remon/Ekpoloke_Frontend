@@ -5,13 +5,15 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import MultipleProductSlider from "../MultipleProductSlider/MultipleProductSlider";
 import { useGetAllProductsQuery } from "../features/products/productsApi";
+import { Roboto } from "@next/font/google";
 
+const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 const HomePage = () => {
   const { data, isLoading, error } =
   useGetAllProductsQuery({fields: "ratings,name,productPictures,price,slug"}) || {};
 
   return (
-    <div>
+    <div className={roboto.className}>
       <div className="md:h-[150px] h-[100px] w-[100%] my-[15px]">
         <Image
           src="https://placeimg.com/1000/150/nature"

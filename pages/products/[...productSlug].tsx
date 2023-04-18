@@ -7,6 +7,10 @@ import ProductDetailsDesktop from "@/components/ProductDetailsPage/ProductDetail
 import ProductDetailsMobile from "@/components/ProductDetailsPage/ProductDetailsMobile";
 import { useGetProductByIdQuery } from "@/components/features/products/productsApi";
 
+import { Roboto } from "@next/font/google";
+
+const roboto = Roboto({ weight: "400", subsets: ["latin"] });
+
 
 const ProductDetailsPage = () => {
   const router = useRouter();
@@ -40,7 +44,7 @@ const ProductDetailsPage = () => {
   }
 
   return (
-    <div>
+    <div className={roboto.className}>
       <div>
         <Head>
           <title>{data?.product?.name}</title>

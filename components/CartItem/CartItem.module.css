@@ -48,7 +48,18 @@
     background: transparent;
     margin-right: 5px;
 }
+.button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #c2c2c2;
+    border-radius: 50%;
+    background: transparent;
+    margin-right: 5px;
+}
 .quantityControl button:active {
+    border: 1px solid #8f8f8f;
+}
+.button:active {
     border: 1px solid #8f8f8f;
 }
 .quantityControl input {
@@ -58,7 +69,18 @@
     text-align: center;
     margin-right: 5px;
 }
+.input {
+    width: 40px;
+    height: 20px;
+    border: 1px solid #c2c2c2;
+    text-align: center;
+    margin-right: 5px;
+}
 .quantityControl input:focus {
+    border: 1px solid #c2c2c2;
+    outline: none;
+}
+.input:focus {
     border: 1px solid #c2c2c2;
     outline: none;
 }

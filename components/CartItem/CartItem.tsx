@@ -2,12 +2,12 @@ import Image from "next/image";
 import React from "react";
 import styles from "./CartItem.module.css";
 import { useDispatch } from "react-redux";
-import {
-  decrement,
-  increment,
-  removeSingleItem,
-} from "../app/tools/cart/cartSlice";
 
+
+import { Roboto } from "@next/font/google";
+import { decrement, increment, removeSingleItem } from "../features/cartItems/cartItemsSlice";
+
+const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 interface ComponentBProps {
   cartItem: any;
 }
@@ -31,7 +31,7 @@ const CartItem: React.FC<ComponentBProps> = ({ cartItem }) => {
 
   const { _id, name, img, price, qty } = cartItem;
   return (
-    <div className={styles.cartItemContainer}>
+    <div className={`${styles.cartItemContainer} ${roboto.className}`}>
       <div className="flex">
         <div className={styles.cartProImgContainer}>
           <Image width={100} height={100} src={img} alt="" />
@@ -57,18 +57,18 @@ const CartItem: React.FC<ComponentBProps> = ({ cartItem }) => {
         }}
       >
         <div className={styles.quantityControl}>
-          <button className="text-xl" onClick={() => handleDecrease(cartItem)}>
+          <button className={`${styles.button} `} onClick={() => handleDecrease(cartItem)}>
             -
           </button>
-          <input value={qty} type="value" readOnly />
-          <button className="text-xl" onClick={() => handleIncrease(cartItem)}>
+          <input className={styles.input} value={qty} type="value" readOnly />
+          <button className={`${styles.button}`} onClick={() => handleIncrease(cartItem)}>
             +
           </button>
         </div>
-        <button className={`${styles.cartActionBtn}`}>Save For Later</button>
+        <button className={`${styles.cartActionBtn} font-bold`}>Save For Later</button>
         <button
           onClick={() => handleRemove(cartItem)}
-          className={styles.cartActionBtn}
+          className={`${styles.cartActionBtn} font-bold`}
         >
           Remove
         </button>

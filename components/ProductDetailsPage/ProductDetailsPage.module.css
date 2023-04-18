@@ -103,10 +103,28 @@
   justify-content: center;
   transition: all 0.3s ease-in-out;
 }
+.copyId {
+  display: inline-block;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  margin-left: 5px;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
 .productDetails .copyId:hover {
   background: rgba(0, 0, 0, 0.1);
 }
+.copyId:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
 .productDetails .copyId:active {
+  transform: scale(1.5);
+}
+.copyId:active {
   transform: scale(1.5);
 }
 

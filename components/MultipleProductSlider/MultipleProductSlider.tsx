@@ -10,8 +10,11 @@ import Link from "next/link";
 import Rating from "../UI/Rating/Rating";
 import styles from "./MultipleProductSlider.module.css";
 
+import { Roboto } from "@next/font/google";
+
+const roboto = Roboto({ weight: "400", subsets: ["latin"] });
+
 const MultipleProductSlider = (products: any) => {
-  console.log(products);
 
   return (
     <div className={`bg-white my-[15px]`}>
@@ -55,7 +58,7 @@ const MultipleProductSlider = (products: any) => {
       >
         {products?.products?.map((p: any, index: any) => {
           return (
-            <SwiperSlide key={index} className="pb-5">
+            <SwiperSlide key={index} className={`pb-5 ${roboto.className}`}>
               <Link
                 href={`/products/${p.slug}/${p._id}`}
                 className="px-2 py-3 md:p-3 border-[0.5px] border-white hover:border-gray-300 hover:shadow-md block rounded-md"
@@ -75,7 +78,7 @@ const MultipleProductSlider = (products: any) => {
                   />
                 </div>
                 <div>
-                  <p className={`${styles.sliderProductName} textTwoLine`}>
+                  <p className={`${styles.sliderProductName} ${styles.textTwoLine}`}>
                     {p.name}
                   </p>
                   <div className="flex items-center justify-stater gap-x-2">
