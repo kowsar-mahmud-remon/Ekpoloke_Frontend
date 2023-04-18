@@ -8,7 +8,6 @@ import RecentlyView from "@/components/RecentlyView/RecentlyView";
 import HomePage from "@/components/HomePage/HomePage";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { intializeCart } from "@/components/app/tools/cart/cartSlice";
 
 const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 
