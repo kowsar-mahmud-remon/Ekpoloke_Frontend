@@ -27,35 +27,35 @@ const BestElectronic = () => {
       picture: case1,
     },
     {
-      id: 1,
+      id: 4,
       name: "Top Mirrorles Camera",
       range: "Shop Now",
       brand: "HP",
       picture: camera,
     },
     {
-      id: 1,
+      id: 5,
       name: "Top Mobile Case",
       range: 250,
       brand: "For All Top Model",
       picture: case1,
     },
     {
-      id: 1,
+      id: 6,
       name: "Screen Guards",
       range: 510,
       brand: "For All Top Model",
       picture: monitor,
     },
     {
-      id: 1,
+      id: 7,
       name: "Best Women Trimmers",
       range: 3999,
       brand: "Beet, Barun, Philips & more",
       picture: veet,
     },
     {
-      id: 1,
+      id: 8,
       name: "Monitors",
       range: 8900,
       brand: "Lenovo",
@@ -63,7 +63,9 @@ const BestElectronic = () => {
     },
   ];
   return (
-    <div className={`flex w-full bg-white ${roboto.className} mb-3 shadow mx-2`}>
+    <div
+      className={`flex w-full bg-white ${roboto.className} mb-3 shadow px-2`}
+    >
       <div className="max-w-[430px] relative">
         <div className="w-[230px] mt-20">
           <div className="text-center">
