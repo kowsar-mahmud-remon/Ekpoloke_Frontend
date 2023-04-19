@@ -20,7 +20,6 @@ const ProductSearchPage = () => {
   const { s } = router.query;
   const { sort } = router.query;
   const { page } = router.query;
-  console.log("page page page", page);
   const { limit } = router.query;
   const searchText = s;
 
@@ -61,6 +60,14 @@ const ProductSearchPage = () => {
     error,
   } = useGetSearchProductQuery(searchSlug);
 
+  const sliceSearchProduct = searchProduct?.products?.slice(0, 4);
+
+  console.log("searchProduct searchProduct searchProduct", searchProduct);
+  console.log(
+    "searchProductproducts searchProductproducts searchProductproducts",
+    searchProduct?.products
+  );
+
   const queries = {
     s: searchText,
     sort,
@@ -95,8 +102,9 @@ const ProductSearchPage = () => {
               <div className="pt-10 font-bold text-center md:ml-10">
                 <h5 className="text-xl">
                   Showing {searchProduct?.showingFrom} -{" "}
-                  {searchProduct?.showingTo} of {searchProduct?.matchCount}{" "}
-                  results for "{searchText}"
+                  {/* {searchProduct?.showingTo} */}
+                  {sliceSearchProduct?.length} of {searchProduct?.matchCount}{" "}
+                  results for {`"${searchText}"`}
                 </h5>
                 <div className={`${styles.sortTabs}`}>
                   <p>Sort By</p>
@@ -157,7 +165,7 @@ const ProductSearchPage = () => {
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-1 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 md:gap-5">
-                {searchProduct?.products?.map((product: any, index: any) => {
+                {sliceSearchProduct.map((product: any, index: any) => {
                   return <ProductCard1 key={index} product={product} />;
                 })}
               </div>
@@ -237,7 +245,7 @@ const ProductSearchPage = () => {
                       );
                     })}
 
-                  {page < searchProduct?.pageNeeded && (
+                  {page && page < searchProduct?.pageNeeded && (
                     <div className="flex items-center justify-center ml-5 text-secondary gap-x-6">
                       <span
                         onClick={() =>

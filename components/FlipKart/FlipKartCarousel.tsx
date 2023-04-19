@@ -66,7 +66,7 @@ const FlipKartCarousel = ({}) => {
         slide.link ? (
           <Link key={index} href="/">
             <Image
-              width={1000}
+              width={1500}
               height={800}
               src={slide?.image}
               alt=""
@@ -75,7 +75,7 @@ const FlipKartCarousel = ({}) => {
           </Link>
         ) : (
           <Image
-            width={1000}
+            width={1500}
             height={800}
             key={index}
             src={slide?.image}
