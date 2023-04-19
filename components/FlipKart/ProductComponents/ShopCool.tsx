@@ -17,36 +17,6 @@ const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 
 const ShopCool = () => {
   const products = [
-    { id: 1, name: "Printers", range: 3999, brand: "HP", picture: printer },
-    { id: 2, name: "Monitors", range: 6599, brand: "Acer", picture: monitor },
-    {
-      id: 3,
-      name: "Plain Case Cover",
-      range: 169,
-      brand: "For All Top Model",
-      picture: case1,
-    },
-    {
-      id: 1,
-      name: "Top Mirrorles Camera",
-      range: "Shop Now",
-      brand: "HP",
-      picture: camera,
-    },
-    {
-      id: 1,
-      name: "Top Mobile Case",
-      range: 250,
-      brand: "For All Top Model",
-      picture: case1,
-    },
-    {
-      id: 1,
-      name: "Screen Guards",
-      range: 510,
-      brand: "For All Top Model",
-      picture: monitor,
-    },
     {
       id: 1,
       name: "Best Women Trimmers",
@@ -55,16 +25,46 @@ const ShopCool = () => {
       picture: veet,
     },
     {
-      id: 1,
+      id: 2,
       name: "Monitors",
       range: 8900,
       brand: "Lenovo",
       picture: monitor2,
     },
+    { id: 3, name: "Printers", range: 3999, brand: "HP", picture: printer },
+    { id: 4, name: "Monitors", range: 6599, brand: "Acer", picture: monitor },
+    {
+      id: 5,
+      name: "Plain Case Cover",
+      range: 169,
+      brand: "For All Top Model",
+      picture: case1,
+    },
+    {
+      id: 6,
+      name: "Top Mirrorles Camera",
+      range: "Shop Now",
+      brand: "HP",
+      picture: camera,
+    },
+    {
+      id: 7,
+      name: "Top Mobile Case",
+      range: 250,
+      brand: "For All Top Model",
+      picture: case1,
+    },
+    {
+      id: 8,
+      name: "Screen Guards",
+      range: 510,
+      brand: "For All Top Model",
+      picture: monitor,
+    },
   ];
   return (
     <div
-      className={`flex w-full bg-white ${roboto.className} mb-3 shadow mx-2`}
+      className={`flex w-full bg-white ${roboto.className} mb-3 shadow px-2`}
     >
       <div className="max-w-[430px] relative">
         <div className="w-[230px] mt-20">
