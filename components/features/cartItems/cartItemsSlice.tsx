@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface intializeCartAction {
+  payload: any;
   type: string;
-  payload: {
-    cartItems: [];
-  };
 }
 
 const initialState = {

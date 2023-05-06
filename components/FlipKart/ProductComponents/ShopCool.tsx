@@ -75,13 +75,13 @@ const ShopCool = () => {
             </button>
           </div>
         </div>
-        {/* <Image
+        <Image
           width={400}
           height={600}
           className="absolute bottom-0 object-contain"
-          src=""
+          src="https://rukminim1.flixcart.com/fk-p-flap/278/278/image/7593e7b6640822c1.jpg?q=90"
           alt=""
-        ></Image> */}
+        ></Image>
       </div>
       <Swiper
         grabCursor={true}

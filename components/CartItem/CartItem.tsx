@@ -3,9 +3,12 @@ import React from "react";
 import styles from "./CartItem.module.css";
 import { useDispatch } from "react-redux";
 
-
 import { Roboto } from "@next/font/google";
-import { decrement, increment, removeSingleItem } from "../features/cartItems/cartItemsSlice";
+import {
+  decrement,
+  increment,
+  removeSingleItem,
+} from "../features/cartItems/cartItemsSlice";
 
 const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 interface ComponentBProps {
@@ -19,6 +22,7 @@ const CartItem: React.FC<ComponentBProps> = ({ cartItem }) => {
     dispatch(increment({ cartItem, qty: cartItem.qty }));
     console.log("increment data", cartItem.qty);
   };
+
   const handleDecrease = (cartItem: any) => {
     if (cartItem.qty <= 1) return;
     dispatch(decrement({ cartItem, qty: cartItem.qty }));
@@ -30,6 +34,7 @@ const CartItem: React.FC<ComponentBProps> = ({ cartItem }) => {
   };
 
   const { _id, name, img, price, qty } = cartItem;
+
   return (
     <div className={`${styles.cartItemContainer} ${roboto.className}`}>
       <div className="flex">
@@ -40,7 +45,7 @@ const CartItem: React.FC<ComponentBProps> = ({ cartItem }) => {
           <div>
             <p>{name}</p>
             <p className={styles.SingleCartPrice}>
-              Tk. 
+              Tk.
               <span>{price}</span>
             </p>
             <p className={styles.SingleCartTotal}>
@@ -57,15 +62,23 @@ const CartItem: React.FC<ComponentBProps> = ({ cartItem }) => {
         }}
       >
         <div className={styles.quantityControl}>
-          <button className={`${styles.button} `} onClick={() => handleDecrease(cartItem)}>
+          <button
+            className={`${styles.button} `}
+            onClick={() => handleDecrease(cartItem)}
+          >
             -
           </button>
           <input className={styles.input} value={qty} type="value" readOnly />
-          <button className={`${styles.button}`} onClick={() => handleIncrease(cartItem)}>
+          <button
+            className={`${styles.button}`}
+            onClick={() => handleIncrease(cartItem)}
+          >
             +
           </button>
         </div>
-        <button className={`${styles.cartActionBtn} font-bold`}>Save For Later</button>
+        <button className={`${styles.cartActionBtn} font-bold`}>
+          Save For Later
+        </button>
         <button
           onClick={() => handleRemove(cartItem)}
           className={`${styles.cartActionBtn} font-bold`}
