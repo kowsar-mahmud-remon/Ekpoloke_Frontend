@@ -103,8 +103,11 @@ const Header = ({ content }: any) => {
 
   useEffect(() => {
     const token = localStorage.getItem("token") || "";
-    const user = JSON.parse(localStorage.getItem("user") || "");
-    dispatch(signUp({ token: token, user: user }));
+    const userInfo = localStorage.getItem("user");
+    if (userInfo) {
+      const user = JSON.parse(userInfo);
+      dispatch(signUp({ token: token, user: user }));
+    }
   }, ["token", "user"]);
 
   const { accessToken, user } = useSelector((state: RootState) => state?.user);
