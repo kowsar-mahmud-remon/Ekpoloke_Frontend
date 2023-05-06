@@ -2,9 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface intializeCartAction {
   type: string;
-  // payload: {
-  //   cartItems: [];
-  // };
+  payload: any;
 }
 
 interface ISignUpAction {
@@ -57,7 +55,7 @@ export const userSlice = createSlice({
     //   const user = JSON.parse(localStorage.getItem("user"));
     // },
 
-    forgetPasswordToken: (state: any, action: any) => {
+    forgetPasswordToken: (state: any, action: intializeCartAction) => {
       // console.log("usseeerrSSSSSSSSlice", action?.payload);
       state.accessToken = action?.payload?.token;
     },

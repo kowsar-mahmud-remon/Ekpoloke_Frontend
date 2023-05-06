@@ -6,16 +6,17 @@ import { useForm } from "react-hook-form";
 import { MdClose } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import ModalClose from "../ModalClose/ModalClose";
+import styles from "./LoginPage.module.css";
 import {
   useForgotPasswordAtLoginMutation,
   useResetPasswordAtLoginMutation,
-} from "../rtkQuery/productApi";
-import ModalClose from "../ModalClose/ModalClose";
-import { forgetPasswordToken } from "../app/tools/userSlice/userSlice";
-import styles from "./LoginPage.module.css";
+} from "../features/auth/authApi";
+import { forgetPasswordToken } from "../features/auth/authSlice";
+import { RootState } from "../app/store";
 
 const ForgotPasswordModal = ({ setForgotPasswordModal }: any) => {
-  const { accessToken } = useSelector((state) => state?.user);
+  const { accessToken } = useSelector((state: RootState) => state?.user);
   console.log("accessTokenaccessTokenaccessToken", accessToken);
   const [
     forgotPasswordAtLogin,
@@ -100,10 +101,10 @@ const EmailScreen = ({ setForgotPasswordModal }: any) => {
           })}
         />
         <span className="text-red-500">
-          {errors?.email?.type === "required" && errors?.email?.message}
+          {errors?.email?.type === "required" && `${errors?.email?.message}`}
         </span>
         <span className="text-red-500">
-          {errors?.email?.type === "pattern" && errors?.email?.message}
+          {errors?.email?.type === "pattern" && `${errors?.email?.message}`}
         </span>
         <span className="font-bold block text-red-500 text-center mt-4">
           {loginUserInfo?.forgotAndResetPassword?.error}
@@ -126,7 +127,7 @@ const EmailScreen = ({ setForgotPasswordModal }: any) => {
 };
 
 const OtpScreen = ({ setForgotPasswordModal }: any) => {
-  const { accessToken } = useSelector((state) => state?.user);
+  const { accessToken } = useSelector((state: RootState) => state?.user);
   const [
     resetPasswordAtLogin,
     { data: resetPasswordInfo, isError, isSuccess, error },
@@ -151,9 +152,9 @@ const OtpScreen = ({ setForgotPasswordModal }: any) => {
     });
   }
 
-  const inputContainerRef = useRef();
-  const otherInputRef = useRef();
-  const firstInputRef = useRef();
+  const inputContainerRef = useRef<any>();
+  const otherInputRef = useRef<any>();
+  const firstInputRef = useRef<any>();
   const [otp, setOtp] = useState(new Array(6).fill(""));
   const [passwordShow, setPasswordShow] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
@@ -245,7 +246,7 @@ const OtpScreen = ({ setForgotPasswordModal }: any) => {
                 }}
                 onKeyUp={(e) => handleBackSpace(e)}
                 onFocus={(e) => e.target.select()}
-                placeholder={0}
+                placeholder={"0"}
               />
             );
           })}
