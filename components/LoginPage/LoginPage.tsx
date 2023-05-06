@@ -25,7 +25,7 @@ const LoginPage = () => {
   const [
     addLoginUser,
     { data: loginUserInfo, isLoading, isError, isSuccess, error },
-  ] = useAddLoginUserMutation();
+  ] = useAddLoginUserMutation<any>();
 
   console.log("useAddLoginUserMutation", loginUserInfo);
 
