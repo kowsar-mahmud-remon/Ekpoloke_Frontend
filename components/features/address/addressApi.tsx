@@ -18,7 +18,7 @@ const addressApi = apiSlice.injectEndpoints({
         method: "POST",
       }),
     }),
-    addOrders: build.mutation<any, void>({
+    addOrders: build.mutation<any, any>({
       query: (user) => {
         return {
           url: `/api/addOrder`,

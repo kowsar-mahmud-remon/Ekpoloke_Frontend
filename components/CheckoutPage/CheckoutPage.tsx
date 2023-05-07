@@ -20,8 +20,9 @@ import {
   useAddOrdersMutation,
   useGetAddressMutation,
 } from "../features/address/addressApi";
-import style from "./CheckoutPage.module.css"
-import styles from "../../pages/cart/cart.module.css"
+import style from "./CheckoutPage.module.css";
+import styles from "../../pages/cart/cart.module.css";
+import { RootState } from "../app/store";
 
 interface checkoutProps {
   active?: any;
@@ -74,7 +75,10 @@ const Address = ({
   background,
 }: addressProps) => {
   return (
-    <div className={`flex ${style.addressContainer}`} style={{ background: "#f5faff" }}>
+    <div
+      className={`flex ${style.addressContainer}`}
+      style={{ background: "#f5faff" }}
+    >
       <div style={{ marginLeft: "15px" }}>
         <input
           id="selectAddress"
@@ -93,7 +97,9 @@ const Address = ({
               <div>
                 <span className={style.addressName}>{adr.name}</span>
                 <span className={style.addressType}>{adr.addressType}</span>
-                <span className={style.addressMobileNumber}>{adr.mobileNumber}</span>
+                <span className={style.addressMobileNumber}>
+                  {adr.mobileNumber}
+                </span>
               </div>
               {adr.selected && (
                 // <Anchor
@@ -144,16 +150,17 @@ const CheckoutPage = () => {
 
   const [addOrders] = useAddOrdersMutation() || {};
   // const { addreess } = useSelector((state) => state?.addreess);
-  const { cartItems } = useSelector((state) => state?.carts);
-  const { user } = useSelector((state) => state?.user);
+  const { cartItems } = useSelector((state: RootState) => state?.carts);
+
+  const { user } = useSelector((state: RootState) => state?.user);
 
   // const user = useSelector((state) => state.user);
   // const cart = useSelector((state) => state.cart);
   // const auth = useSelector((state) => state.auth);
   const [newAddress, setNewAddress] = useState(false);
-  const [address, setAddress] = useState([]);
+  const [address, setAddress] = useState<any>([]);
   const [confirmAddress, setConfirmAddress] = useState(false);
-  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [selectedAddress, setSelectedAddress] = useState<any>(null);
   const [orderSummary, setOrderSummary] = useState(false);
   const [orderConfirmation, setOrderConfirmation] = useState(false);
   const [paymentOption, setPaymentOption] = useState(false);
@@ -204,17 +211,22 @@ const CheckoutPage = () => {
     setConfirmAddress(true);
     setOrderSummary(true);
   };
+
   const onConfirmOrder = () => {
     const totalPrice = Object.keys(cartItems).reduce((totalPrice, key) => {
-      const { price, qty } = cartItems[key];
+      const keys = parseInt(key);
+      const { price, qty } = cartItems[keys];
       return totalPrice + price * qty;
     }, 0);
+
     const totalPayable = totalPrice + 100;
+
     const items = Object.keys(cartItems).map((key) => ({
       productId: key,
       payablePrice: cartItems[key].price,
       purchasedQty: cartItems[key].qty,
     }));
+
     const payload = {
       addressId: selectedAddress._id,
       totalAmount: totalPayable,
@@ -222,12 +234,17 @@ const CheckoutPage = () => {
       paymentStatus: "pending",
       paymentType: "cod",
     };
+
     addOrders(payload);
+
     router.push("/account/orders");
   };
   return (
     <>
-      <div className={styles.cartContainer} style={{ alignItems: "flex-start" }}>
+      <div
+        className={styles.cartContainer}
+        style={{ alignItems: "flex-start" }}
+      >
         <div className={style.checkoutContainer}>
           <CheckoutStep
             stepNumber={1}
@@ -262,7 +279,9 @@ const CheckoutPage = () => {
             body={
               <>
                 {confirmAddress ? (
-                  <div className={`flex ${style.addressContainer} ${style.stepCompleted}`}>
+                  <div
+                    className={`flex ${style.addressContainer} ${style.stepCompleted}`}
+                  >
                     <div>
                       <input
                         onClick={() => selectAddress(selectedAddress)}
@@ -291,7 +310,7 @@ const CheckoutPage = () => {
                     </div>
                   </div>
                 ) : (
-                  address?.map((adr:any, index:any) => (
+                  address?.map((adr: any, index: any) => (
                     <>
                       <Address
                         background={index % 2 === 0 ? "#f5faff" : "white"}
