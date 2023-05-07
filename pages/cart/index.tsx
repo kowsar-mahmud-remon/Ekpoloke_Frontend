@@ -7,6 +7,7 @@ import CartItem from "@/components/CartItem/CartItem";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { RootState } from "@/components/app/store";
 
 interface ComponentBProps {
   totalPrice?: any;
@@ -107,7 +108,7 @@ interface cartProps {
 }
 
 const Cart = ({ onlyCartItems }: cartProps) => {
-  const { cartItems } = useSelector((state) => state?.carts);
+  const { cartItems } = useSelector((state: RootState) => state?.carts);
   const router = useRouter();
   // const auth = useSelector((state) => state.auth);
 
