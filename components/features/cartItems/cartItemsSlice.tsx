@@ -5,7 +5,17 @@ interface intializeCartAction {
   type: string;
 }
 
-const initialState = {
+interface IStateInterface {
+  cartItems: any;
+  cartTotalAmmount: number;
+  cartTotalQuantity: number;
+}
+
+const initialState: {
+  cartItems: any;
+  cartTotalAmmount: number;
+  cartTotalQuantity: number;
+} = {
   cartItems: [],
   cartTotalAmmount: 0,
   cartTotalQuantity: 0,
@@ -15,7 +25,7 @@ export const cartSlice = createSlice({
   name: "carts",
   initialState,
   reducers: {
-    addCart: (state: any, action: any) => {
+    addCart: (state: IStateInterface, action: any) => {
       let eachCartproductIndex = state.cartItems.findIndex(
         (item: any) => item?._id === action.payload?._id
       );
@@ -39,13 +49,13 @@ export const cartSlice = createSlice({
       }
     },
 
-    intializeCart: (state: any, action: intializeCartAction) => {
+    intializeCart: (state: IStateInterface, action: intializeCartAction) => {
       state.cartItems = action.payload.cartItems;
     },
 
     clearAll: (state, action) => {},
 
-    increment: (state: any, action: intializeCartAction) => {
+    increment: (state: IStateInterface, action: intializeCartAction) => {
       console.log("carts", JSON.stringify(state.cartItems));
       let eachCartproductIndex = state.cartItems.findIndex(
         (item: any) => item?._id === action.payload.cartItem?._id
@@ -56,7 +66,7 @@ export const cartSlice = createSlice({
         localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
       }
     },
-    decrement: (state: any, action: intializeCartAction) => {
+    decrement: (state: IStateInterface, action: intializeCartAction) => {
       console.log("carts", JSON.stringify(state.cartItems));
       let eachCartproductIndex = state.cartItems.findIndex(
         (item: any) => item?._id === action.payload.cartItem?._id
