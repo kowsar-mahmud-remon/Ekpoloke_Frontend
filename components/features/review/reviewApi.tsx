@@ -3,11 +3,11 @@ import { apiSlice } from "../api/apiSlice";
 const reviewApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({
     addReview: build.mutation({
-      query: ({ productId, data, params }) => ({
+      query: ({ productId, formData }) => ({
         url: `/api/rateProduct/${productId}`,
-        params,
+        formData,
         method: "POST",
-        body: data,
+        body: formData,
       }),
     }),
   }),

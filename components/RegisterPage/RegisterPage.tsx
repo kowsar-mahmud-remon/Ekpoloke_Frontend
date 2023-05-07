@@ -25,7 +25,7 @@ const RegisterPage = () => {
   } = useForm();
 
   const [addUser, { data: userInfo, isLoading, isError, isSuccess, error }] =
-    useAddUserMutation();
+    useAddUserMutation<any>();
 
   if (isSuccess) {
     const token = userInfo?.token;

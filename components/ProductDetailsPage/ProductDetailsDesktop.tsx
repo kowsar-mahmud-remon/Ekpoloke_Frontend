@@ -8,7 +8,7 @@ import Image from "next/image";
 import Rating from "../UI/Rating/Rating";
 import calculateAverageRating from "@/utils/calculateAverageRating";
 import RatingsContainer from "./RatingsContainer";
-import ProductImagesModal from "./ProductImagesModal";
+// import ProductImagesModal from "./ProductImagesModal";
 import { MdContentCopy } from "react-icons/md";
 import Link from "next/link";
 import style from "./ProductDetailsPage.module.css";
@@ -37,19 +37,18 @@ const ProductDetailsDesktop = ({
   reviewSlice,
   setReviewSlice,
 }: productProps) => {
-
-  const router = useRouter()
+  const router = useRouter();
   const [productPicturesModal, setProductPicturesModal] = useState(false);
   const [selectedSize, setSelectedSize] = useState(productDetails?.sizes?.[0]);
   const [selectedColor, setSelectedColor] = useState(
     productDetails?.colors?.[0]
   );
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const isSelectedColor = (color: any) => {
-    return selectedColor._id === color._id;
+    return selectedColor?._id === color?._id;
   };
   const isSelectedSize = (size: any) => {
-    return selectedSize._id === size._id;
+    return selectedSize?._id === size?._id;
   };
   const isWhiteColor = (color: any) => {
     return (
@@ -85,7 +84,12 @@ const ProductDetailsDesktop = ({
                   />
                 </div>
               ))}
-            <label htmlFor="productmodal" className="text-sm text-center cursor-pointer hover:underline text-[#0078F0]">All</label>
+            <label
+              htmlFor="productmodal"
+              className="text-sm text-center cursor-pointer hover:underline text-[#0078F0]"
+            >
+              All
+            </label>
           </div>
           <div className={`${style.productDescLeftContainer}`}>
             <div className={`${style.productDescImgContainer}`}>
@@ -93,8 +97,8 @@ const ProductDetailsDesktop = ({
                 className="object-contain max-w-full max-h-full"
                 width={322}
                 height={398}
-                src={productDetails.productPictures[selectedImageIndex].img}
-                alt={`${productDetails.productPictures[selectedImageIndex].img}`}
+                src={productDetails?.productPictures[selectedImageIndex].img}
+                alt={`${productDetails?.productPictures[selectedImageIndex].img}`}
               />
               {/* <ReactImageMagnify {...{
               smallImage: {
@@ -137,7 +141,7 @@ const ProductDetailsDesktop = ({
 
             {/* action buttons */}
             <div className="flex">
-            <MaterialButton
+              <MaterialButton
                 title="ADD TO CART"
                 bgColor="#ff9f00"
                 textColor="#ffffff"
@@ -146,13 +150,23 @@ const ProductDetailsDesktop = ({
                 }}
                 icon={<IoMdCart />}
                 onClick={() => {
-                  const { _id, name, price, description, highlights, } = productDetails;
+                  const { _id, name, price, description, highlights } =
+                    productDetails;
                   const img = productDetails.productPictures[0].img;
                   // dispatch(addToCart({ _id, name, price, img }));
                   // navigate("/cart");
-                  dispatch(addCart({ _id, name, price, img, description, highlights, qty: Number(1) }))
-                  router.push("/cart")
-                  
+                  dispatch(
+                    addCart({
+                      _id,
+                      name,
+                      price,
+                      img,
+                      description,
+                      highlights,
+                      qty: Number(1),
+                    })
+                  );
+                  router.push("/cart");
                 }}
               />
               <MaterialButton
@@ -187,7 +201,7 @@ const ProductDetailsDesktop = ({
                 >
                   Mobiles
                 </Link>
-                <IoIosArrowForward  />
+                <IoIosArrowForward />
               </li>
               <li className="mr-[5px] flex items-center text-xs">
                 <Link
@@ -196,7 +210,7 @@ const ProductDetailsDesktop = ({
                 >
                   Samsung
                 </Link>
-                <IoIosArrowForward  />
+                <IoIosArrowForward />
               </li>
               <li className="mr-[5px] flex items-center text-xs">
                 <Link
@@ -212,7 +226,9 @@ const ProductDetailsDesktop = ({
           </div>
           {/* product description */}
           <div className="productDetails">
-            <p className="text-lg text-[#212121] mb-[10px]">{productDetails.name}</p>
+            <p className="text-lg text-[#212121] mb-[10px]">
+              {productDetails.name}
+            </p>
             <CopyProductCode />
             <div>
               <Rating value={calculateAverageRating(ratings && ratings)} />
@@ -299,7 +315,9 @@ const ProductDetailsDesktop = ({
               )}
               {productDetails.highlights.length > 0 && (
                 <div className={style.highlights}>
-                  <h2 className="text-lg font-bold text-muted text-[#878787]">Highlights</h2>
+                  <h2 className="text-lg font-bold text-muted text-[#878787]">
+                    Highlights
+                  </h2>
                   <ul>
                     {productDetails.highlights.map((h: any) => (
                       <li key={h._id}>{h.title}</li>
