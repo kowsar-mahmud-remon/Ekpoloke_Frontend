@@ -25,13 +25,10 @@ const RatingModal = ({
   setRatingModal,
   open,
 }: ratingModal) => {
+  const [addReview, { isError, isLoading, isSuccess }] =
+    useAddReviewMutation() || {};
 
-  const [addReview, {isError, isLoading, isSuccess}] = useAddReviewMutation() || {};
-
-
-  
-
-  const [rating, setRating] = useState(5);
+  const [rating, setRating] = useState<any>(5);
   const [images, setImages] = useState([]);
   const [reviewTitle, setReviewTitle] = useState("");
   const [review, setReview] = useState("");
@@ -41,7 +38,7 @@ const RatingModal = ({
   };
   const handleRateProduct = async (e: any) => {
     e.preventDefault();
-    const formData = new FormData();
+    const formData: any = new FormData();
     formData.append("rate", rating);
     formData.append("reviewTitle", reviewTitle);
     formData.append("review", review);
@@ -49,7 +46,7 @@ const RatingModal = ({
     for (const image of images) {
       formData.append("reviewImages", image);
     }
-    addReview(product._id, formData)
+    addReview(product._id, formData);
     setRatingModal(false);
   };
 
@@ -115,7 +112,6 @@ const RatingModal = ({
                 className="block mb-2 w-full border border-[#cecece] rounded-lg pl-2"
                 value={review}
                 onChange={(e) => setReview(e.target.value)}
-                type="text"
                 placeholder="Review Description (Optional)"
               />
               <div
