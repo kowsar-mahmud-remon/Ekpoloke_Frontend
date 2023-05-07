@@ -13,7 +13,7 @@ interface favProps {
   productId: any;
 }
 
-const Favorite = ({ productId }: favProps) => {
+const Favorite = ({ productId }: any) => {
   const [addToFavorite, { isError, isLoading, isSuccess }] =
     useAddToFavoriteMutation() || {};
   const [removeFromFavorite] = useRemoveFromFavoriteMutation() || {};

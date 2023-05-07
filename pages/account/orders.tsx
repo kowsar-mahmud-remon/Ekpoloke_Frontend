@@ -6,7 +6,7 @@ import { Breed } from "../../components/MaterialUI/MaterialUI";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import Price from "../../components/UI/Price/Price";
-import HorizontalProductCard from "../../components/HorizontalProductCard/HorizontalProductCard";
+// import HorizontalProductCard from "../../components/HorizontalProductCard/HorizontalProductCard";
 import Favorite from "../../components/Favorite/Favorite";
 import Image from "next/image";
 import { useGetOrderQuery } from "@/components/features/address/addressApi";
@@ -73,7 +73,12 @@ const OrderPage = () => {
                           <div className={style.highlights}>
                             <ul>
                               {item.productId.highlights.map((h: any) => (
-                                <li className="text-sm text-[#212121] ml-10 list-disc" key={h._id}>{h.title}</li>
+                                <li
+                                  className="text-sm text-[#212121] ml-10 list-disc"
+                                  key={h._id}
+                                >
+                                  {h.title}
+                                </li>
                               ))}
                             </ul>
                           </div>
