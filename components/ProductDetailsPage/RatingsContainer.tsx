@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import RatingsView from "./RatingsView";
 import { AiFillLike, AiFillDislike } from "react-icons/ai";
 import Image from "next/image";
-import style  from "./ProductDetailsPage.module.css"
+import style from "./ProductDetailsPage.module.css";
 import RatingModal from "./RatingModal";
 
 interface ratingProps {
@@ -108,7 +108,8 @@ const RatingsContainer = ({
           {reviewImages().firstNineTeenReviewImages.map((reviewImage: any) => (
             <>
               <div className="h-20">
-                <Image className="object-contain max-w-full max-h-full"
+                <Image
+                  className="object-contain max-w-full max-h-full"
                   src={generatePublicUrl(reviewImage?.img)}
                   alt=""
                   width={110}
@@ -136,7 +137,9 @@ const RatingsContainer = ({
       </div>
       {reviews?.slice(0, reviewSlice)?.map((review: any) => (
         <>
-          <div className={`flex flex-col justify-between ${style.review} md:flex-row`}>
+          <div
+            className={`flex flex-col justify-between ${style.review} md:flex-row`}
+          >
             <div>
               <Rating value={review?.rate} />{" "}
               <span className={style.shortReview}>{review?.reviewTitle}</span>
@@ -159,7 +162,6 @@ const RatingsContainer = ({
                 {review?.reviewImages?.map((reviewImage: any, index: any) => (
                   <div key={index}>
                     <Image
-                    
                       width={100}
                       height={100}
                       src={generatePublicUrl(reviewImage?.img)}
@@ -186,7 +188,7 @@ const RatingsContainer = ({
         </>
       ))}
       <div className={`font-bold ${style.otherReviews}`}>
-        <span >All {reviews?.length} Reviews</span>
+        <span>All {reviews?.length} Reviews</span>
         {/* <BiPlusMedical
           style={{ display: reviewSlice === 10 && "none" }}
           onClick={() => setReviewSlice(10)}

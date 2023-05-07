@@ -25,7 +25,7 @@ export const cartSlice = createSlice({
   name: "carts",
   initialState,
   reducers: {
-    addCart: (state: IStateInterface, action: any) => {
+    addCart: (state: IStateInterface, action: intializeCartAction) => {
       let eachCartproductIndex = state.cartItems.findIndex(
         (item: any) => item?._id === action.payload?._id
       );

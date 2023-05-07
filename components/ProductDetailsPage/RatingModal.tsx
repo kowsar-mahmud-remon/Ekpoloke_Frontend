@@ -46,7 +46,11 @@ const RatingModal = ({
     for (const image of images) {
       formData.append("reviewImages", image);
     }
-    addReview(product._id, formData);
+    const addReviewData = {
+      productId: product._id,
+      formData: formData,
+    };
+    addReview(addReviewData);
     setRatingModal(false);
   };
 
