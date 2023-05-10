@@ -90,7 +90,7 @@ const LoggedOutMenu = () => {
           icon: <CgNotes />,
         },
         { label: "Favorites", href: "", icon: <BsSuitHeart /> },
-        { label: "Cart", href: "", icon: <BsCart3 /> },
+        { label: "Cart", href: "/cart", icon: <BsCart3 /> },
         { label: "Reward", href: "", icon: <BsFillGiftFill /> },
         { label: "Gift Cards", href: "", icon: <MdCardGiftcard /> },
       ]}
@@ -241,7 +241,7 @@ const Header = ({ content }: any) => {
             className="drawer-overlay backdrop-brightness-50"
           ></label>
           <ul
-            className={`menu p-0 relative ${styles.navbarMobileDrawer} overflow-y-auto w-[80%] bg-base-100`}
+            className={`menu p-0 relative ${styles.navbarMobileDrawer} w-[80%] bg-base-100`}
           >
             <li className="sticky top-0 left-0 right-0 z-10 bg-primary">
               <div className="flex items-center justify-between">
@@ -275,7 +275,7 @@ const Header = ({ content }: any) => {
               </Link>
             </li>
             <li>
-              {user ? (
+              {accessToken ? (
                 <Link href="/profile">
                   <FaRegUser fontSize={20} /> <span>{user?.fullName}</span>
                 </Link>
