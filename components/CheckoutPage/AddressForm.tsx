@@ -4,16 +4,20 @@ import {
   MaterialButton,
   MaterialInput,
 } from "../../components/MaterialUI/MaterialUI";
-import { useAddAddressMutation, useGetAddressMutation } from "../features/address/addressApi";
-import style from "./CheckoutPage.module.css"
+import {
+  useAddAddressMutation,
+  useGetAddressMutation,
+} from "../features/address/addressApi";
+import style from "./CheckoutPage.module.css";
 
 /**
  * @author
  * @function AddressForm
  **/
 
-const AddressForm = (props:any) => {
-  const [addAddress, {isError, isLoading, isSuccess}] = useAddAddressMutation() || {};
+const AddressForm = (props: any) => {
+  const [addAddress, { isError, isLoading, isSuccess }] =
+    useAddAddressMutation() || {};
   const [getAddress, { data }] = useGetAddressMutation() || {};
   console.log(data, "dataaaaaaaaaaaaaaaaaaa11111");
   const { initialData, withoutLayout, onSubmitForm } = props;
@@ -48,14 +52,13 @@ const AddressForm = (props:any) => {
   const [submitFlag, setSubmitFLag] = useState(false);
   const dispatch = useDispatch();
 
-
   const inputContainer = {
     width: "100%",
     marginRight: 10,
   };
 
-  const onAddressSubmit = (e:any) => {
-    const payload:any = {
+  const onAddressSubmit = (e: any) => {
+    const payload: any = {
       address: {
         name,
         mobileNumber,
@@ -76,7 +79,7 @@ const AddressForm = (props:any) => {
     setSubmitFLag(true);
   };
 
-   // adAddress({payload:{address:addressObj}});
+  // adAddress({payload:{address:addressObj}});
 
   useEffect(() => {
     console.log("addressCount", data?.address);
@@ -112,14 +115,14 @@ const AddressForm = (props:any) => {
             <MaterialInput
               label="Name"
               value={name}
-              onChange={(e:any) => setName(e.target.value)}
+              onChange={(e: any) => setName(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
             <MaterialInput
               label="10-digit mobile number"
               value={mobileNumber}
-              onChange={(e:any) => setMobileNumber(e.target.value)}
+              onChange={(e: any) => setMobileNumber(e.target.value)}
             />
           </div>
         </div>
@@ -128,14 +131,14 @@ const AddressForm = (props:any) => {
             <MaterialInput
               label="Pincode"
               value={pinCode}
-              onChange={(e:any) => setPinCode(e.target.value)}
+              onChange={(e: any) => setPinCode(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
             <MaterialInput
               label="Locality"
               value={locality}
-              onChange={(e:any) => setLocality(e.target.value)}
+              onChange={(e: any) => setLocality(e.target.value)}
             />
           </div>
         </div>
@@ -144,7 +147,7 @@ const AddressForm = (props:any) => {
             <MaterialInput
               label="Address"
               value={address}
-              onChange={(e:any) => setAddress(e.target.value)}
+              onChange={(e: any) => setAddress(e.target.value)}
             />
           </div>
         </div>
@@ -154,14 +157,14 @@ const AddressForm = (props:any) => {
             <MaterialInput
               label="City/District/Town"
               value={cityDistrictTown}
-              onChange={(e:any) => setCityDistrictTown(e.target.value)}
+              onChange={(e: any) => setCityDistrictTown(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
             <MaterialInput
               label="State"
               value={state}
-              onChange={(e:any) => setState(e.target.value)}
+              onChange={(e: any) => setState(e.target.value)}
             />
           </div>
         </div>
@@ -170,14 +173,14 @@ const AddressForm = (props:any) => {
             <MaterialInput
               label="Landmark (Optional)"
               value={landmark}
-              onChange={(e:any) => setLandmark(e.target.value)}
+              onChange={(e: any) => setLandmark(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
             <MaterialInput
               label="Alternate Phone (Optional)"
               value={alternatePhone}
-              onChange={(e:any) => setAlternatePhone(e.target.value)}
+              onChange={(e: any) => setAlternatePhone(e.target.value)}
             />
           </div>
         </div>
@@ -186,7 +189,7 @@ const AddressForm = (props:any) => {
             className="flex"
             style={{
               alignItems: "center",
-              marginTop: "15px"
+              marginTop: "15px",
             }}
           >
             <label>
@@ -212,7 +215,7 @@ const AddressForm = (props:any) => {
             </div>
           </div>
         </div>
-        <div className="flex" style={{ justifyContent: 'flex-end' }}>
+        <div className="flex" style={{ justifyContent: "flex-end" }}>
           <MaterialButton
             title="SAVE AND DELIVER HERE"
             onClick={onAddressSubmit}
