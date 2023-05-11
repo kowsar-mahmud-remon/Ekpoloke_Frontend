@@ -1,4 +1,4 @@
-.mobileProductDetailsSlider {
+.mobileProductDetailsSlider .swiper-pagination-fraction{
   position: absolute;
   left: 0;
   right: 0;
