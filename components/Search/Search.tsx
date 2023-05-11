@@ -32,7 +32,7 @@ const Search = () => {
           onChange={(e) => setSearchValue(e?.target?.value)}
           placeholder="Search..."
         />
-        <button className="py-0 px-3 lg:px- md:px-6 sm:px-2">
+        <button className="py-0 px-3 lg:px- md:px-6 sm:px-2 sm:pb-[2px] font-medium">
           <ImSearch /> Search
         </button>
       </form>

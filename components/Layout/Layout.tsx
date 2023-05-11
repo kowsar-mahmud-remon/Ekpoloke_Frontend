@@ -5,12 +5,12 @@ import Header from "../Header/Header";
 import MenuHeader from "../MenuHeader/MenuHeader";
 import { useRouter } from "next/router";
 import Search from "../Search/Search";
-// import Search from "../Search/Search";
+import BottomNavbar from "../BottomNavbar/BottomNavbar";
 
 const Layout = ({
   children,
   menuHeader = true,
-  // bottomNavbar = true,
+  bottomNavbar = true,
   search = true,
   footer = true,
 }: any) => {
@@ -28,7 +28,7 @@ const Layout = ({
             {search && <Search />}
             {menuHeader && <MenuHeader />}
             {children}
-            {/* {bottomNavbar && <BottomNavbar />} */}
+            {bottomNavbar && <BottomNavbar />}
             {footer && <Footer />}
           </>
         }

@@ -2,7 +2,7 @@ import { apiSlice } from "../api/apiSlice";
 
 const addressApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({
-    addAddress: build.mutation<any, void>({
+    addAddress: build.mutation<any, any>({
       query: (user) => {
         return {
           url: `/api/user/address/create`,
