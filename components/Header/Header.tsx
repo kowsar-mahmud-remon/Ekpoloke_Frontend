@@ -176,9 +176,9 @@ const Header = ({ content }: any) => {
                   />
                   <button
                     type="submit"
-                    className="py-0 px-3 lg:px- md:px-6 sm:px-2"
+                    className="py-0 px-3 lg:px- md:px-6 sm:px-2 font-medium"
                   >
-                    <ImSearch /> Searchh
+                    <ImSearch /> Search
                   </button>
                 </form>
               </div>
