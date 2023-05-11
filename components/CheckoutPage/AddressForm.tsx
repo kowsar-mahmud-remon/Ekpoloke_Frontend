@@ -16,10 +16,8 @@ import style from "./CheckoutPage.module.css";
  **/
 
 const AddressForm = (props: any) => {
-  const [addAddress, { isError, isLoading, isSuccess }] =
+  const [addAddress, { data, isError, isLoading, isSuccess }] =
     useAddAddressMutation() || {};
-  const [getAddress, { data }] = useGetAddressMutation() || {};
-  console.log(data, "dataaaaaaaaaaaaaaaaaaa11111");
   const { initialData, withoutLayout, onSubmitForm } = props;
   const [name, setName] = useState(initialData ? initialData.name : "");
   const [mobileNumber, setMobileNumber] = useState(
@@ -75,7 +73,7 @@ const AddressForm = (props: any) => {
     if (id) {
       payload.address._id = id;
     }
-    addAddress(payload);
+    addAddress({ payload });
     setSubmitFLag(true);
   };
 
@@ -101,11 +99,13 @@ const AddressForm = (props: any) => {
           addressType,
         };
       } else {
-        _address = address.slice(data?.address?.length - 1)[0];
+        _address = data?.address?.address?.slice(
+          data?.address?.address?.length - 1
+        )[0];
       }
       onSubmitForm(_address);
     }
-  }, [data?.address]);
+  }, [data?.address?.address]);
 
   const renderAddressForm = () => {
     return (
@@ -189,7 +189,7 @@ const AddressForm = (props: any) => {
             className="flex"
             style={{
               alignItems: "center",
-              marginTop: "15px",
+              marginTop: "10px",
             }}
           >
             <label>

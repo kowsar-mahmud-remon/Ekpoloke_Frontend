@@ -9,7 +9,7 @@ import HomePage from "@/components/HomePage/HomePage";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-const roboto = Roboto({ weight: "400", subsets: ["latin"] });
+
 
 export default function Home() {
   return (
@@ -30,7 +30,7 @@ export default function Home() {
           rel="stylesheet"
         />
       </Head>
-      <main className={`bg-[#F2F2F2] ${roboto.className}`}>
+      <main className={`bg-[#F2F2F2]`}>
         <Carousel />
         <HomePage></HomePage>
       </main>

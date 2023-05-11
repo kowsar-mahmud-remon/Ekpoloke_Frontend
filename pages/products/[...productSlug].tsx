@@ -7,9 +7,6 @@ import ProductDetailsDesktop from "@/components/ProductDetailsPage/ProductDetail
 import ProductDetailsMobile from "@/components/ProductDetailsPage/ProductDetailsMobile";
 import { useGetProductByIdQuery } from "@/components/features/products/productsApi";
 
-import { Roboto } from "@next/font/google";
-
-const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 
 
 const ProductDetailsPage = () => {
@@ -44,7 +41,7 @@ const ProductDetailsPage = () => {
   }
 
   return (
-    <div className={roboto.className}>
+    <div>
       <div>
         <Head>
           <title>{data?.product?.name}</title>
