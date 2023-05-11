@@ -3,10 +3,6 @@ import React, { useState } from "react";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import styles from "./ProductDetailsPage.module.css"
 
-import { Roboto } from "@next/font/google";
-
-const roboto = Roboto({ weight: "500", subsets: ["latin"] });
-
 interface copyProps {
   id?: any;
   className?: any;
@@ -17,7 +13,7 @@ const CopyProductCode = ({ id, className, style }: copyProps) => {
   const [copyTitle, setCopyTitle] = useState("Copy To Clipboard");
   return (
     <div>
-      <p className={`${styles.productCode} ${roboto.className} font-bold`}>
+      <p className={`${styles.productCode} font-bold`}>
         Product Identity Code
         <Tooltip title={copyTitle}>
           <div

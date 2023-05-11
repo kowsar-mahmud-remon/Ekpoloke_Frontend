@@ -13,7 +13,6 @@ import camera from "../../../assets/products/z-24-200mm-z5-nikon-original-imag2z
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
-const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 
 const ShopCool = () => {
   const products = [
@@ -64,7 +63,7 @@ const ShopCool = () => {
   ];
   return (
     <div
-      className={`flex w-full bg-white ${roboto.className} mb-3 shadow px-2`}
+      className={`flex w-full bg-white mb-3 shadow px-2`}
     >
       <div className="max-w-[430px] relative">
         <div className="w-[230px] mt-20">
@@ -114,7 +113,7 @@ const ShopCool = () => {
           return (
             <SwiperSlide
               key={index}
-              className={` ${roboto.className} w-[232px] h-[342px] py-4`}
+              className={` w-[232px] h-[342px] py-4`}
             >
               <Link href={``} className="block px-2 rounded-md md:p-3">
                 <div className="md:h-[200px] h-[140px] w-full flex items-center justify-center">

@@ -2,8 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-.flex_items{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.flex_items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.swiper-button-next {
+  right: 0 !important;
+  border-top-left-radius: 8px !important;
+  border-bottom-left-radius: 8px !important;
+}
+.swiper-button-prev {
+  left: 0 !important;
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+}
+.swiper-button-disabled {
+  display: none !important;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  background: white;
+  box-shadow: 1px 2px 10px -1px rgb(0 0 0 / 30%) !important;
+  height: 80px !important;
+  width: 35px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important;
+  background: black !important;
+  top: calc(50% - (80px / 2)) !important;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  /* content: ""; */
+  font-size: 20px !important;
+  font-weight: bold !important;
+}
+@media only screen and (max-width: 640px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+  }
 }
