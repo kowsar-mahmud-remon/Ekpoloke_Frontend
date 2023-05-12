@@ -35,6 +35,7 @@ const OrderPage = () => {
               onClick={() => router.push(`/order-details/${order._id}`)}
               className={style.order}
             >
+              <div>
               <h2 className="text-2xl">
                 Order <span className="text-primary">{order._id}</span>
               </h2>
@@ -107,6 +108,7 @@ const OrderPage = () => {
                   </div>
                 </div>
               ))}
+              </div>
             </div>
           ))}
         </div>

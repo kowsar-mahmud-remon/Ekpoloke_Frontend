@@ -13,7 +13,7 @@ const CopyProductCode = ({ id, className, style }: copyProps) => {
   const [copyTitle, setCopyTitle] = useState("Copy To Clipboard");
   return (
     <div>
-      <p className={`${styles.productCode} font-bold`}>
+      <p className={`${styles.productCode} ${className} font-bold`} style={style}>
         Product Identity Code
         <Tooltip title={copyTitle}>
           <div

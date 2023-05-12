@@ -12,6 +12,7 @@ import Image from "next/image";
 import style from "./ProductDetailsPage.module.css";
 import RatingModal from "./RatingModal";
 
+
 interface ratingProps {
   product?: any;
   ratings?: any;
@@ -104,16 +105,16 @@ const RatingsContainer = ({
         All Review Images
       </h2>
       <div className="flex flex-col pb-5 md:flex-row">
-        <div className="grid flex-1 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[5px] h-fit">
+        <div className="grid flex-1 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 h-fit">
           {reviewImages().firstNineTeenReviewImages.map((reviewImage: any) => (
             <>
               <div className="h-20">
                 <Image
-                  className="object-contain max-w-full max-h-full"
+                  className="object-contain w-full h-full"
                   src={generatePublicUrl(reviewImage?.img)}
                   alt=""
-                  width={110}
-                  height={180}
+                  width={80}
+                  height={80}
                 ></Image>
               </div>
             </>
@@ -160,8 +161,8 @@ const RatingsContainer = ({
               </div>
               <div className={style.reviewImagesContainer}>
                 {review?.reviewImages?.map((reviewImage: any, index: any) => (
-                  <div key={index}>
-                    <Image
+                  <div key={index} className="h-20 w-20 mr-1">
+                    <Image className="rounded object-cover"
                       width={100}
                       height={100}
                       src={generatePublicUrl(reviewImage?.img)}
@@ -189,10 +190,10 @@ const RatingsContainer = ({
       ))}
       <div className={`font-bold ${style.otherReviews}`}>
         <span>All {reviews?.length} Reviews</span>
-        {/* <BiPlusMedical
+        <BiPlusMedical
           style={{ display: reviewSlice === 10 && "none" }}
           onClick={() => setReviewSlice(10)}
-        /> */}
+        />
       </div>
       {ratingModal && (
         <RatingModal

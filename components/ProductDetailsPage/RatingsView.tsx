@@ -67,10 +67,10 @@ const RatingsView = ({
           ))}
         </div>
         <div className="flex flex-row items-center justify-center w-full gap-3 md:flex-col md:gap-2">
-          <div className="text-muted whitespace-nowrap">
+          <div className="text-muted whitespace-nowrap text-[#878787]">
             Likes <span>100</span>
           </div>
-          <div className="text-muted whitespace-nowrap">
+          <div className="text-muted whitespace-nowrap text-[#878787]">
             Dislikes <span>10</span>
           </div>
           <div>
