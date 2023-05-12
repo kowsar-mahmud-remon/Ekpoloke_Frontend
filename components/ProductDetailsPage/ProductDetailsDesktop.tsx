@@ -18,6 +18,10 @@ import { addCart } from "../features/cartItems/cartItemsSlice";
 import Favorite from "../Favorite/Favorite";
 import CopyProductCode from "./CopyProductCode";
 
+import { Roboto } from "@next/font/google";
+
+const roboto = Roboto({ subsets: ["latin"], weight: "400" });
+
 interface productProps {
   productDetails?: any;
   selectedImageIndex?: any;
@@ -58,7 +62,7 @@ const ProductDetailsDesktop = ({
     );
   };
   return (
-    <div className={`bg-white hidden md:block`}>
+    <div className={`bg-white hidden md:block ${roboto.className}`} >
       <div className={`container mx-auto ${style.productDescriptionContainer}`}>
         <div
           className="flex"
@@ -329,7 +333,7 @@ const ProductDetailsDesktop = ({
                 <h2 className="mt-5 text-2xl font-bold">Description</h2>
                 <p
                   style={{
-                    fontSize: "13px",
+                    fontSize: "12px",
                     color: "#212121",
                   }}
                 >

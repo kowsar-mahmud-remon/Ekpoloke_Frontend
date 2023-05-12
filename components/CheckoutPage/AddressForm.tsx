@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  MaterialButton,
-  MaterialInput,
-} from "../../components/MaterialUI/MaterialUI";
+import { MaterialButton } from "../../components/MaterialUI/MaterialUI";
 import {
   useAddAddressMutation,
   useGetAddressMutation,
@@ -67,7 +64,7 @@ const AddressForm = (props: any) => {
         state,
         landmark,
         alternatePhone,
-        addressType,
+        addressType,    
       },
     };
     if (id) {
@@ -112,15 +109,20 @@ const AddressForm = (props: any) => {
       <>
         <div className="flex">
           <div style={inputContainer}>
-            <MaterialInput
-              label="Name"
+            <input
+              className="w-full h-10 mb-5 px-3 rounded bg-white font-normal"
+              type="text"
+              required
+              placeholder="Name"
               value={name}
               onChange={(e: any) => setName(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
-            <MaterialInput
-              label="10-digit mobile number"
+            <input
+              className="w-full h-10 mb-5 px-3 rounded bg-white font-normal"
+              placeholder="10-digit mobile number"
+              required
               value={mobileNumber}
               onChange={(e: any) => setMobileNumber(e.target.value)}
             />
@@ -128,15 +130,19 @@ const AddressForm = (props: any) => {
         </div>
         <div className="flex">
           <div style={inputContainer}>
-            <MaterialInput
-              label="Pincode"
+            <input
+              required
+              className="w-full h-10 mb-5 px-3 rounded bg-white font-normal"
+              placeholder="Pincode"
               value={pinCode}
               onChange={(e: any) => setPinCode(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
-            <MaterialInput
-              label="Locality"
+            <input
+              required
+              className="w-full h-10 mb-5 px-3 rounded bg-white font-normal"
+              placeholder="Locality"
               value={locality}
               onChange={(e: any) => setLocality(e.target.value)}
             />
@@ -144,8 +150,9 @@ const AddressForm = (props: any) => {
         </div>
         <div className="flex">
           <div style={inputContainer}>
-            <MaterialInput
-              label="Address"
+            <input
+              className="w-full h-10 mb-5 px-3 rounded bg-white font-normal"
+              placeholder="Address"
               value={address}
               onChange={(e: any) => setAddress(e.target.value)}
             />
@@ -154,15 +161,17 @@ const AddressForm = (props: any) => {
 
         <div className="flex">
           <div style={inputContainer}>
-            <MaterialInput
-              label="City/District/Town"
+            <input
+              className="w-full h-10 mb-5 px-3 rounded bg-white font-normal"
+              placeholder="City/District/Town"
               value={cityDistrictTown}
               onChange={(e: any) => setCityDistrictTown(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
-            <MaterialInput
-              label="State"
+            <input
+              className="w-full h-10 mb-5 px-3 rounded bg-white font-normal"
+              placeholder="State"
               value={state}
               onChange={(e: any) => setState(e.target.value)}
             />
@@ -170,15 +179,17 @@ const AddressForm = (props: any) => {
         </div>
         <div className="flex">
           <div style={inputContainer}>
-            <MaterialInput
-              label="Landmark (Optional)"
+            <input
+              className="w-full h-10 mb-5 px-3 rounded bg-white font-normal"
+              placeholder="Landmark (Optional)"
               value={landmark}
               onChange={(e: any) => setLandmark(e.target.value)}
             />
           </div>
           <div style={inputContainer}>
-            <MaterialInput
-              label="Alternate Phone (Optional)"
+            <input
+              className="w-full h-10 mb-5 px-3 rounded bg-white font-normal"
+              placeholder="Alternate Phone (Optional)"
               value={alternatePhone}
               onChange={(e: any) => setAlternatePhone(e.target.value)}
             />

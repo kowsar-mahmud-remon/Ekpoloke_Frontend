@@ -15,6 +15,7 @@ import { IoMdShareAlt } from "react-icons/io";
 import CopyProductCode from "./CopyProductCode";
 import Image from "next/image";
 import { MdContentCopy } from "react-icons/md";
+import Favorite from "../Favorite/Favorite";
 
 interface productProps {
   productDetails?: any;
@@ -52,7 +53,7 @@ const ProductDetailsMobile = ({
               width={200}
               height={200}
             />
-            {/* <Favorite productId={_id} /> */}
+            <Favorite productId={_id} />
             <label
               onClick={() => setShareModal(true)}
               htmlFor="productShareModal"
@@ -79,12 +80,10 @@ const ProductDetailsMobile = ({
             <del>{price + 1000}</del>
             <span className="text-success">44% off</span>
           </div>
-          <div className="flex items-center gap-3 mb-3">
-            <p className="text-[#878787] font-medium text-base">
-              Product Identity Code
-            </p>
-            <MdContentCopy color="#878787" />
-          </div>
+          <CopyProductCode
+            className="gap-x-3 justify-center"
+            style={{ margin: "10px 0" }}
+          />
           <div className="mb-5">
             <h4 className="text-2xl">Description</h4>
             <p>{description}</p>

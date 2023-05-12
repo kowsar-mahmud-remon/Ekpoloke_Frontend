@@ -75,10 +75,7 @@ const Address = ({
   background,
 }: addressProps) => {
   return (
-    <div
-      className={`flex ${style.addressContainer}`}
-      style={{ background: "#f5faff" }}
-    >
+    <div className={`flex ${style.addressContainer}`} style={{background}}>
       <div style={{ marginLeft: "15px" }}>
         <input
           id="selectAddress"
@@ -152,7 +149,9 @@ const CheckoutPage = () => {
   // const { addreess } = useSelector((state) => state?.addreess);
   const { cartItems } = useSelector((state: RootState) => state?.carts);
 
-  const { user } = useSelector((state: RootState) => state?.user);
+  const { user, accessToken } = useSelector((state: RootState) => state?.user);
+
+  console.log(user, "hellloooooooooooo userrrrrrrrr");
 
   // const user = useSelector((state) => state.user);
   // const cart = useSelector((state) => state.cart);
@@ -177,7 +176,7 @@ const CheckoutPage = () => {
   };
   useEffect(() => {
     user && getAddress();
-    // user && dispatch(getCartItems());
+    // user && cartItems();
   }, [user]);
   useEffect(() => {
     const address = data?.userAddress?.address?.map((adr: any) => ({
@@ -249,9 +248,9 @@ const CheckoutPage = () => {
           <CheckoutStep
             stepNumber={1}
             title="LOGIN"
-            active={!user}
+            active={!accessToken}
             body={
-              user ? (
+              user && accessToken ? (
                 <div className={style.loggedInId}>
                   <span style={{ fontWeight: "500" }}>
                     <span>Name:</span>
@@ -275,7 +274,7 @@ const CheckoutPage = () => {
           <CheckoutStep
             stepNumber={2}
             title="DELIVERY ADDRESS"
-            active={!confirmAddress && user}
+            active={!confirmAddress && accessToken}
             body={
               <>
                 {confirmAddress ? (
