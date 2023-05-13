@@ -6,6 +6,7 @@ import {
   useGetAddressMutation,
 } from "../features/address/addressApi";
 import style from "./CheckoutPage.module.css";
+import { roboto } from "@/fonts/googlefonts";
 
 /**
  * @author
@@ -107,7 +108,7 @@ const AddressForm = (props: any) => {
   const renderAddressForm = () => {
     return (
       <>
-        <div className="flex">
+        <div className={`flex ${roboto.className}`}>
           <div style={inputContainer}>
             <input
               className="w-full h-10 mb-5 px-3 rounded bg-white font-normal"
