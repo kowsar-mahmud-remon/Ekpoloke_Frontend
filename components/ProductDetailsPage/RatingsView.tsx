@@ -62,7 +62,7 @@ const RatingsView = ({
                 }}
               >
                 {rating?.count}
-              </p>
+              </p>  
             </div>
           ))}
         </div>
