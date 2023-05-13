@@ -18,6 +18,11 @@ import { addCart } from "../features/cartItems/cartItemsSlice";
 import Favorite from "../Favorite/Favorite";
 import CopyProductCode from "./CopyProductCode";
 import { roboto } from "@/fonts/googlefonts";
+import assured from "../../assets/images/assured.png";
+import offerArrow from "../../assets/images/arrow.png";
+import samsung from "../../assets/images/samsung.jpg";
+import nocost from "../../assets/images/no cost.png";
+import superCoin from "../../assets/images/super coin.png"
 
 interface productProps {
   productDetails?: any;
@@ -44,6 +49,10 @@ const ProductDetailsDesktop = ({
   const [selectedColor, setSelectedColor] = useState(
     productDetails?.colors?.[0]
   );
+
+  const [all, setAll] = useState(4);
+  const [hide, setHide] = useState(false);
+
   const dispatch = useDispatch();
   const isSelectedColor = (color: any) => {
     return selectedColor?._id === color?._id;
@@ -58,8 +67,83 @@ const ProductDetailsDesktop = ({
       color.name.toLowerCase() === "white"
     );
   };
+
+  const offers = [
+    {
+      id: 1,
+      Image: offerArrow,
+      description: "Get 10% Cashback on Samsung Axis bank Credit Card",
+      name: "Bank Offer",
+      tc: "T&C",
+    },
+    {
+      id: 2,
+      Image: offerArrow,
+      description:
+        "$1500 Off On ICICI Bank Credit Non EMI, Credit and Debit Card EMI Transactions",
+      name: "Bank Offer",
+      tc: "T&C",
+    },
+    {
+      id: 3,
+      Image: offerArrow,
+      description: "5% Cashback on Flipkart Axis Bank Card",
+      name: "Bank Offer",
+      tc: "T&C",
+    },
+    {
+      id: 4,
+      Image: offerArrow,
+      description: "Get extra ₹3000 off (price inclusive of cashback/coupon)",
+      tc: "T&C",
+      name: "Special Price",
+    },
+    {
+      id: 5,
+      Image: offerArrow,
+      description: "Get 200% Welcome Bonus upto ₹10000*",
+      name: "Preevie",
+      tc: "T&C",
+    },
+    {
+      id: 6,
+      Image: offerArrow,
+      description: "Get 200% Welcome Bonus upto ₹10000*",
+      name: "Preevie",
+      tc: "T&C",
+    },
+    {
+      id: 7,
+      Image: nocost,
+      description: "Standard EMI also available",
+      name: "No cost EMI ₹2,582/month",
+      tc: "T&C",
+    },
+    {
+      id: 8,
+      Image: offerArrow,
+      description:
+        "Sign up for Flipkart Pay Later and get Flipkart Gift Card worth up to ₹500*",
+      name: "Partner Offer",
+      tc: "T&C",
+    },
+    {
+      id: 9,
+      Image: offerArrow,
+      description:
+        "$1500 Off On ICICI Bank Credit Non EMI, Credit and Debit Card EMI Transactions",
+      name: "Partner Offer",
+      tc: "T&C",
+    },
+  ];
+
+  const handleViewAll = () => {
+    setAll(all + 15);
+    setHide(true);
+  };
+
   return (
-    <div className={`bg-white hidden md:block ${roboto.className}`} >
+    <div className={`bg-white hidden md:block ${roboto.className}`}>
       <div className={`container mx-auto ${style.productDescriptionContainer}`}>
         <div
           className="flex"
@@ -231,18 +315,24 @@ const ProductDetailsDesktop = ({
               {productDetails.name}
             </p>
             <CopyProductCode />
-            <div>
-              <Rating value={calculateAverageRating(ratings && ratings)} />
-              <span className={`${style.ratingNumbersReviews}`}>
-                {ratings?.length} Ratings & {reviews?.length} Reviews
-              </span>
+            <div className="flex items-center ">
+              <div>
+                <Rating value={calculateAverageRating(ratings && ratings)} />
+                <span className={`${style.ratingNumbersReviews}`}>
+                  {ratings?.length} Ratings & {reviews?.length} Reviews
+                </span>
+              </div>
+              <div>
+                <Image src={assured} width={80} height={21} alt=""></Image>
+              </div>
             </div>
+
             <div className="flex items-center priceContainer gap-x-2">
               <span className={style.price}>Tk. {productDetails.price}</span>
               <del>{productDetails.price + 1000}</del>
               <span className={style.discount}>22% off</span>
             </div>
-            <div>
+            <div className="mt-2">
               <p
                 style={{
                   color: "#212121",
@@ -252,6 +342,41 @@ const ProductDetailsDesktop = ({
               >
                 Available Offers
               </p>
+              <div className="my-3">
+                {offers.slice(0, all).map((offer) => (
+                  <>
+                    <div
+                      key={offer.id}
+                      className="flex items-center gap-2 mb-2"
+                    >
+                      <Image
+                        src={offer.Image}
+                        alt=""
+                        width={18}
+                        height={18}
+                      ></Image>
+                      <span className="font-medium text-[#212121] text-sm">
+                        {offer.name}
+                      </span>
+                      <span className="text-[#212121] text-sm">
+                        {offer.description}
+                      </span>
+                      <span className="text-[#2874f0] text-sm font-medium cursor-pointer">
+                        {offer.tc}
+                      </span>
+                    </div>
+                  </>
+                ))}
+
+                <button
+                  onClick={handleViewAll}
+                  className={`text-[#2874f0] text-sm font-medium ${
+                    hide ? "hidden" : "block"
+                  }`}
+                >
+                  View more offers
+                </button>
+              </div>
               {productDetails.colors.length > 0 && (
                 <div className="my-5">
                   <h2 className="text-lg font-bold text-muted">Colors</h2>
@@ -326,6 +451,9 @@ const ProductDetailsDesktop = ({
                   </ul>
                 </div>
               )}
+              <div className="my-3">
+                <Image src="https://rukminim1.flixcart.com/lockin/400/400/images/CCO__PP_2019-07-14.png?q=50" alt="" width={382} height={92}></Image>
+              </div>
               <div>
                 <h2 className="mt-5 text-2xl font-bold">Description</h2>
                 <p
