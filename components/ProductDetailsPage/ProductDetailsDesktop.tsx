@@ -17,10 +17,7 @@ import { useRouter } from "next/router";
 import { addCart } from "../features/cartItems/cartItemsSlice";
 import Favorite from "../Favorite/Favorite";
 import CopyProductCode from "./CopyProductCode";
-
-import { Roboto } from "@next/font/google";
-
-const roboto = Roboto({ subsets: ["latin"], weight: "400" });
+import { roboto } from "@/fonts/googlefonts";
 
 interface productProps {
   productDetails?: any;
@@ -98,9 +95,9 @@ const ProductDetailsDesktop = ({
           <div className={`${style.productDescLeftContainer}`}>
             <div className={`${style.productDescImgContainer}`}>
               <Image
-                className="object-contain max-w-full max-h-full"
-                width={322}
-                height={398}
+                className="object-contain"
+                width={420}
+                height={364}
                 src={productDetails?.productPictures[selectedImageIndex].img}
                 alt={`${productDetails?.productPictures[selectedImageIndex].img}`}
               />

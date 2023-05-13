@@ -30,6 +30,15 @@ const addressApi = apiSlice.injectEndpoints({
     getOrder: build.query({
       query: () => "/api/getOrders",
     }),
+    getOrderById: build.mutation<any, any>({
+      query: (user) => {
+        return {
+          url: `/api/getOrder`,
+          method: "POST",
+          body: user,
+        };
+      },
+    }),
   }),
 });
 
@@ -38,4 +47,5 @@ export const {
   useGetAddressMutation,
   useAddOrdersMutation,
   useGetOrderQuery,
+  useGetOrderByIdMutation
 } = addressApi;

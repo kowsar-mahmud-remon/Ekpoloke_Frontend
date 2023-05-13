@@ -23,6 +23,7 @@ import {
 import style from "./CheckoutPage.module.css";
 import styles from "../../pages/cart/cart.module.css";
 import { RootState } from "../app/store";
+import { roboto } from "@/fonts/googlefonts";
 
 interface checkoutProps {
   active?: any;
@@ -75,7 +76,7 @@ const Address = ({
   background,
 }: addressProps) => {
   return (
-    <div className={`flex ${style.addressContainer}`} style={{background}}>
+    <div className={`flex ${style.addressContainer} ${roboto.className}`} style={{background}}>
       <div style={{ marginLeft: "15px" }}>
         <input
           id="selectAddress"
@@ -151,7 +152,6 @@ const CheckoutPage = () => {
 
   const { user, accessToken } = useSelector((state: RootState) => state?.user);
 
-  console.log(user, "hellloooooooooooo userrrrrrrrr");
 
   // const user = useSelector((state) => state.user);
   // const cart = useSelector((state) => state.cart);
@@ -241,7 +241,7 @@ const CheckoutPage = () => {
   return (
     <>
       <div
-        className={styles.cartContainer}
+        className={`${styles.cartContainer} ${roboto.className}`}
         style={{ alignItems: "flex-start" }}
       >
         <div className={style.checkoutContainer}>
@@ -262,9 +262,9 @@ const CheckoutPage = () => {
                   </span>
                 </div>
               ) : (
-                <div style={{ padding: "0 50px 30px 50px" }}>
-                  <MaterialInput label="Email" />
-                  <MaterialInput label="Password" />
+                <div className="px-6 py-4">
+                  <input className="w-full my-5 border h-12 px-4 focus:outline-none rounded bg-white" placeholder="Email" />
+                  <input className="w-full mb-2 border h-12 px-4 focus:outline-none rounded bg-white"  placeholder="Password" />
                   <MaterialButton title="LOGIN" style={{ marginTop: "20px" }} />
                 </div>
               )

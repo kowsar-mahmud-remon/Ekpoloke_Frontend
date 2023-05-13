@@ -5,7 +5,6 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import MultipleProductSlider from "../MultipleProductSlider/MultipleProductSlider";
 import { useGetAllProductsQuery } from "../features/products/productsApi";
-import { Roboto } from "@next/font/google";
 
 const HomePage = () => {
   const { data, isLoading, error } =
