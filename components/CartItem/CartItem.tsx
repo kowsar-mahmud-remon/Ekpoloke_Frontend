@@ -81,12 +81,12 @@ const CartItem: React.FC<ComponentBProps> = ({ cartItem }) => {
             +
           </button>
         </div>
-        <button className={`${styles.cartActionBtn} ${roboto.className}`}>
+        <button className={`${styles.cartActionBtn} ${roboto.className} font-semibold`}>
           Save For Later
         </button>
         <button
           onClick={() => handleRemove(cartItem)}
-          className={`${styles.cartActionBtn} ${roboto.className}`}
+          className={`${styles.cartActionBtn} ${roboto.className} font-semibold`}
         >
           Remove
         </button>
