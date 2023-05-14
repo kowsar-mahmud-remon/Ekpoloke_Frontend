@@ -22,7 +22,8 @@ import assured from "../../assets/images/assured.png";
 import offerArrow from "../../assets/images/arrow.png";
 import samsung from "../../assets/images/samsung.jpg";
 import nocost from "../../assets/images/no cost.png";
-import superCoin from "../../assets/images/super coin.png"
+import superCoin from "../../assets/images/super coin.png";
+import chart from "../../assets/images/download.svg";
 
 interface productProps {
   productDetails?: any;
@@ -53,6 +54,8 @@ const ProductDetailsDesktop = ({
   const [all, setAll] = useState(4);
   const [hide, setHide] = useState(false);
 
+  const [size, setSize] = useState({ name: "" });
+
   const dispatch = useDispatch();
   const isSelectedColor = (color: any) => {
     return selectedColor?._id === color?._id;
@@ -66,6 +69,10 @@ const ProductDetailsDesktop = ({
       color.hex === "#ffffff" ||
       color.name.toLowerCase() === "white"
     );
+  };
+
+  const handleSize = (s: any) => {
+    setSize(s);
   };
 
   const offers = [
@@ -134,6 +141,25 @@ const ProductDetailsDesktop = ({
         "$1500 Off On ICICI Bank Credit Non EMI, Credit and Debit Card EMI Transactions",
       name: "Partner Offer",
       tc: "T&C",
+    },
+  ];
+
+  const sizes = [
+    {
+      id: 1,
+      name: "S",
+    },
+    {
+      id: 2,
+      name: "M",
+    },
+    {
+      id: 1,
+      name: "L",
+    },
+    {
+      id: 1,
+      name: "XL",
     },
   ];
 
@@ -332,7 +358,35 @@ const ProductDetailsDesktop = ({
               <del>{productDetails.price + 1000}</del>
               <span className={style.discount}>22% off</span>
             </div>
-            <div className="mt-2">
+
+            <div className="flex items-center my-4">
+              <p className="mr-20 text-[#878787] font-medium">Size</p>
+              <div className="flex items-center gap-5">
+                {sizes.map((s) => (
+                  <>
+                    <button
+                      onClick={() => handleSize(s)}
+                      key={s.id}
+                      className={`font-medium text-lg w-12 h-10 border-2 transition ${
+                        s.name === size.name ? "border-[#2874f0] text-[#2874f0]" : ""
+                      }`}
+                    >
+                      {s.name}
+                    </button>
+                  </>
+                ))}
+                <div className="flex items-center gap-2 cursor-pointer">
+                  <p className="text-[#2874f0] text-sm font-medium">
+                    Size Chart
+                  </p>
+                  <div>
+                    <Image src={chart} alt=""></Image>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4">
               <p
                 style={{
                   color: "#212121",
@@ -376,6 +430,35 @@ const ProductDetailsDesktop = ({
                 >
                   View more offers
                 </button>
+              </div>
+              <div className="my-4">
+                <div className="flex items-center justify-between border bg-[#f5faff] w-[400px] px-5 h-14">
+                  <div className="flex gap-6">
+                    <input type="radio" />
+                    <span className="text-sm text-[#212121]">
+                      Buy without Exchange
+                    </span>
+                  </div>
+                  <p className="text-sm font-medium">${productDetails.price}</p>
+                </div>
+                <div className="border-b border-l border-r w-[400px] h-[84px] px-5 cursor-not-allowed">
+                  <div className="flex items-center justify-between pt-5">
+                    <div className="flex gap-6">
+                      <input className="pointer-events-none text-[#878787] border-[#878787] bg-[#878787]" type="radio" />
+                      <span className="text-sm text-[#878787]">
+                        Buy without Exchange
+                      </span>
+                    </div>
+                    <p className="text-sm text-[#878787] font-medium">
+                      up to ${productDetails.price} off
+                    </p>
+                  </div>
+                  <div className="flex justify-center pt-2">
+                    <p className="text-[#FF0000] text-sm">
+                      Enter pincode to check if exchange is available
+                    </p>
+                  </div>
+                </div>
               </div>
               {productDetails.colors.length > 0 && (
                 <div className="my-5">
@@ -452,7 +535,12 @@ const ProductDetailsDesktop = ({
                 </div>
               )}
               <div className="my-3">
-                <Image src="https://rukminim1.flixcart.com/lockin/400/400/images/CCO__PP_2019-07-14.png?q=50" alt="" width={382} height={92}></Image>
+                <Image
+                  src="https://rukminim1.flixcart.com/lockin/400/400/images/CCO__PP_2019-07-14.png?q=50"
+                  alt=""
+                  width={382}
+                  height={92}
+                ></Image>
               </div>
               <div>
                 <h2 className="mt-5 text-2xl font-bold">Description</h2>
