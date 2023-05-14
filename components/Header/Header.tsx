@@ -34,6 +34,7 @@ import { useRouter } from "next/router";
 import { getSearchUrl } from "@/urlConfig";
 import { signOut, signUp } from "../features/auth/authSlice";
 import { RootState } from "../app/store";
+import { roboto } from "@/fonts/googlefonts";
 
 const LoggedInMenu = () => {
   const { user } = useSelector((state: RootState) => state?.user);
@@ -140,7 +141,7 @@ const Header = ({ content }: any) => {
 
   return (
     <>
-      <div className="drawer">
+      <div className={`drawer ${roboto.className}`}>
         <input id="navbarDrawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content bg-[#F2F2F2]" id="content">
           <div className="bg-white">
