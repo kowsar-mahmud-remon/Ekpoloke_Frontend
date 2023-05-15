@@ -1,11 +1,11 @@
 import React from "react";
-// import BottomNavbar from "../BottomNavbar/BottomNavbar";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import MenuHeader from "../MenuHeader/MenuHeader";
 import { useRouter } from "next/router";
 import Search from "../Search/Search";
 import BottomNavbar from "../BottomNavbar/BottomNavbar";
+import MenuButton from "../MenuHeader/MenuButton";
 
 const Layout = ({
   children,
@@ -26,7 +26,7 @@ const Layout = ({
         content={
           <>
             {search && <Search />}
-            {menuHeader && <MenuHeader />}
+            {menuHeader && <MenuButton />}
             {children}
             {bottomNavbar && <BottomNavbar />}
             {footer && <Footer />}
