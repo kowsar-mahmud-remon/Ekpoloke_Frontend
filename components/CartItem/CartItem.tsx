@@ -10,14 +10,15 @@ import {
   increment,
   removeSingleItem,
 } from "../features/cartItems/cartItemsSlice";
-import { Roboto } from "@next/font/google";
+import { roboto } from "@/fonts/googlefonts";
+
 
 
 interface ComponentBProps {
   cartItem: any;
 }
 
-const roboto = Roboto({ subsets: ['latin'], weight: "700" });
+
 
 const CartItem: React.FC<ComponentBProps> = ({ cartItem }) => {
   const dispatch = useDispatch();
@@ -80,12 +81,12 @@ const CartItem: React.FC<ComponentBProps> = ({ cartItem }) => {
             +
           </button>
         </div>
-        <button className={`${styles.cartActionBtn} ${roboto.className}`}>
+        <button className={`${styles.cartActionBtn} ${roboto.className} font-semibold`}>
           Save For Later
         </button>
         <button
           onClick={() => handleRemove(cartItem)}
-          className={`${styles.cartActionBtn} ${roboto.className}`}
+          className={`${styles.cartActionBtn} ${roboto.className} font-semibold`}
         >
           Remove
         </button>

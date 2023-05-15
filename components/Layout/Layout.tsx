@@ -1,7 +1,6 @@
 import React from "react";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import MenuHeader from "../MenuHeader/MenuHeader";
 import { useRouter } from "next/router";
 import Search from "../Search/Search";
 import BottomNavbar from "../BottomNavbar/BottomNavbar";

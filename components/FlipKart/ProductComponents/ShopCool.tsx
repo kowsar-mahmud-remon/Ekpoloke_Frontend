@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper";
-import { Roboto } from "@next/font/google";
 import printer from "../../../assets/products/hp-laserjet-m1005-multifunction-original-imadxhzpeb9qbrfg.webp";
 import monitor from "../../../assets/products/desirtech-tg-blacka382-original-imafh2etks4bcnmx.webp";
 import case1 from "../../../assets/products/mycas-black-vv-y35-qcase-original-imagj87uwxzarrzk.webp";

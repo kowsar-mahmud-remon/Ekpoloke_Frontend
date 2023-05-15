@@ -9,9 +9,9 @@ import { useEffect } from "react";
 import { log } from "console";
 import { createWrapper } from "next-redux-wrapper";
 import { intializeCart } from "@/components/features/cartItems/cartItemsSlice";
-import { Roboto } from "@next/font/google";
+import { roboto } from "@/fonts/googlefonts";
 
-const roboto = Roboto({ subsets: ["latin"], weight: "400" });
+
 
 const wrapper = createWrapper(() => store);
 

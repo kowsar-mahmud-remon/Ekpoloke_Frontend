@@ -58,7 +58,7 @@ const MenuHeaderTwo = () => {
               />
             </div>
 
-            <p className="text-base font-medium my-2 text-center">
+            <p className=" text-sm font-medium my-2 text-center">
               {details.title}
             </p>
           </div>

@@ -17,7 +17,7 @@ const MenuButton = () => {
         <div className="w-[20%] lg:w-[15%] ml-1">
           <button
             onClick={handleToggle}
-            className="btn btn-sm btn-primary normal-case text-white h-10"
+            className="btn btn-sm btn-primary normal-case font-medium text-white h-10"
           >
             {isToggled ? "Show More" : "Show Less"}
           </button>
